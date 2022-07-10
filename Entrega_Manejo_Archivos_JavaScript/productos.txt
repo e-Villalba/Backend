@@ -1,1 +1,1 @@
-[{"title":"Producto 1","price":1.1,"thumbnail":"http:/imagenProducto1","id":1}]
+[{"title":"Producto 1","price":1.1,"thumbnail":"http:/imagenProducto1","id":1},{"title":"Producto 2","price":2.2,"thumbnail":"http:/imagenProducto2","id":2},{"title":"Producto 3","price":2.3,"thumbnail":"http:/imagenProducto3","id":3}]

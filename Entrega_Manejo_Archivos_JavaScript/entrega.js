@@ -108,18 +108,19 @@ let Contenedor1 = new Contenedor('productos.txt')
 let Contenedor2 = new Contenedor('productos.txt')
 let Contenedor3 = new Contenedor('productos.txt')
 
-Contenedor1.deleteAll()
-Contenedor1.save(Producto1).then (data=> idProducto=data)
-                           .catch(error=> console.log(error))
-                           setTimeout(() => {
-                           }, 1000);
-Contenedor1.save(Producto2).then (data=> idProducto=data)
-                            .catch(error=>{ console.log(error)})
-Contenedor1.save(Producto3).then (data=> idProducto=data)
+//Contenedor1.deleteAll()
+//Contenedor1.save(Producto1).then (data=> idProducto=data)
+//                           .catch(error=> console.log(error))
+//                           setTimeout(() => {
+//                           }, 1000);
+//Contenedor1.save(Producto2).then (data=> idProducto=data)
+//                            .catch(error=>{ console.log(error)})
+//Contenedor1.save(Producto3).then (data=> idProducto=data)
 Contenedor1.getAll().then (data=> console.log(data,'ARRAY  - Resultado getAll Prueba'))
-Contenedor1.getById(2).then(data=>console.log(data,"OBJETO - Resultado getById"))
-Contenedor1.deleteById(1)
-console.log(idProducto,"Maximo ID Generado por SAVE")
+//Contenedor1.getById(2).then(data=>console.log(data,"OBJETO - Resultado getById"))
+//Contenedor1.deleteById(1).then(data=>console.log(data,"Producto Eliminado"))
+//console.log(idProducto,"Maximo ID Generado por SAVE")
+
 
 
 
