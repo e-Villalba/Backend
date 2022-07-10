@@ -88,7 +88,15 @@ class Contenedor{
 
 }
 ////
-
+class Producto{
+    constructor(title, price,thumbnail)
+    {
+        this.title=title,
+        this.price=price,
+        this.thumbnail=thumbnail,
+        this.id=0
+    }
+}
 app.get('/productos', (req, res) => {
    let Contenedor1 = new Contenedor('productos.txt')
    Contenedor1.getAll().then (data=> res.send(JSON.stringify(data))) 
