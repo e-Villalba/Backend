@@ -10,7 +10,7 @@ class Contenedor{
     //save(Object): Number - Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
     async save(producto){
         //const fs = require('fs');    
-        producto.id=idProducto+=1  
+        this.getAll().length===0? producto.id=0:producto.id=idProducto+=1 //Corrección 09/07/2022  si no hay productos setea el id en valor 0
         this.productos.push(producto)       
         try{
             await fs.promises.writeFile(this.archivo,JSON.stringify(this.productos))                   
@@ -28,8 +28,9 @@ class Contenedor{
         //const fs = require('fs');          
         try{
             const contenidoArchivo = await fs.promises.readFile(this.archivo,"utf-8") 
-            const arrayProducto= JSON.parse(contenidoArchivo)
-            return arrayProducto.filter(data=>data.id===idProducto)[0]
+            const arrayProducto= JSON.parse(contenidoArchivo)  //Corrección 09/07/2022  obtiene en una array el resultado
+            const prodSeleccionado=JSON.stringify(arrayProducto.filter(data=>data.id===idProducto)[0]) //Corrección 09/07/2022  guarda en una variable string y el array para hacer el return
+            return prodSeleccionado
         }
         catch(err)
         {
@@ -47,6 +48,7 @@ class Contenedor{
         }
         catch(err)
         {
+            fs.writeFileSync(this.archivo,[]) //Corrección 09/07/2022  Crea el archivo si no existe
             console.log(err)	
         }
         
@@ -57,8 +59,11 @@ class Contenedor{
         try{
             const contenidoArchivo = await fs.promises.readFile(this.archivo,"utf-8") 
             const arrayProducto= JSON.parse(contenidoArchivo)
+            let productoEliminado=""//Corrección 09/07/2022 Varialbe para obtener el producto a eliminar
+            this.getById(idProducto).then(data=>productoEliminado=data) //Corrección 09/07/2022 Guarda el producto a eliminar para luego informarlo
+            
             await fs.promises.writeFile(this.archivo,JSON.stringify(arrayProducto.splice(arrayProducto.findIndex(data=>data.id===idProducto),1)))       
-             
+            return productoEliminado //Corrección 09/07/2022 Informa el producto Eliminado
         }
         catch(err)
         {
@@ -71,7 +76,7 @@ class Contenedor{
     async deleteAll(){
         //const fs = require('fs');            
         try{
-            await fs.promises.writeFile(this.archivo,"")       
+            await fs.promises.writeFile(this.archivo,[])//Correcciones 09/07/2022 - Elimina todo creando un array vacío
             
                 }
         catch(err)
