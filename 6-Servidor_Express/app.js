@@ -62,8 +62,8 @@ class Contenedor{
             const arrayProducto= JSON.parse(contenidoArchivo)
             let productoEliminado=""//Corrección 09/07/2022 Varialbe para obtener el producto a eliminar
             this.getById(idProducto).then(data=>productoEliminado=data) //Corrección 09/07/2022 Guarda el producto a eliminar para luego informarlo
-            
-            await fs.promises.writeFile(this.archivo,JSON.stringify(arrayProducto.splice(arrayProducto.findIndex(data=>data.id===idProducto),1)))       
+            arrayProducto.splice(arrayProducto.findIndex(data=>data.id===idProducto),1)
+            await fs.promises.writeFile(this.archivo,JSON.stringify(this.archivo,JSON.stringify(arrayProducto)))       
             return productoEliminado //Corrección 09/07/2022 Informa el producto Eliminado
         }
         catch(err)
