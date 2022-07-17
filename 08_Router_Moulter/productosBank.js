@@ -27,10 +27,8 @@ const remove = (id) => {
   else {return { error : 'producto no encontrado para eliminar' }}  
 };
 
-const update = (id, newTitle,newPrice,newThumbnail) => {
-  console.log("id para actualizar",id)
-  const actualizar = data.findIndex(prod=>parseInt(prod.id) === parseInt(id))    
-  console.log("variable actualizar",actualizar)
+const update = (id, newTitle,newPrice,newThumbnail) => {  
+  const actualizar = data.findIndex(prod=>parseInt(prod.id) === parseInt(id))      
   if (actualizar>-1)
   { 
     const produc=findOne(id)
