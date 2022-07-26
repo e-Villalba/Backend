@@ -1,0 +1,29 @@
+<!-- historial table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Thumbnail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- if no datos -->
+        <% if (produc.length === 0) { %>
+            <tr>
+                <td colspan="3">No hay Productos Cargados</td>
+            </tr>
+        <% }else{ %>
+        
+        <% for (let i = 0; i < produc.length; i++) { %>
+            <tr>
+                <td><%=produc[i].id%></td>
+                <td><%=produc[i].title%></td>
+                <td><%=produc[i].price%></td>
+                <td><%=produc[i].thumbnail%></td>
+            </tr>
+            
+        <% } } %>
+    </tbody>
+</table>

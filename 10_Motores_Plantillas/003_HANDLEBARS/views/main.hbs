@@ -1,0 +1,94 @@
+   <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12 text-center mt-3">
+                    <fieldset class="d-flex justify-content-center">
+                        {{#if produc}}
+                            <div class="card-body">
+                                <!-- Tabla de Productos: ID,Title, Price y Thumbnail -->
+                                <h2>Lista de Productos</h1>                
+                                    <div class="row" style="background-color:grey">
+                                        <div class="col " style="color:white">Title</div>
+                                        <div class="col " style="color:white">Price</div>
+                                        <div class="col " style="color:white">Thumbnail</div>
+                                        
+                                    </div>
+                                    {{#each produc}}
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col ">{{this.title}}</div>
+                                        <div class="col ">{{this.price}}</div>
+                                        <div class="col "><img class="img-fluid w-25"  src={{this.thumbnail}}></div>
+                                    </div>
+                                    {{/each}}
+                                <a class="btn btn-outline-primary mt-3" href="/" role="button">Carga de Productos</a>
+                            </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{else}}
+    {{#if sindatos}}
+        <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12 text-center mt-3">
+                    <fieldset class="d-flex justify-content-center">
+                        
+                            <div class="card-body">
+                                <h2>No hay Productos Cargados</h2>    
+                                <a class="btn btn-outline-primary mt-3" href="/" role="button">Carga de Productos</a>
+                            </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+       
+    {{else}}
+        <div class="cardatosContacto">
+            <form id="divDatosForm" action="/productos" method="post" enctype="">
+
+                <div class="row">
+                    <div class="col-md-12 text-center mt-3">
+                        <fieldset class="d-flex justify-content-center">
+                            <div class="card cardatosContacto" style="width: 23rem;">
+                                <div class="card-body">
+                                    <div>
+                                        <h3 class="mb-0">HandleBars - Motores Plantillas</h3>
+                                    </div>
+                                    <div>
+                                        <label class="pContacto datosContacto" for="title">Title</label>
+                                    </div>
+                                    <div><input class="datosForm datosContacto" type="text"
+                                            name="title" id="title"
+                                            placeholder="Ingrese Title" style="width: 15rem;" required></div>
+                                    <div><label class="pContacto p-1 datosContacto"
+                                            for="price">Price</label>
+                                    </div>
+                                    <div><input class="datosForm datosContacto" type="text"
+                                            name="price" id="price"
+                                            placeholder="Ingrese Price" style="width: 15rem;" required></div>
+                                    <div><label class="pContacto p-1 datosContacto" for="thumbnail" style="width: 15rem;">Ingrese
+                                      thumbnail</label></div>
+                                    <div>
+                                        <input class="datosForm datosContacto" type="text" name="thumbnail"  style="width: 15rem;"
+                                            id="thumbnail" placeholder="Ingrese thumbnail" required>
+                                    </div>
+
+                                    <div>
+                                        <input type="submit" class="btn btn-outline-primary mt-3" id="btnProducto" value="Guardar"/>
+                                        <a class="btn btn-outline-secondary mt-3" href="/productos" role="button">Productos</a>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    {{/if}}
+{{/if}}
