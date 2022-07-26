@@ -1,0 +1,3 @@
+Villalba Esteban - Entrega Motores de Plantillas
+Realizando el trabajo práctico con los tres motores EJS, PUG y HANDLEBARS me resultó el más práctico y simple de implementar EJS ya que comprendí facilmente como esquematizar las entregas y plantillas.
+HANDLEBARS en segundo lugar y por último PUG ya que me resultó poco intuitiva su sintaxis y muy diferente a las implementaciones HTML de Front a las que estoy acostumbrado.
