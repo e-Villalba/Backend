@@ -1,4 +1,4 @@
-# Entrega WebSockets  
+# Entrega WebSockets  ![Esta es una imagen](https://myoctocat.com/assets/images/base-octocat.svg)
 ### **1 - Implementación de Fetch y productos**   
     - En Server.js obtengo los productos con un Fetch y los devuelvo en un json a través de io.sockets    
     Para obtener los productos utilizo el app.get("/productos") el cual reformulé para que devuelva un JSON  
