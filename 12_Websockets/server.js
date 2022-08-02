@@ -4,7 +4,7 @@ const app=express()
 const fetch = require('node-fetch');
 const {Server:HttpServer}= require("http")
 const {Server:IOServer}= require("socket.io")
-
+const fs = require('fs');  
 
 
 const httpServer=new HttpServer(app)
@@ -55,7 +55,20 @@ io.on('connection',socket => {
 
     socket.on('new-message',data => {
       messages.push(data);
+      saveMessage(data)
       io.sockets.emit('messages', messages);
     });
-
  });
+
+ 
+ async function saveMessage(msj){
+
+  try{
+      await fs.promises.appendFile("logMensajes.log",JSON.stringify(msj)+ `\n`)                   
+  }
+  catch(err)
+  {
+      console.log(err)	
+  }     
+       
+}
