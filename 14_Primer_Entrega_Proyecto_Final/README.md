@@ -5,15 +5,15 @@ En la ruta base '/api/productos' se implementan las funcionalidades solicitadas:
 Permite listar todos los productos disponibles ó un producto por su id (disponible para usuarios y administradores)   
 ### **POST: '/'** - 
 Permite incorporar productos al listado (disponible para administradores)  
-Ejemplo objetos de Producto a incluír en el Body del Post al probar en Postman
-{
-        "nombre": "Camisa",
-        "descripcion": "Camisa de invierno",
-        "codigo": "001",
-        "foto": "https://cdn4.iconfinder.com/data/icons/basic-user-interface-elements/700/key-lock-unlock-clef-256.png",
-        "precio":11.11,
-        "stock": 11
-}
+Ejemplo objetos de Producto a incluír en el Body del Post al probar en Postman  
+{  
+        "nombre": "Camisa",  
+        "descripcion": "Camisa de invierno",  
+        "codigo": "001",  
+        "foto": "https://cdn4.iconfinder.com/data/icons/basic-user-interface-elements/700/key-lock-unlock-clef-256.png",  
+        "precio":11.11,  
+        "stock": 11  
+}  
 
 ### **PUT: '/:id'**   
 Permite Actualizar un producto por su id (disponible para administradores)    
