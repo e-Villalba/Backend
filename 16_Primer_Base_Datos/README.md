@@ -11,9 +11,9 @@ Tomando como base la entrega de la **Clase 12 - Chat Con Web Socket** se realiza
 ### Base de Datos
 - **Mensajes**: En la Carpeta *DB* se genera el archivo *ecommerce.db3*
 - **Productos**: Utilizando la extensión de "MySQL" de VSCode, se genera nueva BD *ecommerce*
-- Para el acceso a las Base de Datos se genera la carpeta **Options** con los archivos *mariaDB.js* y *sqliteDB.js*
+- **Options**: Para el acceso a las Base de Datos se genera la carpeta **Options** con los archivos *mariaDB.js* y *sqliteDB.js*
 - **Creación de Tablas**: En la carpeta *scripts* se encuentan los archivos *create_table_mensajes.js* y *create_table_productos.js* que generan en cada una de las BD las tablas para la persistencia de Productos y Mensajes solicitadas en el desafío.
-- 
+ 
 
 ### Implementación
 - **Mensajes**: En **server.js** se agregan las funciones:
