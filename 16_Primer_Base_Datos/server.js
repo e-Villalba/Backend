@@ -23,19 +23,6 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {  
   res.render('form', {});
-  /*const knex =require("knex")(optionsMariaDB)
-  knex.from("productos").select("*")
-  .orderBy("id")
-  .then((rows)=>{      
-      produc=rows    
-      res.render('form', {rows});
-  }
-  )
-  .catch((err)=>{
-      console.log(err)
-      
-   }
-  )*/
 
 })
 

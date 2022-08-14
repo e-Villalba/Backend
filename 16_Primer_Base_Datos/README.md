@@ -1,15 +1,27 @@
-# Entrega WebSockets  ![](https://cdn2.iconfinder.com/data/icons/servers-clouds-colored/80/websocket-web-socket-protocol-50.png)
-### **1 - Implementación de Fetch y productos**   
-    - En Server.js obtengo los productos con un Fetch y los devuelvo en un json a través de io.sockets    
-    Para obtener los productos utilizo el app.get("/productos") el cual reformulé para que devuelva un JSON  
-    - Para utilizar Fetch del lado server realizo:  
-        * npm install node-fetch@2  
-        * En server.js realizo require('node-fetch');  
-    - En el lado cliente, en main.js, desde el Websocket abierto implemento la función "listarProductos"  que toma los productos devueltos desde el server  
-    y manipulando el DOM los renderiza en el "div productos" el cual se encuentra en el partial "productos.ejs" (views/partials)  
-    - En form.ejs se implementa el partial "productos ejs" y debajo de la carga de productos, vía WebSocket y utilizando fetch en el server se cargan los productos que se van   agregando.  
-### **2 - Centro de Mjes** 
-    - En form.ejs se implementa el partial "centroMensajes.ejs"  
-    - Desde el lado cliente en "main.js" se implementa la función setMensaje que vía "WebSocket" envía al Server el msje escrito por el usuario del lado "cliente".  
-    - En el lado Server, en "server.js" se recibe vía websocket y luego se envía al cliente que en "main.js" implementa la "función showMessages". Esta función, manipulando el dom   renderiza en el "div mensajes" el mje escrito por el usuario aplicando los estilos solicitados para la Entrega. El "div mensajes" se encuentra en el partial "centroMensajes".
-    - En "server.js" se implementa la función "saveMessage" que guarda cada msj del Centro de Mensajes en el archivo "logMensajes.log"  
+# Entrega - Nuestra Primera Base de Datos [![N|Solid](https://cdn0.iconfinder.com/data/icons/seo-web-4-1/128/Vigor_Cloud-Server-Database-Hosting-50.png)]
+## Desarrollo
+Tomando como base la entrega de la **Clase 12 - Chat Con Web Socket** se realizan los agregados de KNEX para:
+- Manejar persistencia de **Mensajes** en SQLite.
+- Manejar persistencia de **Productos** en MariaDB/MySQL.
+***
+### Referencias agregadas
+- Para MySQL: *npm i knex mysql*
+- Para SQLite: *npm i knex sqlite3*
+***
+### Base de Datos
+- **Mensajes**: En la Carpeta *DB* se genera el archivo *ecommerce.db3*
+- **Productos**: Utilizando la extensión de "MySQL" de VSCode, se genera nueva BD *ecommerce*
+- Para el acceso a las Base de Datos se genera la carpeta **Options** con los archivos *mariaDB.js* y *sqliteDB.js*
+- **Creación de Tablas**: En la carpeta *scripts* se encuentan los archivos *create_table_mensajes.js* y *create_table_productos.js* que generan en cada una de las BD las tablas para la persistencia de Productos y Mensajes solicitadas en el desafío.
+- 
+
+### Implementación
+- **Mensajes**: En **server.js** se agregan las funciones:
+    - *saveMessage*: Se encarga de persistir los nuevos mensajes en la *BD ecommerce de SQLite*
+    - *getAllMessages*: Obtiene los mensajes persistidos en la *BD ecommerce de SQLite* y los presenta al usuario vía websocket.
+
+- **Productos**: En *productBank.js* se agrega la utilización de knex.
+    - *add*: Se implementa Knex para que realice un *insert* de los nuevos productos en la *BD ecommerce de MySQL*
+    En *server.js* desde el post se llama al controlador *producto.controller.js* que desde el método *create* invoca a *add* que implementa Knex y persiste los datos.
+    - *list*: Se impleenta Knex para que obtenga todos los productos de la *BD ecommerce de MySQL* y los presente al usuario vía Web Socket.
+    En *server.js* desde el get *productos* se llama al controlador *producto.controller.js* que desde el método *getAll* invoca a *list* que implementa Knex y obtiene los datos.
