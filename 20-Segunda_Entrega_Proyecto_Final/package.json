@@ -2,7 +2,7 @@
   "name": "20-segunda_entrega_proyecto_final",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",   
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.2",
     "firebase-admin": "^11.0.1",
     "mongoose": "^6.5.3"
   }
