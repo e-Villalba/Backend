@@ -3,6 +3,9 @@
 En la carpeta **Contenedores** se encuentran los archivos:
 - **contenedorFirebase.js**: Implementa la conexión con Firebase y el CRUD a realizar.
 - **contenedorMongo.js**: Implementa la conexión con MongoAtlas y el CRUD a realizar.
+
+### DB Firebase  
+- En la carpeta **dbFirebase** se encuentra el archivo de Clave Privada para el acceso a la DB Firebase.
 ### MODELS
 En la carpeta **Modules** se encuentran los archivos:
 - **carritoModel.js**: Implementa el Schema Carritos para Mongo.
