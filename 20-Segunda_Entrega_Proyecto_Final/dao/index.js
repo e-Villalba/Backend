@@ -5,7 +5,7 @@ import daoProductoFirebase from "./Producto/daoProductoFirebase.js"
 import daoCarritoMongo from "./Carrito/daoCarritoMongo.js"
 import daoProductoMongo from "./Producto/daoProductoMongo.js"
 
-const pers="mongo"
+const pers="firebase"
 switch(pers)
 {
     case "firebase":
@@ -16,6 +16,6 @@ switch(pers)
         productosDao= new daoProductoMongo();
         carritosDao = new daoCarritoMongo();
         break;
-}
+    }
 
 export {productosDao,carritosDao}

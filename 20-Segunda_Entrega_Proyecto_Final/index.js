@@ -23,7 +23,11 @@ try
         precio: 2.20      
     };
 
-    
+    prodDao.listarTodos()
+    .then(producto => console.log(producto))
+    .catch(err => console.log(err));
+
+ /*
     prodDao.buscarPorCodigo('1')
     .then(producto => console.log(producto))
     .catch(err => console.log(err));
@@ -38,9 +42,9 @@ try
 
     prodDao.eliminar ("1")
     .then(producto=>console.log("Producto Eliminado",producto))
-    .catch(err=>console.log(err));
+    .catch(err=>console.log(err));*/
 //////////////////////////////////////////////////////// CARRITO  ///////////////////////////////////////////////////////////////////////
-    const DataCart={
+    /*const DataCart={
         codigo: "1",
         timestamp: "Descrip Cart ",
         productos:[2,4,5]
@@ -67,7 +71,7 @@ try
     cartDao.eliminar ("1")
     .then(carrito=>console.log("Producto Eliminado",carrito))
     .catch(err=>console.log(err));
-
+*/
 }catch(err)
 {
     console.log(err);

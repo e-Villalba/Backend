@@ -64,7 +64,7 @@ class contenedorFirebase {
       const result = [];
       const snapshot = await this.query.where("codigo", "==", criteria).get()
       snapshot.forEach((doc) => {
-        doc.ref.update({ descripcion: element.descripcion });
+        doc.ref.update(element);
         result.push({ id: doc.id, ...doc.data() });
       });
       return result;

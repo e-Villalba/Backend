@@ -9,6 +9,7 @@ class contenedorMongo{
         console.log("Conectado a mongoDB") 
         if(opcionModelo=="Producto")
         {       
+            console.log("Constructor Producto")
             this.modelo=Producto
         }
         else
@@ -21,6 +22,8 @@ class contenedorMongo{
     async listarTodos()
     {                
         //return await Carrito.find({})        
+        console.log("Listar Todos mongo")
+        //console.log(this.modelo.find({}))
         return await this.modelo.find({})        
     }
     async buscarPorCodigo(criteria)    
@@ -37,9 +40,7 @@ class contenedorMongo{
 
     async actualizar(criteria,elementData)
     {
-        return await this.modelo.updateOne( {codigo: criteria }, {
-            $set: {descripcion: elementData.descripcion}
-            });
+        return await this.modelo.findOneAndUpdate( {codigo: criteria},elementData)
     }
 
     async eliminar(criteria)
