@@ -8,16 +8,18 @@ import  {productosDao} from "../dao/index.js"
 productosRouter.get("/", (req, res) => {
   productosDao.listarTodos()
     .then(producto =>  res.send(producto))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err));  
 });
 //Muestra un Producto por su Id
 productosRouter.get("/:id", (req, res) => {
+
+  
   const {id} = req.params;  
   productosDao.buscarPorCodigo(id)
   .then(producto => res.send(producto))
   .catch(err => console.log(err));
 })
-const isAdmin=false
+const isAdmin=true
 /////////////////////////////////////Operaciones solo permitidas para usuario ADMINISTRADOR/////////////////////////////////
 //Agrega Productos a la Lista
 productosRouter.post('/',(req,res)=>{  
@@ -26,8 +28,7 @@ productosRouter.post('/',(req,res)=>{
     //Ejemplo Objeto Post para Postman
     /*{
         "nombre":"Prod 33",
-        "descripcion": "Descrip 33",
-        "codigo": "33",
+        "descripcion": "Descrip 33",        
         "foto": "Foto 33",
         "precio": 1.20  
         }*/

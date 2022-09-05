@@ -24,11 +24,13 @@ class contenedorFirebase {
    async listarTodos() {
     try {
       const result = [];
-      const snapshot = await this.query.get();
+      const snapshot = await this.query.get();      
+      //const snapshot = await this.query.orderBy("codigo","desc").limit(1).get();
       snapshot.forEach((doc) => {
         result.push({ id: doc.id, ...doc.data() });
       });
       return result;
+      
     } catch (error) {
       throw new Error(`Error al listar todo: ${error}`);
     }
@@ -36,7 +38,7 @@ class contenedorFirebase {
   async buscarPorCodigo(criteria) {
     try {
       const result = [];
-      const snapshot = await this.query.where("codigo","==",criteria).get();
+      const snapshot = await this.query.where("codigo","==",Number(criteria)).get();
       snapshot.forEach((doc) => {
         result.push({ id: doc.id, ...doc.data() });
       });
@@ -49,9 +51,14 @@ class contenedorFirebase {
   }
   async crear(element) {
     try {
+      const result =[];
       const doc = this.query.doc();
-      console.log("elemento creado");
-      return await doc.create(element);
+      const snapshot = await this.query.orderBy("codigo","desc").limit(1).get();
+      snapshot.forEach((doc) => {
+        result.push({ id: doc.id, ...doc.data() });
+      });      
+      return await doc.create({...element,codigo: result[0].codigo+1});
+
     }
     catch (error) {
       throw new Error(`Error al Crear Elemento: ${error}`);
@@ -62,7 +69,7 @@ class contenedorFirebase {
   async actualizar(criteria, element) {
     try {
       const result = [];
-      const snapshot = await this.query.where("codigo", "==", criteria).get()
+      const snapshot = await this.query.where("codigo", "==", Number(criteria)).get()
       snapshot.forEach((doc) => {
         doc.ref.update(element);
         result.push({ id: doc.id, ...doc.data() });

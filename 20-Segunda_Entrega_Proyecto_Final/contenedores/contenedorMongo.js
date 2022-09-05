@@ -33,8 +33,8 @@ class contenedorMongo{
     }
     async crear(elementData)    
     {        
- 
-        const newElement = new this.modelo(elementData)
+        const ult = await this.modelo.find({}, {"codigo":1}).sort({codigo: -1}).limit(1) 
+        const newElement = new this.modelo({...elementData,codigo: ult[0].codigo+1})
         return await newElement.save()
     }
 
@@ -47,6 +47,12 @@ class contenedorMongo{
     {
         return await this.modelo.deleteOne( {codigo: criteria }) 
             
+    }
+    async ultimocodigo()
+    {
+        
+        return await this.modelo.find({}, {"codigo":1}).sort({codigo: -1}).limit(1)
+        
     }
 
 }

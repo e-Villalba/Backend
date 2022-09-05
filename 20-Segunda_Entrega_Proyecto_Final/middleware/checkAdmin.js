@@ -1,5 +1,5 @@
 const isAdmin = false
-
+import { json } from "express"
 function checkAdmin(req,res,next){
 console.log("isAdmin",isAdmin)
 if(!isAdmin) return res.json({ error: 'No tiene Permiso de acceso' , descripcion: `No tiene permiso a la ruta ${req.originalUrl}`, code: '403'})
