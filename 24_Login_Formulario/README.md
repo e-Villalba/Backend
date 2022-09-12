@@ -12,3 +12,4 @@ Tomando como base la entrega de la **Clase 22_Mocks_Normalización - Faker** se 
 - Archivo **form.ejs** se modificó para incoroporar ***nombre de usuario loguead*** y botón de ***logout***
 ### Referencias agregadas
 - Para Session en Mongo: *npm i connect-mongo*
+- Para variable Conexión Mongo *npm i dotenv*

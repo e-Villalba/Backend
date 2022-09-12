@@ -32,7 +32,12 @@ const advanceOptions = {
   useUnifiedTopology: true,
 };
 app.use(cookieParser());
-let mongoUrl = "mongodb+srv://evillalba:esteban1776@cluster0.fybwz2j.mongodb.net/ecommerce?retryWrites=true&w=majority"//process.env.MONGO_URL;
+require('dotenv').config()
+
+//let mongoUrl = "mongodb+srv://evillalba:esteban1776@cluster0.fybwz2j.mongodb.net/ecommerce?retryWrites=true&w=majority"//process.env.MONGO_URL;
+let mongoUrl = process.env.MONGO_URL
+console.log("mongoURl",process.env.MONGO_URL)
+
 app.use(
   session({
     store: new MongoStore({ 
