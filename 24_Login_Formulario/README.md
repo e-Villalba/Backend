@@ -1,8 +1,9 @@
-# Entrega - Login Formulario [![N|Solid](https://cdn0.iconfinder.com/data/icons/seo-web-4-1/128/Vigor_Cloud-Server-Database-Hosting-50.png)]
+# Entrega - Login Formulario ![N|Solid](https://cdn4.iconfinder.com/data/icons/aami-web-internet/64/aami17-35-50.png)
+
 ## Desarrollo
 Tomando como base la entrega de la **Clase 22_Mocks_Normalización - Faker** se realizaron los siguientes ajustes para cumplir con las consignas correspondientes a la  entrega **Login Formulario**
 - Archivo **server.js**:
-    - Se agregaron las ruta **/login** y **/logout** 
+    - Se agregaron las rutas **/login** y **/logout** 
     - Se agregó el middleware **auth** para validar si hay usuario logueado en la Session    
     - Estos cambios se encuentran de Líneas 51 a 89 
 - Archivo **login.ejs** correspondiente al ingreso de Usuario.
