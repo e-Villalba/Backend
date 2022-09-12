@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.styleMail  {
+  font-weight: 700;
+  color: blue;
+}
+.styleFecha  {  
+  color: brown;
+}
+.styleMsj  {  
+  color: green;
+  font-style: italic;
+}
