@@ -8,6 +8,7 @@ const logout = require("./logout");
 const register = require("./register");
 const productos = require("./productos");
 const productosmock = require("./productosmock");
+const erroresRouter = require("./errores");
 
 router.use("/", home);
 router.use("/login", login);
@@ -16,5 +17,6 @@ router.use("/logout", logout);
 router.use("/register", register);
 router.use("/productos",productos)
 router.use("/api/productos-test",productosmock)
+router.use("*",erroresRouter)
 
 module.exports = router

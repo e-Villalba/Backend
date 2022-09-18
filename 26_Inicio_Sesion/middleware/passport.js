@@ -3,7 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require('bcrypt'); 
 const User = require('../models/User'); 
 
-console.log("passport auth")
+
 //Se define la estrategia de autenticacion que de acuerdo a lo solicitado en el desafío es LOCAL
 passport.use(
   new LocalStrategy({usernameField: 'email'},(username, password, done) => {
@@ -13,7 +13,8 @@ passport.use(
       if (!user)
       {
         //console.log("!user")
-         return done(null, false);        
+         return done(null, false);
+        
       }
       bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) console.log(err);

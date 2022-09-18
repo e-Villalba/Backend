@@ -2,7 +2,7 @@ const socket = io.connect();
 
 //Función para mostrar los mensajes que escribió/envió el usuario
 function showMessages(data) {
-    console.log("Hola showMessages")
+    //console.log("Hola showMessages")
     const html = data.map((el, index) => {
         return(`<div class="d-flex justify-content-center">
             <p class="styleMail">${el.email}</p>
@@ -58,9 +58,6 @@ function listarProductos(data) {
     }
     document.getElementById('productos').innerHTML = html;
   }
-
-    
-
 
     
 
