@@ -4,26 +4,26 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User'); 
 
 console.log("passport auth")
-//Se define la estrategia de autenticacion
+//Se define la estrategia de autenticacion que de acuerdo a lo solicitado en el desafío es LOCAL
 passport.use(
   new LocalStrategy({usernameField: 'email'},(username, password, done) => {
     User.findOne({ email: username }, (err, user) => {
-      console.log("passport auth findone")
+      //console.log("passport auth findone")
       if (err) console.log(err);
       if (!user)
       {
-        console.log("!user")
-         return done(null, false);
+        //console.log("!user")
+         return done(null, false);        
       }
       bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) console.log(err);
         if (isMatch) 
         { console.log("ismatch")
-          console.log(user)
-          console.log(password)
+          //console.log(user)
+          //console.log(password)
           return done(null, user);
         }
-        console.log("llega acá?")
+        //console.log("llegÓ a Done")
         return done(null, false);
        
       }

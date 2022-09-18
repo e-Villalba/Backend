@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
+const URL = process.env.MONGO_URL_LOCAL
 
-console.log ("antes conectar")
-const URL = process.env.MONGO_URL || 'mongodb://localhost:27017/ecommerce1';
-console.log ("despuess conectar")
 //conectarse
 mongoose.connect(URL, { 
   useNewUrlParser: true,
