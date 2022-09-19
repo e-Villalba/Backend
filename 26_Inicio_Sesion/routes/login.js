@@ -6,7 +6,7 @@ require('../conexiones/connection');
 
 login.post("/", passport.authenticate("local", { failureRedirect: "/loginerror" }),
   (req, res) => {
-    console.log ("user req",req.body.user)
+    //console.log ("user req",req.body.user)
     res.redirect("/");
   }
 );

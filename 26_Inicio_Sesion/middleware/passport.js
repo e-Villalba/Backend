@@ -19,7 +19,7 @@ passport.use(
       bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) console.log(err);
         if (isMatch) 
-        { console.log("ismatch")
+        { //console.log("ismatch")
           //console.log(user)
           //console.log(password)
           return done(null, user);

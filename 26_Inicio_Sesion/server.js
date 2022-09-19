@@ -70,7 +70,7 @@ app.use(express.static("public"));
 io.on('connection', socket => {
   //console.log('Un cliente se ha conectado');
   //Obtengo los productos con un Fetch y los devuelvo en un json a través de io.sockets
-  fetch("http://localhost:8080/productos")
+  fetch("http://localhost:8080/api/productos-test")
     .then(response => response.json())
     .then(data => { io.sockets.emit('productos', data) });
   //Obtengo todos los msjes de la BD SQLite
