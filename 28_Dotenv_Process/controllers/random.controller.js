@@ -1,49 +1,39 @@
 
 const getRandoms = (x) => {
 
-    function random(min, max) {
-        return Math.floor(Math.random() * ((max + 1) - min) + min); //https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+    function getNroRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min); //https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     }
-
-
 
     // En este Array se guardan los objetos que tienen los nros random y la cantidad de apariciones
-  
     let vecNrosRandom = []
-  
-    console.log("x", x)
-    //console.log("nroRandom", nroRandom)
-    //console.log("vecNrosRandom[nroRandom]", vecNrosRandom[nroRandom])
-    /*for (let i = 1; i <= x; i++) {
-        let nroRandom = random(1, 1000);
-        if (vecNrosRandom[nroRandom]) {
-            vecNrosRandom[nroRandom].apariciones++;
-        }
-        else {
-            vecNrosRandom.splice(nroRandom,0, { numero: nroRandom, apariciones: 1 });
-        }
-    }*/
+    let vecReturn = []
     // Se inicializa el array con los nros de 1 a 1000 y los apariciones en 0
     for (let index = 1; index <= 1000; index++) {
-        vecNrosRandom.push({ valor: index, apariciones: 0 });
+        vecNrosRandom.push({ numero: index, repeticiones: 0 });
     }
   
-    // saco aleatorios x cantidad de veces
-    for (let i = 1; i <= x; i++) {
-      // obtengo el aleatorio entre 1 y 1000
-      let nroRandom = random(1, 1000);
-      // incremento las apariciones de este valor
-      vecNrosRandom[nroRandom].apariciones++;
-      ;
-    }    
-    
-    return vecNrosRandom
-
+    // Para la cantidad de veces indicadas por Query parametres o por defecto se obtienen los aleatorios entre 1 y 1000
+    for (let i = 0; i <= x; i++) {      
+      let nroRandom = getNroRandom(1, 1000);
+      //console.log(nroRandom)
+      //Hago nroRandom-1 porque cuando inicializo el Array vecNrosRandom en la posicion 0 se guarda el objeto correspondiente al Nro 1
+      vecNrosRandom[nroRandom-1].repeticiones++;      
+    }        
+    //En un Vector cargo los nros que si presentaron repeticiones para no devolver los que tienen cantidad Cero (0)
+    for (let index = 0; index < 1000; index++) {
+        //console.log("index ret",index)
+       if(vecNrosRandom[index].repeticiones>0)
+       {
+        vecReturn.push({ numero: vecNrosRandom[index].numero, repeticiones: vecNrosRandom[index].repeticiones });
+       }
+    }
+    return vecReturn
 }
 
 process.on("message", (msg) => {
     if (msg[0] == "start") {
-        const randoms = getRandoms(msg[1]);
-        process.send(randoms);
+        const nrosRandoms = getRandoms(msg[1]);
+        process.send(nrosRandoms);
     }
 });

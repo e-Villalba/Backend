@@ -1,21 +1,16 @@
-# Entrega - Inicio de Sesión ![N|Solid](https://cdn4.iconfinder.com/data/icons/aami-web-internet/64/aami17-35-50.png)
-
+# Entrega - DotEnv Process ![N|Solid](https://cdn3.iconfinder.com/data/icons/erp-systems/48/ERP-18-42.png)
 ## Desarrollo
-Tomando como base la entrega de la **Clase 24_Login Formulario** se realizaron los siguientes ajustes para cumplir con las consignas correspondientes a la  entrega **Inicio de Sesión**
-- Conexión a Mongo Local:
-    - En la carpeta *conexiones* se agregó el archivos *connection.js* para la conexión a la BD Local de Mongo.
-- Passport - Autenticación
-    - En la carpeta *middleware* se agregan los archivos:
-        * *auth.js*: Tiene el middleware utilizado para autorizar el acceso al usuario
-        * *passport.js*: Se define la estrategia de autenticación de paspport (local), Serialización y desserialización de User.
-- Modelo Mongo:
-    *  Archivo *User.js* Tiene el Schema de Mongoose para los Usuarios del Login.
-- Rutas:
-    * *Login.js*: Esta ruta implementa la autenticación de passport
-    * *register.js*: Esta ruta implementa el registro del Usuario, validando si ya existe. Con *bcrypt* se "hashea" la password. También se manejan los errores de registro.
-    * *home.js*: Esta ruta, luego de la autenticación y autorización, implementa el acceso a la página de *productos* informando el e-mail del user logueado para que lo presente.
-    * *logout.js*: Esta ruta implementa la salida del usuario destruyendo la sesión generada.
-    * *loginerror.js*: Esta ruta implementa el manejo de errores del login, 
+Tomando como base la entrega de la **Clase 26_Inicio Sesión** se realizaron los siguientes ajustes para cumplir con las consignas correspondientes a la  entrega **Inicio de Sesión**
+- **DotEnv**: en *server.js* Se agrega DotEnv para las credenciales a la BD linea 37
+- **Minimist**: en *server.js* Se agrega Minimist para consumir el Argumento de linea de comandos que informa el puerto donde corre el Server Express. (líneas 63 a 65)
+- **Info**: En la carpeta *routes* se agrega la ruta *info.js* en esta ruta se implementa *Process.js*. Se informa en vista de archivo *.json* los datos de proceso Solicitados:
+    *   Argumentos_Entrada
+    *   Nombre_Plataforma
+    *   Version_Node
+    *   Memoria_Reservada
+    *   Path_Ejecucion
+    *   Process_id
+    *   Carpeta_Proyecto
     
-- Dependencias
-    * Instalar las dependencias *npm i bcrypt connect-mongo mongoose passport passport-local*
+- **Randoms**: En la carpeta *routes* se agrega la ruta *random.js* que implementa *child* y *fork*. En la carpeta *controllers* se implementa en el archivo *random.controller.js* la lógica de *nros random* informando al *proceso principal* de la ruta *random.js* los nros obtenidos. 
+Desde la ruta *random.js* se informan en .json los nros (de 1 a 1000) y la cantidad de veces que se presentaron.

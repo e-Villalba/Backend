@@ -3,8 +3,6 @@ const randoms = Router();
 //importo fork
 const { fork } = require("child_process");
 
-
-
 randoms.get("/", function (req, res) {
   const child = fork("./controllers/random.controller.js");
   //obtengo cant de url
