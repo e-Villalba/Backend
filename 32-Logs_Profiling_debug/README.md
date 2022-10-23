@@ -1,4 +1,6 @@
-# Entrega - Clase 32 LOGGERS Y GZIP ![N|Solid](https://cdn3.iconfinder.com/data/icons/erp-systems/48/ERP-18-42.png)
+# Entrega - Clase 32 LOGGERS Y GZIP 
+![N|Solid](https://cdn3.iconfinder.com/data/icons/dompicon-glyph-file-format-2/256/file-log-format-type-52.png)![N|Solid](https://cdn2.iconfinder.com/data/icons/black-file-type/512/file__zip__archive_-52.png)
+
 ## Desarrollo
 Tomando como base la entrega de la **Clase 28_Dotenv** se realizaron los siguientes ajustes para cumplir con las consignas correspondientes a la  entrega **Clase 32 LOGGERS Y GZIP**
 - **GZIP**: en el archivo server.js se utiliza *app.use(compression());* se comparan las salidas de la ruta info, con y sin compresión, y se comprueba el menor tamaño al usar la compresión.
