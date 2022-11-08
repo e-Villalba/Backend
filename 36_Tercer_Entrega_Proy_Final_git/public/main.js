@@ -70,5 +70,72 @@ function listarProductos(data) {
   }
 
     
+//funcion que se encarga de presentarel listado de productos
+function listarProductosFind(data) { 
+    let html=""
+    if(data.length>0)  
+    {
+      
+     html += data.map((el, index) => {   
+        return(
+          `<form id="divDatosPRod" action="/carrito" method="post" enctype="">
+            <div class="row d-flex align-items-center">
+                    <div class="col">${el.title}
+                    <input type="hidden" name="title" id="title" VALUE=${el.title}>
+                    </div>
+                    
+                    <div class="col">${el.price}</div>
+                    <input type="hidden" name="price" id="price" VALUE=${el.price}>
+                    <input type="hidden" name="_id" id="_id" VALUE=${el._id}>
+                    <input type="hidden" name="thumbnail" id="thumbnail" VALUE=${el.thumbnail}>
+                    <div class="col"><img class="img-fluid w-25"  src=${el.thumbnail}>                    
+                    <input type="submit" class=" btn-outline-primary mt-3 " id="btnProducto"
+                    value="Add Cart" /></div>
+            </div>
+        </form>
+        `
+        )
+    }).join(" ");
+    }
+    else
+    {
+          html = `<div class="row d-flex align-items-center">
+           <div class="col"><h2>No Hay Productos Cargados</h2></div>
+        </div>`
+       
+    }
+    document.getElementById('productos').innerHTML = html;
+  }
+//filtro por busqueda
+const btnBuscarProducto = document.getElementById("btnBuscarProducto");
 
+btnBuscarProducto.addEventListener("click", (e) => {  
+  const titleSearch = document.getElementById('titlesearch').value  
+  let URL 
+  titleSearch? URL= `/productos/${titleSearch.trim()}`:URL= `/productos`;
+  /* fetch a la URL */
+  fetch(URL)
+    .then(res => res.json())
+    .then(res => {
+        listarProductosFind(res);    
+    })
+    .catch(err => console.log(err));
+    
+}); 
 
+//Listo Todos
+const btnListarTodos = document.getElementById("btnListarTodos");
+
+btnListarTodos.addEventListener("click", (e) => {  
+  document.getElementById('titlesearch').innerHTML=""
+  
+  URL= `/productos`;
+  /* fetch a la URL */
+  fetch(URL)
+    .then(res => res.json())
+    .then(res => {
+        listarProductosFind(res);    
+    })
+    .catch(err => console.log(err));
+    
+}); 

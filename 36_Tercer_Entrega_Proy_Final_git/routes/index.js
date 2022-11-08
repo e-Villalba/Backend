@@ -8,6 +8,7 @@ const logout = require("./logout");
 const register = require("./register");
 const userinfo = require("./userinfo");
 const productos = require("./productos");
+const productosadmin = require("./productosadmin");
 const carrito = require("./carrito");
 //const productosmock = require("./productosmock");
 const erroresRouter = require("./errores");
@@ -21,6 +22,7 @@ router.use("/logout", logout);
 router.use("/register", register);
 router.use("/userinfo", userinfo);
 router.use("/productos",productos)
+router.use("/productosadmin",productosadmin)
 router.use("/carrito",carrito)
 //router.use("/api/productos-test",productosmock)
 router.use("/info",info)

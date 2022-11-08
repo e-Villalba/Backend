@@ -1,6 +1,9 @@
 const IdCarrito = document.getElementById("idCarrito").innerHTML;
 const cartContainer = document.getElementById("cartContainer");
 
+
+
+
 console.log("IdCarrito",IdCarrito)
 const URL = `/carrito/${IdCarrito.toString().trim()}`
 console.log(URL)

@@ -8,6 +8,7 @@ require('dotenv').config()
 productos.get("/", (req, res) => {
     const { method } = req;
     const time = new Date().toLocaleString();
+    console.log("llamo a productos")
     Producto.getAll()
         .then(knexres => {
             loggerConsola.info(`Ruta '/productos' - metodo: ${method} - time: ${time}`);
@@ -22,16 +23,7 @@ productos.get("/", (req, res) => {
 }
 );
 
-productos.get("/admin", (req, res) => {
-    const { method } = req;
-    const userEmail = req.user.email
-    const time = new Date().toLocaleString();
-    loggerConsola.info(`Ruta '/productos/admin' - metodo: ${method} - time: ${time}`);
-    res.render("products", { //Se muestra la página principal y se pasa el mail del usuario tal lo solicitado en el desafío
-        user: userEmail,
-      });
-}
-);
+
 
 productos.get("/:title", (req, res) => {
     const { title } = req.params;
@@ -39,7 +31,7 @@ productos.get("/:title", (req, res) => {
     const time = new Date().toLocaleString();
     const products = Producto.getByTitle(title)
         .then(knexres => {
-            loggerConsola.info(`Ruta '/productos' - metodo: ${method} - time: ${time}`);
+            loggerConsola.info(`Ruta '/productos' - metodo: ${method} - time: ${time}`);            
             const product = res.status(200).json(knexres);
 
         })
@@ -59,7 +51,7 @@ productos.post('/', (req, res) => {
     try {
         loggerConsola.info(`Ruta '/productos' - con metodo: ${method} - time: ${time}`);
         const produc = Producto.create({ title, price, thumbnail });
-        res.redirect('/productos/admin');
+        res.redirect('/productosadmin');
     }
     catch (err) {
         loggerError.error(`Ruta '/productos' - con metodo: ${method} - time: ${time} - error: ${err}`);

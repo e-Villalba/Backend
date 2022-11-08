@@ -8,8 +8,7 @@
     <link href="main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="main.js"></script>
+    <script src="/socket.io/socket.io.js"></script>    
     <title>Backend - 3° Entrega Proyecto Final</title>
 </head>
 
@@ -31,7 +30,7 @@
                             value="Info User" />    
                             <input type="button" onclick="location.href='/carrito'" style="width: 6rem;" class="btn btn-outline-secondary mx-2" id="btnCart"
                             value="Carrito" /> 
-                            <input type="button" onclick="location.href='/productos/admin'"  style="width: 6rem;" class="btn btn-outline-secondary mx-2" id="btnProdAdmin"
+                            <input type="button" onclick="location.href='/productosadmin'"  style="width: 6rem;" class="btn btn-outline-secondary mx-2" id="btnProdAdmin"
                             value="Productos" /> 
                             <input type="button" onclick="location.href='/logout'" style="width: 6rem;" class="btn btn-outline-primary mx-2" id="btnLogout"
                             value="Logout" />    
@@ -50,43 +49,6 @@
                     </div>
         </div>
         <% } %>
-         <!--   <div class="container">
-                <div class="row" id="divContenedor">
-                    <form id="divDatosForm" action="/productos" method="post" enctype="">
-                        <div class="col-md-12 text-center mt-3 card cardatosContacto">
-                            <div class="card-body">
-                                <div>
-                                    <h2 class="mb-0">Backend - 3° Entrega Proyecto Final</h3>
-                                </div>
-                                <div>
-                                    <label class="pContacto datosContacto" for="title">Title</label>
-                                </div>
-                                <div><input class="datosForm datosContacto" type="text" name="title" id="title"
-                                        placeholder="Ingrese Title" style="width: 15rem;" required></div>
-                                <div><label class="pContacto p-1 datosContacto" for="price">Price</label>
-                                </div>
-                                <div><input class="datosForm datosContacto" type="text" name="price" id="price"
-                                        placeholder="Ingrese Price" style="width: 15rem;" required></div>
-                                <div><label class="pContacto p-1 datosContacto" for="thumbnail"
-                                        style="width: 15rem;">Ingrese
-                                        thumbnail</label></div>
-                                <div>
-                                    <input class="datosForm datosContacto" type="text" name="thumbnail"
-                                        style="width: 15rem;" id="thumbnail" placeholder="Ingrese thumbnail" required>
-                                </div>
-
-                                <div>
-                                    <input type="submit" class="btn btn-outline-primary mt-3 " id="btnProducto"
-                                        value="Guardar" />
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-                    </form>-->
-
                     <!-- Productos Begin   -->
 
                     <div class="container">
@@ -96,7 +58,7 @@
                                 <div class="card cardatosContacto">
 
                                     <div class="card-body">
-                                        <form id="divDatosForm" action="/productos/camisa" method="get" enctype="">
+                                        
                                             <div class="col-md-12 text-center mt-3 card cardatosContacto">
                                                 <div class="card-body">
                                                     <div>
@@ -105,19 +67,15 @@
                                                     <div>
                                                         <label class="pContacto datosContacto" for="title">Title</label>
                                                     </div>
-                                                    <div><input class="datosForm datosContacto" type="text" name="title" id="title"
+                                                    <div><input class="datosForm datosContacto" type="text" name="titlesearch" id="titlesearch"
                                                             placeholder="Ingrese Title" style="width: 15rem;" required>
-                                                        <input type="submit" class="btn btn-outline-primary" id="btnBuscarProducto"
+                                                        <input type="button" class="btn btn-outline-primary" id="btnBuscarProducto"
                                                             value="Buscar" />
+                                                        <input type="button" class="btn btn-outline-secondary" id="btnListarTodos"
+                                                           value="Listar " />
                                                     </div>
                                                 </div>
-                    
-                    
                                             </div>
-                    
-                    
-                                        </form>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -142,6 +100,7 @@
 
                     <!-- Productos End-->               
                 </div>
+                <script src="main.js"></script>
 </body>
 
 </html>
