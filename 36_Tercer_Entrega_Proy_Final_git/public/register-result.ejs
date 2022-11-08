@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>   
+    <title>Backend - Clase 26 Inicio Sesion</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" id="divContenedor">
+            <form id="divDatosForm" action="/register" method="post" enctype="">
+                <div class="col-md-12 text-center mt-3 card cardatosContacto">
+                    <div class="card-body">
+                        <div>
+                            <h2 class="mb-0">Backend - Resultado Registro </h3>
+                        </div>
+                        
+                        <div class="mt-3 text-bg-dark rounded-3 mb-3">
+                            <h5  ><%= mensajeResult %></h5>
+                        </div>
+
+                        <input type="button" onclick="location.href='/register'" class="btn btn-outline-primary mt-3" id="btnRegister"
+                        value="Registro" />   
+
+                        <input type="button" onclick="location.href='/'" class="btn btn-outline-secondary mt-3" id="btnRegister"
+                        value="Ingresar" /> 
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</body>
+
+</html>
