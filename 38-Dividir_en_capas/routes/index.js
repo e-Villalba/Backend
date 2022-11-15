@@ -28,13 +28,30 @@ const router = express.Router();
 
 
 const home = require("./routerhome");
+//const home = require("./home");
+
 const login = require("./routerlogin");
+//const login = require("./login");
+
 const loginerror = require("./routerloginerror");
+//const loginerror = require("./loginerror");
+
 const logout = require("./routerlogout");
+//const logout = require("./logout");
+
 const register = require("./routerregister");
+//const register = require("./register");
+
 const erroresRouter = require("./routererrores")
-const routerinfo = require("./routerinfo");
+//const erroresRouter = require("./errores");
+
+const info = require("./routerinfo");
+//const info = require("./info");
+
 const productos = require("./routerproductos");
+//const productos = require("./productos");
+
+
 
 router.use("/", home);
 router.use("/login", login);
@@ -42,7 +59,7 @@ router.use("/loginerror", loginerror);
 router.use("/logout", logout);
 router.use("/register", register);
 router.use("/productos",productos)
-router.use("/info",routerinfo)
+router.use("/info",info)
 
 router.use("*",erroresRouter)
 

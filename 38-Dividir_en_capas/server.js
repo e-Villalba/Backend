@@ -74,8 +74,7 @@ app.use(express.static("public"));
 
 io.on('connection', socket => {
   //Obtengo los productos con un Fetch y los devuelvo en un json a través de io.sockets
-  //fetch("http://localhost:"+PORT.toString()+"/productos")
-  fetch("http://localhost:3000/productos")
+  fetch("http://localhost:"+PORT.toString()+"/productos")  
     .then(response => response.json())
     .then(data => { io.sockets.emit('productos', data) });
   //Obtengo todos los msjes de la BD SQLite
