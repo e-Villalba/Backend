@@ -1,13 +1,9 @@
 const { Router } = require("express");
 const randoms = Router();
-const {loggerConsola} = require("../logger/logger");
 //importo fork
 const { fork } = require("child_process");
 
 randoms.get("/", function (req, res) {
-  const { method } = req;
-  const time = new Date().toLocaleString();
-  loggerConsola.info(`Ruta '/api/randoms' - con metodo: ${method} - time: ${time}`);
   const child = fork("./controllers/random.controller.js");
   //obtengo cant de url
   let cant;

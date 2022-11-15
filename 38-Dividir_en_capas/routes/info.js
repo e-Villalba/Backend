@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const info = Router();
-const {loggerConsola} = require("../logger/logger");
 let args
 console.log("slice",process.argv.slice(2).length)
 if(process.argv.slice(2).length===0)
@@ -23,9 +22,6 @@ const datosInfo = {
 
 
 info.get("/", (req, res) => { 
-  const { method } = req;
-  const time = new Date().toLocaleString();
-  loggerConsola.info(`Ruta '/Info' - con metodo: ${method} - time: ${time}`);
   res.status(200).send(datosInfo); 
   //res.render('info',{datosInfo}); 
 });

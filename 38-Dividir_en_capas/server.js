@@ -15,16 +15,13 @@ const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 //Minimist para obtener el puerto
 const minimist = require("minimist")
-const compression = require("compression");
-const logger = require("./logger/logger");
+
 
 require('dotenv').config()
 
 app.use(express.json())
 //app.use(cors());
 app.use(express.urlencoded({ extended: true }))
- //gzip - Desafío Clase 32
- app.use(compression());
 //Implementación ejs
 app.set('views', './public');
 app.set('view engine', 'ejs');
@@ -37,7 +34,7 @@ const advanceOptions = {
 };
 app.use(cookieParser());
 
-const mongoUrl = process.env.MONGO_URL_LOCAL
+const mongoUrl = process.env.MONGO_URL_ATLAS//"mongodb+srv://evillalba:esteban1776@cluster0.fybwz2j.mongodb.net/ecommerce?retryWrites=true&w=majority"//
 //Se genera Session
 app.use(
   session({
@@ -62,13 +59,12 @@ app.use(passport.session());
 const router = require("./routes")
 app.use("/",router)
 
-//Obtengo el puerto enviado por  Línea de comandos, utilizo minimist. Si no se pasa el parámetro seteo 8080
-const params = minimist(["-p",process.argv.slice(2)])
-let puerto
-typeof(params.p) === "number"?puerto = params.p:puerto=8080
+
+const PORT = process.env.PORT || 3000
+
 //Enciendo el Server
-httpServer.listen(puerto, () => {
-  console.log(`Server on Port ${(puerto.toString())}`)
+httpServer.listen(PORT, () => {
+  console.log(`Server on Port ${(PORT.toString())}`)
 })
 
 //Array de mjes para luego cargar en Base de Datos
@@ -77,9 +73,9 @@ const messages = [];
 app.use(express.static("public"));
 
 io.on('connection', socket => {
-  //console.log('Un cliente se ha conectado');
   //Obtengo los productos con un Fetch y los devuelvo en un json a través de io.sockets
-  fetch("http://localhost:"+puerto.toString()+"/productos")
+  //fetch("http://localhost:"+PORT.toString()+"/productos")
+  fetch("http://localhost:3000/productos")
     .then(response => response.json())
     .then(data => { io.sockets.emit('productos', data) });
   //Obtengo todos los msjes de la BD SQLite
@@ -95,16 +91,9 @@ io.on('connection', socket => {
   io.sockets.emit('messages', messages);
 
   socket.on('new-message', data => {
-    try{
     messages.push(data);
     saveMessage(data)
     io.sockets.emit('messages', messages);
-    logger.info(`Mensaje: Nuevo mensaje - time: ${new Date().toLocaleString()}`);        
-    }
-    catch (err)
-    {
-      logger.error(`Mensaje: Nuevo mensaje Error ${err} ${new Date().toLocaleString()}`);
-    }
 
   });
 });

@@ -8,10 +8,7 @@ async function getDatosControllerRegister(req, res) {
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Register' - con metodo: ${method} - time: ${time}`);
   const datosregister = await obtenerregister();
-  //res.redirect(datosregister);
   res.render(datosregister); 
-  //res.json(datosInfo);
-  //res.status(200).send(datosInfo); 
 }
 
 async function postDatosControllerRegister(req, res) {
@@ -21,18 +18,12 @@ async function postDatosControllerRegister(req, res) {
     password:password,
     email:email
   }
-  
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Register' - con metodo: ${method} - time: ${time}`);
-  const datosregister = await postregister(objUser);  
-  console.log("datosregister",datosregister)
-  res.render(datosregister.view,{mensajeResult:datosregister.mensajeResult});
-  //res.render("register-result",{mensajeResult:"Usuario Registrado Exitosamente"});
-  
-}
-
-
+  const datosregister = await postregister(objUser);    
+  res.render(datosregister.view,{mensajeResult:datosregister.mensajeResult});  
+  }
 
 module.exports = {getDatosControllerRegister,postDatosControllerRegister}
 

@@ -1,11 +1,15 @@
-const { getByID } = require("./controllers/producto.controller");
+//const { getByID } = require("./controllers/producto.controller");
 //const productosRouter = require("./routes/productosRouter");
 const {optionsMariaDB} = require("./options/mariaDB")
 
+require('./conexiones/connection'); 
+const Productos = require('./models/Products');  
 
 const data = [];
 let id = 0;
 
+/*
+OLD usaba MARIADB LOCAL
 const list = () => {
     const knex =require("knex")(optionsMariaDB)
     return  knex.from("productos").select("title", "price", "thumbnail")
@@ -15,7 +19,17 @@ const list = () => {
         console.log(err)
     }
     )               
+}*/
+//new para Heroku - trabaja contra mongoatrlas
+const list = async () => {
+  try {
+    const productos = await Productos.find();
+    return productos;
+  } catch (error) {
+    console.log(error);
+  }
 }
+
 const findOne = (id) => {
   const produc =data.find((produc) => parseInt(produc.id) === parseInt(id));
   
@@ -23,9 +37,9 @@ const findOne = (id) => {
   {return produc} else {return { error : 'producto no encontrado' }}
 };
 
+/* OLD utilizado para MARIA DB LOCAL
 const add = (title, price,thumbnail) => {
-  //const produc = { id: ++id, title, price,thumbnail }; Antes de persistir en BD
-  const produc = { title, price,thumbnail };
+    const produc = { title, price,thumbnail };
   const knex =require("knex")(optionsMariaDB)
   knex("productos")
   .insert(produc)
@@ -41,6 +55,22 @@ const add = (title, price,thumbnail) => {
   data.push(produc);
   return produc;
 };
+*/
+
+//New utilizado para Heroku Mongo Atlas
+const add = async (product) => { 
+
+  try {
+    const newProduct = new Productos(product);     
+    const data = await newProduct.save();
+    console.log(data);
+    return data; 
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
 const remove = (id) => {  
   const eliminar = data.findIndex(prod=>parseInt(prod.id) === parseInt(id))  
   if (eliminar>-1){

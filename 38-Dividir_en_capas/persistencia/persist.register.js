@@ -1,13 +1,14 @@
 const bcrypt = require("bcrypt")
 require('../conexiones/connection'); 
 const User = require('../models/User.js'); 
-const view="register-result"
+
 async function getregister() {
     return "register";
   }
 
 async function postregisterpersist(obj) {
     const { username, password,email } = obj;
+    const view="register-result"
     const Usuario = await User.findOne({ username }); 
     let mensajeResult=""
     if (Usuario)

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const URL = process.env.MONGO_URL_LOCAL
+const URL = process.env.MONGO_URL_ATLAS
 
 //conectarse
 mongoose.connect(URL, { 

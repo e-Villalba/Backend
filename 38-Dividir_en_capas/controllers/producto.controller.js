@@ -7,10 +7,8 @@ class Producto {
     .then()       
     .catch(err=>console.log(err))
   }
-  static create(title, price,thumbnail) {
-    const producto = productoBank.add(title, price,thumbnail);
-   
-
+  static create(object) {    
+    const producto = productoBank.add(object);
     return producto;
   }
   static getByID(id) {
@@ -28,3 +26,21 @@ class Producto {
 }
 
 module.exports = Producto;
+/*
+//const productos = require("../utils/productos")
+const productos = require("../utils/products")
+
+//controller - Utiliza las funciones declaradas en productos.js
+class Contenedor { 
+  
+  static getAll() {
+   return productos.list();
+  }
+
+  static save(object) {
+    return productos.save(object);    
+  }
+
+} 
+
+module.exports = Contenedor;*/
