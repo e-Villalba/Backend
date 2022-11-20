@@ -37,7 +37,7 @@ class ConnectionClass {
   }
 
   static getInstance() {
-    console.log("getInstance")
+    //console.log("getInstance")
     if (!instance) {
       instance = new ConnectionClass();
     }

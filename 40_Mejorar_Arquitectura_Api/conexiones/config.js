@@ -19,7 +19,7 @@ const config = {
   srv: {
     port: process.env.PORT,
     logger: process.env.LOG || "DEV",
-    persistencia: "mongodb",
+    persistencia: "file",
   },
 };
 module.exports=config;

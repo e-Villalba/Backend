@@ -1,4 +1,3 @@
-//import CustomError from '../classes/CustomError.class.js'
 const CustomError =require("./CustomError.class")
 
 class DAO {
@@ -27,5 +26,4 @@ class DAO {
     }
 }
 
-//export default DAO;
 module.exports = DAO

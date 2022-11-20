@@ -1,5 +1,5 @@
 let args
-console.log("slice",process.argv.slice(2).length)
+//console.log("slice",process.argv.slice(2).length)
 if(process.argv.slice(2).length===0)
 {
    args="No informados"

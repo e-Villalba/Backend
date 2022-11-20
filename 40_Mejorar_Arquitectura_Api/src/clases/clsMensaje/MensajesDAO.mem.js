@@ -1,9 +1,9 @@
 const CustomError = require("../CustomError.class")
 const DAO =require("../DAO.class")
 
-let instanceProducto = null;
+let instanceMensaje = null;
 
-class ProductosDAOMem extends DAO {
+class MensajesDAOMem extends DAO {
     constructor(){
         super();
         this.colecction = [];
@@ -23,42 +23,21 @@ class ProductosDAOMem extends DAO {
         }
     }
 
-    listar(title) {
-        let producto = null;
-        
-        try {
-            producto = this.colecction.find(producto => {
-                return producto.title == title;
-            });
-            return producto;
-        } catch (error) {
-            const cuserr = new CustomError(500, 'Error al listar(Producto)', error);
-            //logger.error(cuserr);
-            throw cuserr;
-        }
-    }
-
     guardar(elemento) {
         let doc = null;
-        try {
-            if(!this.validarDuplicidad(elemento.title)){
+        try {          
                 doc = elemento;
                 this.colecction.push(elemento);
                 return doc;
-            } else {
-                doc = {code: 401, msg: "Title repetido"};
-                return doc;
-            }
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al guardar()', error);
-            //logger.error(cuserr);
             throw cuserr;
         } finally {
             //logger.info(`Elemento guardado ${JSON.stringify(doc)}`);
         }
     }
 
-    actualizar(elemento){
+   /* actualizar(elemento){
         let doc = null;
         
         try {
@@ -117,13 +96,28 @@ class ProductosDAOMem extends DAO {
         } catch (error) {
             
         }
-    }
-    static getInstanceProducto() {
-        if (!instanceProducto) {
-            instanceProducto = new ProductosDAOMem();
+    }*/
+    static getInstanceMensaje() {
+        if (!instanceMensaje) {
+            instanceMensaje = new MensajesDAOMem();
         }
-        return instanceProducto;
+        return instanceMensaje;
       }
+      /*    listar(title) {
+        let producto = null;
+        
+        try {
+            producto = this.colecction.find(producto => {
+                return producto.title == title;
+            });
+            return producto;
+        } catch (error) {
+            const cuserr = new CustomError(500, 'Error al listar(Producto)', error);
+            //logger.error(cuserr);
+            throw cuserr;
+        }
+    }*/
+
 }
 
-module.exports =  ProductosDAOMem;
+module.exports =  MensajesDAOMem;

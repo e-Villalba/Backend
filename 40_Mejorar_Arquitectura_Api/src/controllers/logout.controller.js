@@ -16,7 +16,7 @@ async function getDatosControllerLogout(req, res) {
       res.render('logout', {user}); 
     }
     else {
-      const { method } = req;
+      const { method } = req; 
       const time = new Date().toLocaleString();
       loggerConsola.error(`Ruta '/logout NEw' - con metodo: ${method} - time: ${time}`)
       res.send("Error");

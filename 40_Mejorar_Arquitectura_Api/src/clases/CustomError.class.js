@@ -6,5 +6,4 @@ class CustomError {
     }
 }
 
-//export default CustomError;
 module.exports = CustomError

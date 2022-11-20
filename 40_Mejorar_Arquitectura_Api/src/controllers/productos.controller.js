@@ -24,7 +24,6 @@ async function postDatosControllerProductos(req, res) {
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - time: ${time}`);
   const datosprod = await postproductos(objUser);  
    res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
-//    res.redirect(datosprod.view);
 
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
 }

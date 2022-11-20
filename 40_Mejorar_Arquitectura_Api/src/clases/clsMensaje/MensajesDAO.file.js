@@ -1,3 +1,4 @@
+/*========== Modulos globales para DAOs ==========*/
 const CustomError = require("../CustomError.class")
 const fs = require("fs")
 const config = require("../../../conexiones/config")
@@ -5,20 +6,20 @@ const DAO =require("../DAO.class")
 
 
 
-let instanceProducto = null;
-class ProductosDAOFile extends DAO {
+let instanceMensaje = null;
+class MensajesDAOFile extends DAO {
     constructor(ruta) {
         super();
-        this.ruta = `${config.filedb.pathdb}/productos.json`;       
+        this.ruta = `${config.filedb.pathdb}/mensajes.json`;       
     }
 
-    async listar(title) {
+    /*async listar(title) {
         //console.log("listar de file", title)
         const objs = await this.listarAll()
         const buscado = objs.find(o => o.title == title)
         //console.log("listar de file buscado", buscado)
         return buscado
-    }
+    }*/
 
     async listarAll() {
         try {            
@@ -42,7 +43,7 @@ class ProductosDAOFile extends DAO {
         }
     }
 
-    async actualizar(elem) {
+    /*async actualizar(elem) {
         const objs = await this.listarAll()
         const index = objs.findIndex(o => o.title == elem.title)
         if (index == -1) {
@@ -78,13 +79,13 @@ class ProductosDAOFile extends DAO {
         } catch (error) {
             throw new Error(`Error al borrar todo: ${error}`)
         }
-    }
-    static getInstanceProducto() {
-        if (!instanceProducto) {
-            instanceProducto = new ProductosDAOFile();
+    }*/
+    static getInstanceMensaje() {
+        if (!instanceMensaje) {
+            instanceMensaje = new MensajesDAOFile();
         }
-        return instanceProducto;
+        return instanceMensaje;
       }
 }
 
-module.exports = ProductosDAOFile;
+module.exports = MensajesDAOFile;

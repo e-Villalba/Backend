@@ -7,11 +7,14 @@ const ProductosDAOMem = require("../clases/clsProducto/ProductosDAO.mem")
 
 let prdDAO = null;
 
-switch (config.srv.persistencia) {
+const PERSISTENCIA= process.argv.slice(2).toString().trim()||"mongodb"
+try{
+switch (PERSISTENCIA)
+{
     case 'mongodb':
         prdDAO = ProductosDAOMongoDB.getInstanceProducto()
         break;
-    case 'file':
+    case 'file':        
         prdDAO = ProductosDAOFile.getInstanceProducto()
         break;
     case 'memoria':
@@ -20,7 +23,8 @@ switch (config.srv.persistencia) {
     default:
         break;
 }
-
+}
+catch(err){console.log ("Error Switch",err)}
 const ProductoController = {
     async listar(title) {
         let doc = await prdDAO.listar(title);

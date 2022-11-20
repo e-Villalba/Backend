@@ -10,5 +10,4 @@ class DBClient {
     }
 }
 
-//export default DBClient;
 module.exports = DBClient

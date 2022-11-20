@@ -7,8 +7,7 @@ const User = require('../models/User');
 
 //Se define la estrategia de autenticacion que de acuerdo a lo solicitado en el desafío es LOCAL
 passport.use(
-  new LocalStrategy({usernameField: 'email'},(username, password, done) => {
-    console.log("conectarse")
+  new LocalStrategy({usernameField: 'email'},(username, password, done) => {    
     
     User.findOne({ email: username }, (err, user) => {
         

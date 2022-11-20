@@ -6,7 +6,7 @@ const save = async (product) => {
   try {
     const newProduct = new Item(product); 
     const data = await newProduct.save();
-    console.log(data);
+    //console.log(data);
     return data; 
   } catch (error) {
     console.log(error);

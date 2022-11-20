@@ -38,7 +38,7 @@ app.use(cookieParser());
 
 const mongoUrl = process.env.MONGO_URL_ATLAS//"mongodb+srv://evillalba:esteban1776@cluster0.fybwz2j.mongodb.net/ecommerce?retryWrites=true&w=majority"//
 //Se genera Session
-console.log("antes app.us")
+
 app.use(
   session({
     store: new MongoStore({ 
@@ -54,7 +54,7 @@ app.use(
     cookie: { maxAge: 600000 }, //tiempo de expiración de la cookie
   })
 );
-console.log("despues app.us")
+
 //Passport
 const passport = require("./middleware/passport.js");
 app.use(passport.initialize());
@@ -75,7 +75,6 @@ httpServer.listen(PORT, () => {
 //Array de mjes para luego cargar en Base de Datos
 const messages = [];
 app.use(express.static("public"));
-console.log ("Antes io.on")
 
 io.on('connection', socket => {
   //Obtengo los productos con un Fetch y los devuelvo en un json a través de io.sockets
@@ -102,42 +101,20 @@ io.on('connection', socket => {
   });
 });
 
+const {getDatosControllerMensajes,postDatosControllerMensajes} = require("./src/controllers/mensajes.controller")
+
 
 async function saveMessage(msj) {
-  try {
-    const knex = require("knex")(options)
-    knex("mensajes")
-      .insert(msj)
-      .then(() => {
-        console.log("Mensaje insertado");
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        knex.destroy();
-      });
+  try {    
+    await postDatosControllerMensajes(msj);  
   }
   catch (err) {
     console.log(err)
   }
 }
 
-function getAllMessages() {
-  const knex = require("knex")(options)
-
-  return knex.from("mensajes").select("email", "fecha", "mensaje")
-    .orderBy("fecha")
-    .then((rows) => {
-      return rows
-    }
-    )
-    .catch((err) => {
-      console.log("getAllMessages", err)
-
-    }
-    )
-
+async function getAllMessages() {
+  return await getDatosControllerMensajes();  
 
 }
 
