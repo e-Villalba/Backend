@@ -2,21 +2,21 @@ const ProductoDTO = require("../clases/ProductoDTO.class.js")
 const config = require("../conexiones/config.js")
 
 const ProductosDAOMongoDB = require("../clases/ProductosDAO.mongodb")
-
+const ProductosDAOFile = require("../clases/ProductosDAO.file")
+const ProductosDAOMem = require("../clases/ProductosDAO.mem")
 
 let prdDAO = null;
 
 switch (config.srv.persistencia) {
     case 'mongodb':
-        //prdDAO = new ProductosDAOMongoDB();
         prdDAO = ProductosDAOMongoDB.getInstanceProducto()
         break;
-    /*case 'file':
-        prdDAO = new PersonasDAOFile();
+    case 'file':
+        prdDAO = ProductosDAOFile.getInstanceProducto()
         break;
     case 'memoria':
-        prdDAO = new PersonasDAOMem();
-        break;*/
+        prdDAO = ProductosDAOMem.getInstanceProducto()
+        break;
     default:
         break;
 }
@@ -45,16 +45,14 @@ const ProductoController = {
         const { title, price, thumbnail } = elem;    
     
     
-    const Prod = await prdDAO.listar( title ); 
+    const Prod = await prdDAO.listar( title );     
     const view="producto-result"  
     if (Prod)
-    {
-        
-        mensajeResult= "Producto ya registrado"        
+    {        
+        mensajeResult= "Producto ya existente, no puede registrar un producto con el nombre de uno ya existente"        
     }
     else
     {      
-      
        await prdDAO.guardar(elem);
        mensajeResult = "Producto Registrado Exitosamente"
     }

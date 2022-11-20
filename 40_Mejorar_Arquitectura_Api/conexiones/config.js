@@ -13,13 +13,13 @@ const config = {
       serverSelectionTimeoutMS: 5000,
     },
   },
-  /*filedb: {
-    pathdb: "./DB",
-  },*/
+  filedb: {
+    pathdb: "./db",
+  },
   srv: {
     port: process.env.PORT,
     logger: process.env.LOG || "DEV",
-    persistencia: "mongodb",
+    persistencia: "memoria",
   },
 };
 module.exports=config;

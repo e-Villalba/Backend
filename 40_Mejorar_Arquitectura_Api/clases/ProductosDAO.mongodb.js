@@ -31,7 +31,7 @@ class ProductosDAOMongoDB extends DAO{
         } 
     }
     async guardar(elemento) {
-        console.log("Guardar del DAO.MONGODB")
+        //console.log("Guardar del DAO.MONGODB")
         try {            
             let doc = await this.colecction.create(elemento);
             return doc;

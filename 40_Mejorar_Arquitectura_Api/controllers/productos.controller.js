@@ -23,8 +23,7 @@ async function postDatosControllerProductos(req, res) {
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - time: ${time}`);
   const datosprod = await postproductos(objUser);  
-  console.log("postDatosControllerProductos",datosprod)
-    res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
+   res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
 //    res.redirect(datosprod.view);
 
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
