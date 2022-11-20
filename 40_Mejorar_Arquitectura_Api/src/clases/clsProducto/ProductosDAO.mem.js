@@ -3,8 +3,8 @@
 import logger from "../utils/loggers.js";
 import DAO from "./DAO.class.js";*/
 
-const CustomError = require("../clases/CustomError.class")
-const DAO =require("../clases/DAO.class")
+const CustomError = require("../CustomError.class")
+const DAO =require("../DAO.class")
 
 let instanceProducto = null;
 

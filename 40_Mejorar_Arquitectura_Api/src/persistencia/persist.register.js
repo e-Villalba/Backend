@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt")
-require('../conexiones/connection'); 
-const User = require('../models/User.js'); 
+require('../../conexiones/connection'); 
+const User = require('../../models/User.js'); 
 
 async function getregister() {
     return "register";

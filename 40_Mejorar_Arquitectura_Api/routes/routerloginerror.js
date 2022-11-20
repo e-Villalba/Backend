@@ -2,7 +2,7 @@
 const { Router } = require("express");
 const routerloginerror = Router();
 
-const {getDatosControllerLoginError} = require("../controllers/loginerror.controller")
+const {getDatosControllerLoginError} = require("../src/controllers/loginerror.controller")
 
 routerloginerror.get("/", getDatosControllerLoginError) 
 

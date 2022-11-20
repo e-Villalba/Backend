@@ -1,7 +1,7 @@
-const CustomError = require("../clases/CustomError.class")
+const CustomError = require("../CustomError.class")
 
-const ProductosModel = require('../models/Products'); 
-const DAO =require("../clases/DAO.class")
+const ProductosModel = require('../../../models/Products'); 
+const DAO =require("../DAO.class")
 
 let instanceProducto = null;
 class ProductosDAOMongoDB extends DAO{

@@ -2,7 +2,7 @@
 const { Router } = require("express");
 const routerproductos = Router();
 
-const {getDatosControllerProductos,postDatosControllerProductos} = require("../controllers/productos.controller")
+const {getDatosControllerProductos,postDatosControllerProductos} = require("../src/controllers/productos.controller")
 
 routerproductos.get("/", getDatosControllerProductos ) 
 routerproductos.post("/", postDatosControllerProductos) 

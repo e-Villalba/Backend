@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const routerinfo = Router();
 
-const {getDatosControllerInfo} = require("../controllers/info.controller")
+const {getDatosControllerInfo} = require("../src/controllers/info.controller")
 
 routerinfo.get("/", getDatosControllerInfo) 
 

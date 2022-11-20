@@ -1,5 +1,5 @@
 //require('../conexiones/connection'); 
-const User = require('../models/User.js'); 
+const User = require('../../models/User.js'); 
 
  async function getlogout(user_id) {
     console.log("getlogout")

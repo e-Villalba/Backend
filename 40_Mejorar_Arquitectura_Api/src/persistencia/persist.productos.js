@@ -1,9 +1,9 @@
-const ProductoDTO = require("../clases/ProductoDTO.class.js")
-const config = require("../conexiones/config.js")
+const ProductoDTO = require("../clases/clsProducto/ProductoDTO.class.js")
+const config = require("../../conexiones/config.js")
 
-const ProductosDAOMongoDB = require("../clases/ProductosDAO.mongodb")
-const ProductosDAOFile = require("../clases/ProductosDAO.file")
-const ProductosDAOMem = require("../clases/ProductosDAO.mem")
+const ProductosDAOMongoDB = require("../clases/clsProducto/ProductosDAO.mongodb")
+const ProductosDAOFile = require("../clases/clsProducto/ProductosDAO.file")
+const ProductosDAOMem = require("../clases/clsProducto/ProductosDAO.mem")
 
 let prdDAO = null;
 

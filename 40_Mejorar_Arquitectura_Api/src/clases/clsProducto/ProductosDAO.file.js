@@ -1,8 +1,8 @@
 /*========== Modulos globales para DAOs ==========*/
-const CustomError = require("../clases/CustomError.class")
+const CustomError = require("../CustomError.class")
 const fs = require("fs")
-const config = require("../conexiones/config")
-const DAO =require("../clases/DAO.class")
+const config = require("../../../conexiones/config")
+const DAO =require("../DAO.class")
 
 let instanceProducto = null;
 class ProductosDAOFile extends DAO {

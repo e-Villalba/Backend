@@ -1,7 +1,7 @@
-
 const obtenerhome = require("../negocio/negocio.home")
+
 const {loggerConsola} = require("../logger/logger");
-const auth = require('../middleware/auth.js');
+const auth = require('../../middleware/auth.js');
 
 async function getDatosControllerHome(req, res) {
   const { method } = req;
