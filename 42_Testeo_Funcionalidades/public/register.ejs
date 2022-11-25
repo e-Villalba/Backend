@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="verPassword.js"></script>
+    <title>Backend - Clase 40 Mejorar Arquitectura Api</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" id="divContenedor">
+            <form id="divDatosForm" action="/register" method="post" enctype="">
+                <div class="col-md-12 text-center mt-3 card cardatosContacto">
+                    <div class="card-body">
+                        <div>
+                            <h2 class="mb-0">Backend - Registro de Usuario </h3>
+                        </div>
+                        <div>
+                            <label class="pContacto datosContacto" for="email">Nombre de Usuario</label>
+                        </div>
+                        <div><input class="datosForm datosContacto" type="text" name="username" id="username"
+                                placeholder="Ingrese su Nombre" style="width: 15rem;" required></div>
+                        <div>
+                            <label class="pContacto datosContacto" for="password">E-mail</label>
+                        </div>
+                        <div><input class="datosForm datosContacto" type="text" name="email" id="email"
+                                placeholder="Ingrese su e-mail" style="width: 15rem;" required></div>
+                        <div>
+                            <label class="pContacto datosContacto" for="password">Password</label>
+                        </div>
+                        <div><input class="datosForm datosContacto" type="password" name="password" id="password"
+                                placeholder="Ingrese su Password" style="width: 15rem;" required> </div>
+                        <input type="checkbox" onclick="verPwd()"> Ver Password
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-outline-primary mb-3" id="btnLogin" value="Registrar" />
+                        <input type="button" onclick="location.href='/'" class="btn btn-outline-secondary mb-3"
+                            id="btnRegister" value="Ingresar" />
+                    </div>
+                </div>
+        </div>
+    </div>
+    </form>
+    </div>
+</body>
+
+</html>
