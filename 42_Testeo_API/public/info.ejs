@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Backend - Clase 40 Mejorar Arquitectura Api</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" id="divContenedor">
+            <form id="divDatosForm" action="/login" method="post" enctype="">
+                <div class="col-md-12 text-center mt-3 card cardatosContacto">
+                    <div class="card-body">
+                        <div>
+                            <h2 class="mb-0">Backend -Info Process </h3>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <h5>Argumentos Entrada: </h5>
+                            </div>
+                            <div>
+                                <h5>
+                                    <%= datosInfo.Argumentos_Entrada%>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center ">
+                            <div>
+                                <h5 >Nombre Plataforma: </h5>
+                            </div>
+                            <div>
+                                <h5 >
+                                    <%= datosInfo.Nombre_Plataforma %>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center ">
+                            <div>
+                                <h5 >Version Node: </h5>
+                            </div>
+                            <div>
+                                <h5 >
+                                    <%= datosInfo.Version_Node %>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center ">
+                            <div>
+                                <h5 >Memoria Reservada: </h5>
+                            </div>
+                            <div>
+                                <h5 >
+                                    <%= datosInfo.Memoria_Reservada %>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center ">
+                            <div>
+                                <h5 >Path Ejecucion: </h5>
+                            </div>
+                            <div>
+                                <h5 >
+                                    <%= datosInfo.Path_Ejecucion %>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center ">
+                            <div>
+                                <h5 >Process id: </h5>
+                            </div>
+                            <div>
+                                <h5 >
+                                    <%= datosInfo.Process_id %>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center ">
+                            <div>
+                                <h5 >Carpeta Proyecto: </h5>
+                            </div>
+                            <div>
+                                <h5 >
+                                    <%= datosInfo.Carpeta_Proyecto %>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</body>
+
+</html>
