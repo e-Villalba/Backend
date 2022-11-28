@@ -31,7 +31,7 @@ async function postDatosControllerProductos(req, res) {
 
 async function putDatosControllerProductos(req, res) {
   const {id} = req.params;  
-  console.log("PUT ID",id)
+  //console.log("PUT ID",id)
   const { title, price, thumbnail } = req.body;  
   const objProd={
     _id: id,
@@ -44,7 +44,7 @@ async function putDatosControllerProductos(req, res) {
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - time: ${time}`);
   const datosprod = await putproductos(objProd);
   const {mensajeResult}=datosprod
-  console.log("Return datos prod",datosprod)  
+  //console.log("Return datos prod",datosprod)  
   //res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
 
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${mensajeResult} - time: ${time}`);  
@@ -54,7 +54,7 @@ async function putDatosControllerProductos(req, res) {
 
 async function deleteDatosControllerProductos(req, res) {
   const {id} = req.params;  
-  console.log("PUT ID",id)
+  //console.log("PUT ID",id)
   /*const { title, price, thumbnail } = req.body;  
   const objProd={
     _id: id,
@@ -67,7 +67,7 @@ async function deleteDatosControllerProductos(req, res) {
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - time: ${time}`);
   const datosprod = await deleteproductos(id);
   const {mensajeResult}=datosprod
-  console.log("Return datos prod",datosprod)  
+  //console.log("Return datos prod",datosprod)  
   //res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
 
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${mensajeResult} - time: ${time}`);  

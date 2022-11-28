@@ -69,21 +69,22 @@ const ProductoController = {
 
     },
     async actualizar(elem) {
-        try {
+        let objReturn={}
+        try {            
             const { _id,title, price, thumbnail } = elem;
             const Prod = await prdDAO.listarID(_id);
             //const view = "producto-result"
             if (!Prod) {
-                mensajeResult = "Producto Inexistente, no se puede realizar la actualización"
+                objReturn={mensajeResult:"Producto Inexistente, no se puede realizar la actualización"}
             }
             else {
-                await prdDAO.actualizar(elem);
-                mensajeResult = "Producto actualizado Exitosamente"
+                objReturn=await prdDAO.actualizar(elem);
+                //mensajeResult = "Producto actualizado Exitosamente"
             }
-            const objReturn = {
+            /*const objReturn = {
                 //view: view,
                 mensajeResult: mensajeResult
-            }
+            }*/
             return objReturn
         } catch (error) {
             console.log("error persist.productos.guardar", error)
@@ -92,20 +93,21 @@ const ProductoController = {
         
     },
     async borrar(_id) {
+        let objReturn={}
         try {            
             const Prod = await prdDAO.listarID(_id);
             //const view = "producto-result"
             if (!Prod) {
-                mensajeResult = "Producto Inexistente, no se puede eliminar"
+                objReturn={mensajeResult:"Producto Inexistente, no se puede eliminar"}
             }
             else {
-                await prdDAO.borrar(_id);
-                mensajeResult = "Producto eliminado Exitosamente"
+                objReturn=await prdDAO.borrar(_id);
+                //mensajeResult = "Producto eliminado Exitosamente"
             }
-            const objReturn = {
+            /*const objReturn = {
                 //view: view,
                 mensajeResult: mensajeResult
-            }
+            }*/
             return objReturn
         } catch (error) {
             console.log("error persist.productos.borrar", error)
