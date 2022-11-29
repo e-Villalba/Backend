@@ -14,7 +14,7 @@ class ProductosDAOMongoDB extends DAO{
         let docs = [];
         try {            
             docs = await this.colecction.find({}) 
-            console.log("listar All ProductosDAOMongoDB",docs)       
+            //console.log("listar All ProductosDAOMongoDB",docs)       
             return docs;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al listarAll()', error);

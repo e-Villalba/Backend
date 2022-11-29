@@ -27,14 +27,14 @@ catch (err) { console.log("Error Switch", err) }
 const ProductoController = {
     async listar(title) {
         let doc = await prdDAO.listar(title);
-        return new ProductoDTO(doc.title, doc.price, doc.thumbnail);
+        return new ProductoDTO(doc.id,doc.title, doc.price, doc.thumbnail);
     },
     async listarAll() {
         try {
             let docs = await prdDAO.listarAll()
                 ;
             let prdDTOs = docs.map(o => {
-                return new ProductoDTO(o.title, o.price, o.thumbnail);
+                return new ProductoDTO(o.id,o.title, o.price, o.thumbnail);
             })
             return prdDTOs;
         }
