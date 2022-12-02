@@ -78,7 +78,7 @@ const ProductoController = {
                 view: view,
                 mensajeResult: mensajeResult
             }*/
-            console.log("objReturn", objReturn)
+            //console.log("objReturn", objReturn)
             return objReturn
 
         } catch (error) {
