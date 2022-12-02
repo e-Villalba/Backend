@@ -1,0 +1,57 @@
+mutation {
+  createProducto
+  (datos:
+    {title: "Pantalon pollera",
+     price: 77,
+     thumbnail: 
+"https://cdn4.iconfinder.com/data/icons/basic-user-interface-elements/700/key-lock-unlock-clef-256.png",
+    }
+  ) 
+  {
+    _id
+    title
+    mensajeResult
+  }
+}
+
+query {
+  getProductos {
+    _id
+    title
+    price
+  }
+}
+
+query{
+  getProducto(_id: "63896a106656fe1327b93825") {
+    _id
+    title
+    price
+    mensajeResult
+  }
+}
+
+mutation {
+  updateProducto(datos: 
+                  { _id: "63896a106656fe1327b93825",
+                    title: "camisa prueba flori beli 2", 
+                    price: 77, 
+                    thumbnail:"https://cdn4.iconfinder.com/data/icons/basic-user-interface-elements/700/key-lock-unlock-clef-256.png" 
+                  }
+                ) 
+  {
+    _id
+    title
+    price
+    mensajeResult
+  }
+}
+
+mutation {
+  deleteProducto(_id: "63896a106656fe1327b93825") {
+    _id
+   mensajeResult
+  }
+}
+
+
