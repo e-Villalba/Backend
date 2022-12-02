@@ -10,8 +10,6 @@ async function getProducto(_id) {
   return await objProd.listarID(_id)
 }
 
-
-
 async function createProducto({ datos }) {
   return await objProd.guardar(datos);
 }
@@ -25,5 +23,3 @@ async function deleteProducto(_id) {
 }
 
 module.exports = {getProductos,createProducto,updateProducto,deleteProducto,getProducto}
-
-//module.exports = {obtenerproductos,postproductos,putproductos,deleteproductos}

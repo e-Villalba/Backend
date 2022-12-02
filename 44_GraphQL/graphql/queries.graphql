@@ -23,17 +23,16 @@ query {
 }
 
 query{
-  getProducto(_id: "63896a106656fe1327b93825") {
+  getProducto(_id: "6389e046fdf95300c4ed1d03") {
     _id
     title
     price
-    mensajeResult
   }
 }
 
 mutation {
   updateProducto(datos: 
-                  { _id: "63896a106656fe1327b93825",
+                  { _id: "6389e046fdf95300c4ed1d03",
                     title: "camisa prueba flori beli 2", 
                     price: 77, 
                     thumbnail:"https://cdn4.iconfinder.com/data/icons/basic-user-interface-elements/700/key-lock-unlock-clef-256.png" 
@@ -48,7 +47,7 @@ mutation {
 }
 
 mutation {
-  deleteProducto(_id: "63896a106656fe1327b93825") {
+  deleteProducto(_id: "6389e046fdf95300c4ed1d03") {
     _id
    mensajeResult
   }
