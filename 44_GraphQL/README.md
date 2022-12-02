@@ -13,3 +13,4 @@ En el archivo *Server.js* se requiere *GraphQL* y se implementa como Middleware 
 
 ## Ejecución
 Levantar el Server Express con *npm start o node server.js*, dirigirse a **http://localhost:3000/graphql** y ejecutar las Query y Mutations definidas. Dentro de la Carpeta **graphql** y en el archivo **queries.graphql** se dejan Query de ejemplos utilizadas para validar el correcto funcionamiento de la implementación de **GraphQL**
+En la raíz del proyecto, se encuentra el archivo **Documentación Pruebas GraphQL.pdf** con la Evidencia de Pruebas realizadas.
