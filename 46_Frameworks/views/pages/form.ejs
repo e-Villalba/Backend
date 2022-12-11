@@ -25,10 +25,7 @@
                                 <input type="hidden" name="user" value="<%=user%>">
                                 <input type="submit" class="btn btn-outline-secondary" id="btnLogout"
                                                                 value="Logout" />
-                                
                             </form>
-                            <!--<input type="button" onclick="location.href='/logout'" class="btn btn-outline-secondary" id="btnLogout"
-                            value="Logout" />                    -->
                         </div>
                     </div>
                 </div>
@@ -71,7 +68,8 @@
                                 <div>
                                     <!--<input type="submit" class="btn btn-outline-primary mt-3 " id="btnProducto" value="Guardar" />-->
                                     <button id="btn" type="button"  class=" btn btn-outline-primary mt-3">Create</button>
-                                    <button id="btnUpdateProducto" hidden="true" type="button" class=" btn btn-outline-secondary mt-3">Update</button>
+                                    <button id="btnUpdateProducto" hidden="true" type="button" class=" btn btn-outline-primary mt-3">Update</button>
+                                    <button id="btnCancelUpdate" onclick="cancelUpdate()" hidden="true" type="button" class=" btn btn-outline-secondary mt-3">Cancel </button>
                                 </div>
                             </div>
 
@@ -99,20 +97,7 @@
 
                     </div>
 
-                    <!-- Productos End-->
-                    <!--<div class="container centroMensajes">
-
-                        <div class="row">
-                            <div class="col-md-12 text-center mt-3">
-                                <div class="card cardatosContacto">
-                                    <div class="card-body">
-                                        <%- include('../partials/centroMensajes.ejs'); %>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>-->
+                    <!-- Productos End-->  
                 </div>
                 <script src="./scripts/main.js"></script>
             </body>

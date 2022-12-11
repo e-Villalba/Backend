@@ -164,10 +164,9 @@ function ponerDataUpdate(id,title,price,thumbnail)
   document.getElementById('price').value =price
   document.getElementById('thumbnail').value =thumbnail
   document.getElementById('btnUpdateProducto').hidden =false
+  document.getElementById('btnCancelUpdate').hidden =false
   document.getElementById('btn').hidden =true
-  document.getElementById('btn').value =thumbnail
   
-
 }
 
 const putData = async () => {  
@@ -206,3 +205,14 @@ btnUpdate.addEventListener('click', (event) => {
   event.preventDefault();
   putData();
 })
+
+function cancelUpdate()
+{  
+  document.getElementById('_id').value =""
+  document.getElementById('title').value =""
+  document.getElementById('price').value =""
+  document.getElementById('thumbnail').value =""
+  document.getElementById('btnUpdateProducto').hidden =true
+  document.getElementById('btnCancelUpdate').hidden =true
+  document.getElementById('btn').hidden =false
+}
