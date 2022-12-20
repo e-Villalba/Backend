@@ -37,22 +37,16 @@ class ProductosDAOMongoDB extends DAO{
         } 
     }
 
-    async listarcategory(category) {        
-        let docs = [];
-        let docreturn=[]
+    async listarcategory(category) {              
+        let docs = [];        
         try {            
-            docs = await this.colecction.findOne({category})                 
-            if(docs)
-            {
-            docreturn.push(docs)
-            }
-            return docreturn;
+            docs = await this.colecction.find({category: category})                 
+            return docs;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al listarcategory()', error);
             throw cuserr;
         } 
     }
-
     async guardar(elemento) {
         //console.log("Guardar del DAO.MONGODB")
         try {            
@@ -63,6 +57,29 @@ class ProductosDAOMongoDB extends DAO{
             
         } 
     }
+    async actualizar(id,obj) {
+        //console.log("Guardar del DAO.MONGODB ID",id)
+        //console.log("Guardar del DAO.MONGODB OBJ",obj)
+        
+        try {            
+            let doc =  await this.colecction.findOneAndUpdate( {_id: id},obj)
+            return doc;
+        } catch (error) {
+            const cuserr = new CustomError(500, 'Error al guardar()', error);
+            
+        } 
+    }
+
+    async borrar(id) {        
+        try {            
+            let doc =  await this.colecction.deleteOne( {_id: id }) 
+            return doc;
+        } catch (error) {
+            const cuserr = new CustomError(500, 'Error al ELIMINAR PRODUCTO()', error);
+            
+        } 
+    }
+
     static getInstanceProducto() {
         if (!instanceProducto) {
             instanceProducto = new ProductosDAOMongoDB();

@@ -1,11 +1,15 @@
 class ProductoDTO {
-    constructor(title, price, category,thumbnail){
+    constructor(_id,title, price, category,thumbnail){
+        this._id = _id;
         this.title = title;
         this.price = price;
         this.category = category;
         this.thumbnail = thumbnail;
     }
 
+    getId(){
+        return this._id;
+    }
     getTitle(){
         return this.title;
     }

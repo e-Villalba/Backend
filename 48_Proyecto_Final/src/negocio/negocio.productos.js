@@ -17,13 +17,18 @@ async function obtenerproductoscategory(category) {
   return await objProd.listarcategory(category)
 }
 
-async function postproductos(obj) {
-  
-    return await objProd.guardar(obj);
+async function postproductos(obj) {  
+  return await objProd.guardar(obj);
+}
+async function putproductos(id,obj) {  
+  return await objProd.actualizar(id,obj);
 }
 
+async function deleteproductos(id) {  
+  return await objProd.borrar(id);
+}
 
-module.exports = {obtenerproductos,obtenerproductostitle,obtenerproductoscategory,postproductos}
+module.exports = {obtenerproductos,obtenerproductostitle,obtenerproductoscategory,postproductos,putproductos,deleteproductos}
 
 
 

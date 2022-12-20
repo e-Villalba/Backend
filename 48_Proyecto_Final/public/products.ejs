@@ -44,45 +44,41 @@
         <% } %>
             <div class="container">
                 <div class="row" id="divContenedor">
-                    <form id="divDatosForm" action="/productos" method="post" enctype="">
+                    <form id="formProductos" action="/productos" method="post" enctype="">
                         <div class="col-md-12 text-center mt-3 card cardatosContacto">
                             <div class="card-body">
                                 <div>
                                     <h2 class="mb-0">Backend - Agregar Productos</h3>
                                 </div>
+                                <input type="hidden" name="_id" id="_id">
                                 <div>
                                     <label class="pContacto datosContacto" for="title">Title</label>
                                 </div>
-                                <div><input class="datosForm datosContacto" type="text" name="title" id="title"
-                                        placeholder="Ingrese Title" style="width: 15rem;" required></div>
-                                <div><label class="pContacto p-1 datosContacto" for="price">Price</label>
+                                <div>
+                                    <input class="datosForm datosContacto" type="text" name="title" id="title" placeholder="Ingrese Title" style="width: 15rem;" required></div>
+                                <div>
+                                    <label class="pContacto p-1 datosContacto" for="price">Price</label>
                                 </div>
                                 <div>
-                                    <input class="datosForm datosContacto" type="text" name="price" id="price"
-                                        placeholder="Ingrese Price" style="width: 15rem;" required>
+                                    <input class="datosForm datosContacto" type="text" name="price" id="price" placeholder="Ingrese Price" style="width: 15rem;" required>
                                 </div>
                                 <div>
-                                    <label class="pContacto p-1 datosContacto" for="category"
-                                        style="width: 15rem;">Category</label>
+                                    <label class="pContacto p-1 datosContacto" for="category" style="width: 15rem;">Category</label>
                                 </div>
                                 <div>
-                                    <input class="datosForm datosContacto" type="text" name="category" id="category"
-                                        placeholder="Ingrese Category" style="width: 15rem;" required>
-                                </div>
-
-
-                                <div>
-                                    <label class="pContacto p-1 datosContacto" for="thumbnail"
-                                        style="width: 15rem;">Ingrese thumbnail</label>
+                                    <input class="datosForm datosContacto" type="text" name="category" id="category" placeholder="Ingrese Category" style="width: 15rem;" required>
                                 </div>
                                 <div>
-                                    <input class="datosForm datosContacto" type="text" name="thumbnail"
-                                        style="width: 15rem;" id="thumbnail" placeholder="Ingrese thumbnail" required>
+                                    <label class="pContacto p-1 datosContacto" for="thumbnail"  style="width: 15rem;">Ingrese thumbnail</label>
+                                </div>
+                                <div>
+                                    <input class="datosForm datosContacto" type="text" name="thumbnail" style="width: 15rem;" id="thumbnail" placeholder="Ingrese thumbnail" required>
                                 </div>
 
                                 <div>
-                                    <input type="submit" class="btn btn-outline-primary mt-3 " id="btnProducto"
-                                        value="Guardar" />
+                                    <input type="submit" class="btn btn-outline-primary mt-3 " id="btnProducto"  value="Guardar" />
+                                    <button id="btnUpdateProducto" hidden="true" type="button" class=" btn btn-outline-primary mt-3">Update</button>
+                                    <button id="btnCancelUpdate" onclick="cancelUpdate()" hidden="true" type="button" class=" btn btn-outline-secondary mt-3">Cancel </button>
                                 </div>
                             </div>
 
@@ -151,6 +147,7 @@
                                         <div class="col " style="color:white">Price</div>
                                         <div class="col " style="color:white">Category</div>
                                         <div class="col " style="color:white">Thumbnail</div>
+                                        <div class="col " style="color:white"></div>
                                         <!--<div class="col " style="color:white"></div>-->
                                     </div>
                                     <div id="productos"></div>
