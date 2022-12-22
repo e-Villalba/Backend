@@ -50,7 +50,8 @@ const info = require("./routerinfo");
 
 const productos = require("./routerproductos");
 const productosadmin = require("./routerproductosadmin");
-
+//const carrito = require("./carrito");
+const carrito = require("./routercarritos");
 
 router.use("/", home);
 router.use("/login", login);
@@ -60,6 +61,8 @@ router.use("/register", register);
 router.use("/productos",productos)
 router.use("/productosadmin",productosadmin)
 router.use("/info",info)
+router.use("/carrito",carrito)
+
 
 router.use("*",erroresRouter)
 
