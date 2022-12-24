@@ -20,10 +20,12 @@
                 <div class="col-md-12 text-center mt-3">
                     <div class="card cardatosContacto">
 
-                        <div class="card-body d-flex align-items-center justify-content-end">
+                        <div class="card-body d-flex align-items-center justify-content-end ">
                             <div>
                                 <h5 class="">Carrito de <%= cart.username.toUpperCase() %>
+                                <h5> Total Carrito:</h5> <h4 id="totalCarrito"></h4>
                             </div>
+                        
                             <p style="display:none" id="idCarrito">
                                 <%=cart._id%>
                             </p>
@@ -32,7 +34,8 @@
                                     <input type="hidden" name="username" value="<%=cart.username%>">
                                     <input type="hidden" name="_id" value="<%=cart._id%>">
                                     <input type="hidden" name="accion" value="confirmar">
-                                    <input type="submit" class="btn btn-outline-primary mx-3" id="btnConfirmar" value="Confirmar Compra" />                                    
+                                    <button id="btnConfirmar" type="button" class=" btn btn-outline-primary mx-3">Confirmar Compra</button>
+                                    <!--<input type="submit" class="btn btn-outline-primary mx-3" id="btnConfirmar" value="Confirmar Compra" />-->
                                 </form>
 
                             </div>
@@ -76,6 +79,9 @@
                                             <div class="col " style="color:white">Title</div>
                                             <div class="col " style="color:white">Price</div>
                                             <div class="col " style="color:white">Thumbnail</div>
+                                            <div class="col " style="color:white">Cantidad</div>
+                                            <div class="col " style="color:white">Valor</div>
+                                            <div class="col " style="color:white"></div>
                                             <!--<div class="col " style="color:white"></div>-->
                                         </div>
                                         <div id="productoscart"></div>

@@ -32,7 +32,7 @@ const CarritoController = {
                 return new CarritoDTO(o._id, o.username, o.products, o.estado);
             })*/
             let cartDTOs = new CarritoDTO(doc._id, doc.username, doc.products, doc.estado);
-            console.log("cartDTOs",cartDTOs)
+            //console.log("cartDTOs", cartDTOs)
             return cartDTOs;
         }
         catch (error) {
@@ -55,9 +55,9 @@ const CarritoController = {
         }
 
     },
-    async listarUser(user,estado) {
+    async listarUser(user, estado) {
         try {
-            let doc = await cartDAO.listarUser(user,estado);
+            let doc = await cartDAO.listarUser(user, estado);
             /*let cartDTOs = doc.map(o => {
                 return new CarritoDTO(o._id, o.username, o.products, o.estado);
             })*/
@@ -69,24 +69,41 @@ const CarritoController = {
         }
 
     },
-    async guardar(elem) {
+    async guardar(username, estado, cartData, prodAdd) {
         try {
-            const { title, price, category, thumbnail } = elem;
-            const Prod = await prdDAO.listar(title);
-            const view = "producto-result"
-            console.log("prod persist", Prod.length)
-            if (Prod.length > 0) {
-                mensajeResult = "Producto ya existente, no puede registrar un producto con el nombre de uno ya existente"
+            //const estado = "Abierto"
+            let cart = await cartDAO.listarUser(username, estado);
+            if (cart) {
+                //console.log("Productos del Carrito Ahora ",cart.products)                
+                const products = cart.products
+                //products.push(_id)
+                products.push(prodAdd)
+                const id = cart._id
+                let doc = cartDAO.actualizarProductoCarrito(cart)
+                const data = { ...cartData, mensajeResult: "Producto agregado a carrito en curso" }    
+                return data            
             }
-            else {
-                await prdDAO.guardar(elem);
-                mensajeResult = "Producto Registrado Exitosamente"
+            if (!cart) {
+                //console.log("register FindOne !user")
+                const estado = "Abierto"
+                const products = []
+                //products.push(_id)
+                products.push(prodAdd)
+                //console.log("Username",username)
+                //console.log ("Array productos",products)
+
+                const objCart = {
+                    username,
+                    products,
+                    estado,
+                };
+
+                let doc = cartDAO.agregarCarrito(objCart)
+
+                const data = { ...cartData, mensajeResult: "Producto Agregado Exitosamente Al Carrito" }
+                return data
+                //res.render("carritoaddresult", { data });
             }
-            const objReturn = {
-                view: view,
-                mensajeResult: mensajeResult
-            }
-            return objReturn
         } catch (error) {
             console.log("error persist.productos.guardar", error)
         }
@@ -96,41 +113,136 @@ const CarritoController = {
         await prdDAO.actualizar(title);
     },*/
     async actualizar(id, obj) {
-        try {
-            const view = "producto-result"
-            await prdDAO.actualizar(id, obj);
-            mensajeResult = "Producto Actuealizado Exitosamente"
-
+        try {            
+            await cartDAO.actualizar(id, obj);
+            mensajeResult = "Carrito Actuealizado Exitosamente"
+            const view = "carritoconfresult"
             const objReturn = {
                 view: view,
                 mensajeResult: mensajeResult
             }
             return objReturn
         } catch (error) {
-            console.log("error persist.productos.actualizar", error)
+            console.log("error persist.carritos.actualizar", error)
         }
 
     },
- /*   async borrar(id) {
+    async eliminarprodcarrito(idCart,idprod)
+    {
         try {
-            const view = "producto-result"
-            await prdDAO.borrar(id);
-            mensajeResult = "Producto Eliminado Exitosamente"
-
-            const objReturn = {
-                view: view,
-                mensajeResult: mensajeResult
+            //const estado = "Abierto"
+            let cart = await cartDAO.listar(idCart);
+            if (cart) {
+                //console.log("Productos del Carrito Ahora ",cart.products)                
+                const products = cart.products
+                //products.push(_id)
+                const produc= products.splice(products.findIndex(prod=>parseInt(prod.id) === parseInt(idprod)),1)
+                //products.push(prodAdd)
+                const id = cart._id
+                //let doc = cartDAO.agregarProductoCarrito(cart)
+                //const data = { ...cartData, mensajeResult: "Producto agregado a carrito en curso" }   
+                cartDAO.actualizarProductoCarrito(cart) 
+                console.log("persist eliminar",products)
+                return produc            
             }
-            return objReturn
+            if (!cart) {
+                //console.log("register FindOne !user")
+                const estado = "Abierto"
+                const products = []
+                //products.push(_id)
+                products.push(prodAdd)
+                //console.log("Username",username)
+                //console.log ("Array productos",products)
+
+                const objCart = {
+                    username,
+                    products,
+                    estado,
+                };
+
+                let doc = cartDAO.agregarCarrito(objCart)
+
+                const data = { ...cartData, mensajeResult: "Producto Agregado Exitosamente Al Carrito" }
+                return data
+                //res.render("carritoaddresult", { data });
+            }
         } catch (error) {
-            console.log("error persist.productos.eliminar", error)
+            console.log("error persist.productos.guardar", error)
         }
 
-      
+
     },
-    async borrarAll() {
-        await prdDAO.borrarAll();
-    }*/
+    async updateprodcarritos(idCart,idprod)
+    {
+        try {
+            console.log(idCart)
+            //const estado = "Abierto"
+            let cart = await cartDAO.listar(idCart);
+            if (cart) {
+                console.log("Productos del Carrito Ahora ",cart.products)                
+                const products = cart.products
+                //products.push(_id)
+                const prodIndex= products.findIndex(prod=>parseInt(prod.id) === parseInt(idprod))
+                console.log("Productos prodIndex",prodIndex)
+                console.log("Productos products[prodIndex].cantidad ANTES",products[prodIndex].cantidad)
+                products[prodIndex].cantidad=8
+                console.log("Productos products[prodIndex].cantidad DESPUES",products[prodIndex].cantidad)
+                //products.push(prodAdd)
+                //const id = cart._id
+                //let doc = cartDAO.agregarProductoCarrito(cart)
+                //const data = { ...cartData, mensajeResult: "Producto agregado a carrito en curso" }   
+                console.log("Cart Antes de actualizarProductoCarrito",cart)
+                cartDAO.actualizarProductoCarrito(cart) 
+                //console.log("persist eliminar",products)
+                return  products[prodIndex]            
+            }
+            if (!cart) {
+                //console.log("register FindOne !user")
+                const estado = "Abierto"
+                const products = []
+                //products.push(_id)
+                products.push(prodAdd)
+                //console.log("Username",username)
+                //console.log ("Array productos",products)
+
+                const objCart = {
+                    username,
+                    products,
+                    estado,
+                };
+
+                let doc = cartDAO.agregarCarrito(objCart)
+
+                const data = { ...cartData, mensajeResult: "Producto Agregado Exitosamente Al Carrito" }
+                return data
+                //res.render("carritoaddresult", { data });
+            }
+        } catch (error) {
+            console.log("error persist.productos.guardar", error)
+        }
+
+
+    }
+    /*   async borrar(id) {
+           try {
+               const view = "producto-result"
+               await prdDAO.borrar(id);
+               mensajeResult = "Producto Eliminado Exitosamente"
+   
+               const objReturn = {
+                   view: view,
+                   mensajeResult: mensajeResult
+               }
+               return objReturn
+           } catch (error) {
+               console.log("error persist.productos.eliminar", error)
+           }
+   
+         
+       },
+       async borrarAll() {
+           await prdDAO.borrarAll();
+       }*/
 }
 
 module.exports = CarritoController

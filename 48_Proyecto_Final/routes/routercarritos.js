@@ -2,13 +2,14 @@
 const { Router } = require("express");
 const routercarritos = Router();
 
-const {getDatosControllerCarritos,getDatosControllerCarritosID} = require("../src/controllers/carritos.controller")
+const {getDatosControllerCarritos,getDatosControllerCarritosID,postDatosControllerCarritos,putDatosControllerCarritos,deleteDatosControllerProdCarritos,putDatosControllerProdCarritos} = require("../src/controllers/carritos.controller")
 
 routercarritos.get("/", getDatosControllerCarritos ) 
 routercarritos.get("/:id", getDatosControllerCarritosID ) 
-/*routerproductos.get("/category/:category", getDatosControllerProductosCategory ) 
-routerproductos.post("/", postDatosControllerProductos) 
-routerproductos.put("/:id", putDatosControllerProductos) 
-routerproductos.delete("/:id", deleteDatosControllerProductos) */
+routercarritos.post("/", postDatosControllerCarritos) 
+routercarritos.put("/:id", putDatosControllerCarritos) 
+routercarritos.delete("/:idcart/productos/:idprod", deleteDatosControllerProdCarritos) 
+routercarritos.put("/:idcart/productos/:idprod", putDatosControllerProdCarritos) 
+//routerproductos.delete("/:id", deleteDatosControllerProductos) */
 
 module.exports = routercarritos;

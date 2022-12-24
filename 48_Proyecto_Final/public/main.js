@@ -43,17 +43,22 @@ function listarProductos(data) {
           `<form id="divDatosPRod" action="/carrito" method="post" enctype="">
             <div class="row d-flex align-items-center">
                     <div class="col">${el.title}
-                    <input type="hidden" name="title" id="title" VALUE=${el.title}>
-                    </div>
-                    
-                    <div class="col">${el.price}</div>
+                        <input type="hidden" name="title" id="title" VALUE=${el.title}>
+                    </div>                    
+                    <div class="col">${el.price} </div>
+                    <div class="col"><img class="img-fluid w-25"  src=${el.thumbnail}></div>
                     <input type="hidden" name="price" id="price" VALUE=${el.price}>
                     <input type="hidden" name="_id" id="_id" VALUE=${el._id}>
                     <input type="hidden" name="thumbnail" id="thumbnail" VALUE=${el.thumbnail}>
-                    <div class="col"><img class="img-fluid w-25"  src=${el.thumbnail}>                    
-                    <input type="submit" class=" btn-outline-primary mt-3 " id="btnProducto"
+                    
+                    <div class="col">
+                    <input type="text" name="cantidad" id="cantidad" required>
+                    </div>
+                    <div class="col">
+                      <input type="submit" class=" btn-outline-primary" id="btnProducto"
                                         value="Add Cart" /></div>
-            </div>
+                    </div>
+                    
         </form>
         `
         )
@@ -81,14 +86,17 @@ function listarProductosFind(data) {
           `<form id="divDatosPRod" action="/carrito" method="post" enctype="">
             <div class="row d-flex align-items-center">
                     <div class="col">${el.title}
-                    <input type="hidden" name="title" id="title" VALUE=${el.title}>
-                    </div>
-                    
+                      <input type="hidden" name="title" id="title" VALUE=${el.title}>
+                    </div>                    
                     <div class="col">${el.price}</div>
                     <input type="hidden" name="price" id="price" VALUE=${el.price}>
                     <input type="hidden" name="_id" id="_id" VALUE=${el._id}>
                     <input type="hidden" name="thumbnail" id="thumbnail" VALUE=${el.thumbnail}>
-                    <div class="col"><img class="img-fluid w-25"  src=${el.thumbnail}>                    
+                    <div class="col"><img class="img-fluid w-25"  src=${el.thumbnail}>  </div>    
+                    <div class="col">
+                      <input type="text" name="cantidad" id="cantidad" required>
+                    </div>    
+                    <div class="col">             
                     <input type="submit" class=" btn-outline-primary mt-3 " id="btnProducto"
                     value="Add Cart" /></div>
             </div>

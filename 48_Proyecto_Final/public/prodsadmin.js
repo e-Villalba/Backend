@@ -103,7 +103,8 @@ btnBuscarProductoCategory.addEventListener("click", (e) => {
 const formulario = document.querySelector('#formProductos');
 const btnUpdate = document.querySelector('#btnUpdateProducto');
 const getDataUpdate = () => {
-  const datos = new FormData(formulario);  
+  const datos = new FormData(formulario); 
+  console.log("Datos",datos) 
   const datosProcesados = Object.fromEntries(datos.entries());
   formulario.reset();
   return datosProcesados;
@@ -125,7 +126,7 @@ function ponerDataUpdate(_id,title,price,category,thumbnail)
 const putData = async () => {  
   /*Crea un objeto con la informacion del formulario*/   
    const updateProd= getDataUpdate();   
-   //alert(updateProd._id)
+   //alert(JSON.stringify(updateProd))
    const URL = 'http://localhost:3000/productos/'+updateProd._id   
 
    try{

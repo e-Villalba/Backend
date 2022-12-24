@@ -15,18 +15,24 @@ async function obtenercarritosuser(user,estado) {
   return await cartProd.listarUser(user,estado)
 }
 
-async function postcarritos(obj) {  
-  return await cartProd.guardar(obj);
+async function postcarritos(username, estado,cartData,prodAdd) {  
+  return await cartProd.guardar(username, estado,cartData,prodAdd)
 }
 async function putcarritos(id,obj) {  
   return await cartProd.actualizar(id,obj);
 }
 
-/*async function deleteproductos(id) {  
-  return await cartProd.borrar(id);
-}*/
+async function deleteprodcarritos(idcart,idprod) {  
+  return await cartProd.eliminarprodcarrito(idcart,idprod);
+}
 
-module.exports = {obtenercarritosuser,obtenercarritosid}
+async function updateprodcarritos(idcart,idprod) {  
+  return await cartProd.updateprodcarritos(idcart,idprod);
+}
+
+
+
+module.exports = {obtenercarritosuser,obtenercarritosid,postcarritos,putcarritos,deleteprodcarritos,updateprodcarritos}
 
 
 
