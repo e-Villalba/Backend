@@ -16,6 +16,7 @@ async function obtenercarritosuser(user,estado) {
 }
 
 async function postcarritos(username, estado,cartData,prodAdd) {  
+  console.log("postcarritos NEGOCIO")
   return await cartProd.guardar(username, estado,cartData,prodAdd)
 }
 async function putcarritos(id,obj) {  
@@ -26,8 +27,8 @@ async function deleteprodcarritos(idcart,idprod) {
   return await cartProd.eliminarprodcarrito(idcart,idprod);
 }
 
-async function updateprodcarritos(idcart,idprod) {  
-  return await cartProd.updateprodcarritos(idcart,idprod);
+async function updateprodcarritos(idcart,idprod,cantidad) {  
+  return await cartProd.updateprodcarritos(idcart,idprod,cantidad);
 }
 
 

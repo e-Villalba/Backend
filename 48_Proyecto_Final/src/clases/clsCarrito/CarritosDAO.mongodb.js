@@ -64,10 +64,12 @@ class CarritosDAOMongoDB extends DAO{
         console.log("Guardar del DAO.MONGODB",elemento)
         try {            
             //let doc = await this.colecction.save(elemento);
-            let doc = this.colecction.save(elemento)//elemento.save()
+            console.log("dao mongo",elemento._id)
+            //let doc = this.colecction.save(elemento)//elemento.save()          
+            let doc =  await this.colecction.findOneAndUpdate( {_id: elemento._id},elemento)  
             return doc;
         } catch (error) {
-            const cuserr = new CustomError(500, 'Error al guardar()', error);
+            const cuserr = new CustomError(500, 'Error al guardar Carrito()', error);
             
         } 
     }
@@ -77,10 +79,12 @@ class CarritosDAOMongoDB extends DAO{
 
     }
     async agregarCarrito(elemento) {
-        //console.log("Guardar del DAO.MONGODB")
+        console.log("Guardar del DAO.MONGODB",elemento)
         try {            
             //let doc = await this.colecction.save(elemento);
+            console.log("ANTES del create")
             let doc = await this.colecction.create(elemento);            
+            console.log("DESPUES del create")
             return doc;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al guardar()', error);

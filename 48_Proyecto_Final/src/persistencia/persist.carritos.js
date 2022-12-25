@@ -70,6 +70,7 @@ const CarritoController = {
 
     },
     async guardar(username, estado, cartData, prodAdd) {
+        
         try {
             //const estado = "Abierto"
             let cart = await cartDAO.listarUser(username, estado);
@@ -84,21 +85,24 @@ const CarritoController = {
                 return data            
             }
             if (!cart) {
-                //console.log("register FindOne !user")
+                let date = new Date();
+                let fecha = date.toISOString().split('T')[0] + ' ' +date.toISOString().split('T')[1].substring(0,8);
+                //console.log("register FindOne !CART")
                 const estado = "Abierto"
                 const products = []
+                const direccion=""
                 //products.push(_id)
                 products.push(prodAdd)
-                //console.log("Username",username)
-                //console.log ("Array productos",products)
 
                 const objCart = {
                     username,
+                    fecha,
+                    direccion,
                     products,
-                    estado,
+                    estado,                    
                 };
 
-                let doc = cartDAO.agregarCarrito(objCart)
+                let doc = await cartDAO.agregarCarrito(objCart)
 
                 const data = { ...cartData, mensajeResult: "Producto Agregado Exitosamente Al Carrito" }
                 return data
@@ -172,7 +176,7 @@ const CarritoController = {
 
 
     },
-    async updateprodcarritos(idCart,idprod)
+    async updateprodcarritos(idCart,idprod,cantidad)
     {
         try {
             console.log(idCart)
@@ -183,9 +187,10 @@ const CarritoController = {
                 const products = cart.products
                 //products.push(_id)
                 const prodIndex= products.findIndex(prod=>parseInt(prod.id) === parseInt(idprod))
-                console.log("Productos prodIndex",prodIndex)
-                console.log("Productos products[prodIndex].cantidad ANTES",products[prodIndex].cantidad)
-                products[prodIndex].cantidad=8
+                //console.log("Productos prodIndex",prodIndex)
+                //console.log("Productos products[prodIndex].cantidad ANTES",products[prodIndex].cantidad)
+                products[prodIndex].cantidad=cantidad
+                products[prodIndex].valor=products[prodIndex].price*cantidad
                 console.log("Productos products[prodIndex].cantidad DESPUES",products[prodIndex].cantidad)
                 //products.push(prodAdd)
                 //const id = cart._id

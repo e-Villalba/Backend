@@ -54,9 +54,10 @@ fetch(URL)
     /*Crea un objeto con la informacion del formulario*/   
      //const updatecart= getDataUpdate();   
      const IdCarrito = document.getElementById("idCarrito").innerHTML;
+     const direccion = document.getElementById("dire").innerHTML;
      //alert(updateProd._id)
      const URL = 'http://localhost:3000/carrito/'+IdCarrito
-     const updateCart = {estado:"Cerrado"}
+     const updateCart = {estado:"Cerrado",direccion:direccion}
      try{
       const response = await fetch(URL, {
       /*especifica el metodo que se va a usar*/
@@ -124,9 +125,9 @@ const updateCantProdCarrito = async (idcart,idprod) => {
    const textCant ="cant"+idprod
    //alert ("cant63a115312def084454d8fa45")
    const cantProd = document.getElementById(textCant).value;
-   alert (cantProd)   
+   //alert (cantProd)   
    const URL = 'http://localhost:3000/carrito/'+idcart.trim()+'/productos/'+idprod.trim()
-   alert (URL)
+   //alert (URL)
    const updateCart = {cantidad:cantProd}
    try{
     const response = await fetch(URL, {    

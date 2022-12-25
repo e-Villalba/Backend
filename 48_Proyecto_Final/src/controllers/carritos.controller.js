@@ -31,6 +31,7 @@ async function getDatosControllerCarritosID(req, res) {
 }
 
 async function postDatosControllerCarritos(req, res) {
+  console.log("postDatosControllerCarritos")
   const { method } = req;
   const time = new Date().toLocaleString();
   
@@ -63,9 +64,10 @@ async function postDatosControllerCarritos(req, res) {
 async function putDatosControllerCarritos(req, res) {
   //console.log("controller prod",req.body)
   const {id} = req.params;  
-  const { estado } = req.body;
+  const { estado,direccion } = req.body;
   const objCart = {
-    estado: estado 
+    estado: estado ,
+    direccion:direccion
   }
   
   const { method } = req;
@@ -95,16 +97,15 @@ async function deleteDatosControllerProdCarritos(req, res) {
 
 async function putDatosControllerProdCarritos(req, res) {
   const {idcart,idprod} = req.params;  
-  console.log("putDatosControllerProdCarritos idcart",idcart)
-  console.log("putDatosControllerProdCarritos idprod",idprod)
+  const {cantidad}=req.body;
+  //console.log("putDatosControllerProdCarritos idcart",idcart)
+  //console.log("putDatosControllerProdCarritos idprod",idprod)
   
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Carrito Actualizar Cantidad Producto' - con metodo: ${method} - time: ${time}`);
-  const datosprod = await updateprodcarritos(idcart,idprod);  
+  const datosprod = await updateprodcarritos(idcart,idprod,cantidad);  
   res.json(datosprod)
-   
-
   loggerConsola.info(`Ruta '/Carrito Actualizar Cantidad Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
 }
 
