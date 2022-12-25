@@ -54,10 +54,11 @@ fetch(URL)
     /*Crea un objeto con la informacion del formulario*/   
      //const updatecart= getDataUpdate();   
      const IdCarrito = document.getElementById("idCarrito").innerHTML;
-     const direccion = document.getElementById("dire").innerHTML;
-     //alert(updateProd._id)
+     const direccion = document.getElementById("dire").value;
+     alert(totalCarrito.innerHTML)
      const URL = 'http://localhost:3000/carrito/'+IdCarrito
-     const updateCart = {estado:"Cerrado",direccion:direccion}
+     const updateCart = {estado:"Cerrado",direccion:direccion,total:totalCarrito.innerHTML}
+     alert(JSON.stringify(updateCart))
      try{
       const response = await fetch(URL, {
       /*especifica el metodo que se va a usar*/

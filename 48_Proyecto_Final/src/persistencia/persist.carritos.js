@@ -91,6 +91,7 @@ const CarritoController = {
                 const estado = "Abierto"
                 const products = []
                 const direccion=""
+                const total=0
                 //products.push(_id)
                 products.push(prodAdd)
 
@@ -99,7 +100,8 @@ const CarritoController = {
                     fecha,
                     direccion,
                     products,
-                    estado,                    
+                    total,
+                    estado   
                 };
 
                 let doc = await cartDAO.agregarCarrito(objCart)

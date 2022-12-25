@@ -1,9 +1,9 @@
 
-const {obtenercarritosuser,obtenercarritosid, postcarritos,putcarritos,deleteprodcarritos,updateprodcarritos} = require("../negocio/negocio.carritos")
+const {obtenercarritosuser,postcarritos,putcarritos,deleteprodcarritos,updateprodcarritos} = require("../negocio/negocio.carritos")
 const {loggerConsola} = require("../logger/logger");
 
 
-async function getDatosControllerCarritos(req, res) {  
+async function getDatosControllerOrdenes(req, res) {  
   const { method } = req;
   const time = new Date().toLocaleString();
   const username = req.user.username   
@@ -20,6 +20,7 @@ async function getDatosControllerCarritos(req, res) {
     res.render("carritoconfresult", { data });
   }
 }
+/*
 async function getDatosControllerCarritosID(req, res) {    
   let _id = req.params.id  
   const { method } = req;
@@ -28,7 +29,7 @@ async function getDatosControllerCarritosID(req, res) {
   const cart = await obtenercarritosid(_id)
   //console.log("Cart Controller",cart.products)
   res.status(200).json(cart.products)
-}
+}*/
 
 async function postDatosControllerCarritos(req, res) {
   console.log("postDatosControllerCarritos")
@@ -60,7 +61,7 @@ async function postDatosControllerCarritos(req, res) {
 
   loggerConsola.info(`Ruta '/Carrito' - con metodo: ${method} - ${data.mensajeResult} - time: ${time}`);  
 }
-
+/*
 async function putDatosControllerCarritos(req, res) {
   //console.log("controller prod",req.body)
   const {id} = req.params;  
@@ -108,7 +109,7 @@ async function putDatosControllerProdCarritos(req, res) {
   const datosprod = await updateprodcarritos(idcart,idprod,cantidad);  
   res.json(datosprod)
   loggerConsola.info(`Ruta '/Carrito Actualizar Cantidad Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
-}
+}*/
 
-module.exports = {getDatosControllerCarritos,getDatosControllerCarritosID,postDatosControllerCarritos,putDatosControllerCarritos,deleteDatosControllerProdCarritos,putDatosControllerProdCarritos}
+module.exports = { getDatosControllerOrdenes,getDatosControllerCarritosID,postDatosControllerCarritos,putDatosControllerCarritos,deleteDatosControllerProdCarritos,putDatosControllerProdCarritos}
 
