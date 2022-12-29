@@ -2,16 +2,18 @@ const CarritoDTO = require("../clases/clsCarrito/CarritoDTO.class")
 const config = require("../../conexiones/config.js")
 
 const CarritosDAOMongoDB = require("../clases/clsCarrito/CarritosDAO.mongodb")
+const OrdenesDAOMongoDB = require("../clases/clsOrdenes/OrdenDAO.mongodb")
 //const ProductosDAOFile = require("../clases/clsProducto/ProductosDAO.file")
 //const ProductosDAOMem = require("../clases/clsProducto/ProductosDAO.mem")
 
 let cartDAO = null;
-
+let orderDAO=null;
 const PERSISTENCIA = process.argv.slice(2).toString().trim() || "mongodb"
 try {
     switch (PERSISTENCIA) {
         case 'mongodb':
             cartDAO = CarritosDAOMongoDB.getInstanceCarrito()
+            orderDAO = OrdenesDAOMongoDB.getInstanceOrden()
             break;
         /*case 'file':
             prdDAO = ProductosDAOFile.getInstanceProducto()
@@ -87,7 +89,7 @@ const CarritoController = {
             if (!cart) {
                 let date = new Date();
                 let fecha = date.toISOString().split('T')[0] + ' ' +date.toISOString().split('T')[1].substring(0,8);
-                //console.log("register FindOne !CART")
+                //console.log("register FindOne !CART")              
                 const estado = "Abierto"
                 const products = []
                 const direccion=""
@@ -120,12 +122,33 @@ const CarritoController = {
     },*/
     async actualizar(id, obj) {
         try {            
-            await cartDAO.actualizar(id, obj);
-            mensajeResult = "Carrito Actuealizado Exitosamente"
+            let cart= await cartDAO.actualizar(id, obj);
+            mensajeResult = "Carrito Actualizado Exitosamente"
             const view = "carritoconfresult"
             const objReturn = {
                 view: view,
-                mensajeResult: mensajeResult
+                mensajeResult: mensajeResult,
+                cartConfirmado:""
+            }
+            console.log("Actualizar Carrito - Estado",obj.estado)
+            if(obj.estado=="Cerrado")
+            {
+                console.log("Cart actulizar CArt PERSIST OBJ",obj)
+                let cartConfirmado = await cartDAO.listar(id.trim());
+                let date = new Date();
+                let fecha = date.toISOString().split('T')[0] + ' ' +date.toISOString().split('T')[1].substring(0,8);
+                let nro_orden= await orderDAO.cantidadOrdenes()
+                console.log("nro_orden",nro_orden)
+                const orderData={nro_orden:nro_orden+=1,
+                    username:cartConfirmado.username,
+                    fecha:fecha,
+                    direccion:cartConfirmado.direccion,
+                    products:cartConfirmado.products,
+                    total:cartConfirmado.total,
+                    estado: "Generada"}
+                console.log("Orden Creada",orderData)
+                objReturn.cartConfirmado=cartConfirmado
+                orderDAO.crearOrden(orderData)
             }
             return objReturn
         } catch (error) {

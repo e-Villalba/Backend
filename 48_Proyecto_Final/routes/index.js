@@ -45,14 +45,15 @@ const register = require("./routerregister");
 const erroresRouter = require("./routererrores")
 //const erroresRouter = require("./errores");
 
-const info = require("./routerinfo");
+//const info = require("./routerinfo");
 //const info = require("./info");
 
 const productos = require("./routerproductos");
 const productosadmin = require("./routerproductosadmin");
 //const carrito = require("./carrito");
 const carrito = require("./routercarritos");
-
+const orden=require("./routerordenes")
+const userinfo = require("./userinfo");
 router.use("/", home);
 router.use("/login", login);
 router.use("/loginerror", loginerror);
@@ -60,8 +61,9 @@ router.use("/logout", logout);
 router.use("/register", register);
 router.use("/productos",productos)
 router.use("/productosadmin",productosadmin)
-router.use("/info",info)
+router.use("/userinfo", userinfo);
 router.use("/carrito",carrito)
+router.use("/ordenes",orden)
 
 
 router.use("*",erroresRouter)

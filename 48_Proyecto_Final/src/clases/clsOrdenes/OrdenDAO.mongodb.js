@@ -21,6 +21,19 @@ class OrdenesDAOMongoDB extends DAO{
             throw cuserr;
         } 
     }
+    async cantidadOrdenes() {
+        let docs = [];
+        try {            
+            docs = await this.colecction.estimatedDocumentCount()      
+            //console.log("listarAll",docs)
+            return docs;
+        } catch (error) {
+            const cuserr = new CustomError(500, 'Error al listarAll()', error);
+            throw cuserr;
+        } 
+    }
+    
+
 /*
     async listar(_id) {        
         let docs = [];
@@ -34,29 +47,32 @@ class OrdenesDAOMongoDB extends DAO{
             throw cuserr;
         } 
     }*/
-
-    /*async listarUser(username,estado) {              
+    async listarUser(username,estado) {            
+        console.log("listaruser",username)  
+        console.log("estado",estado)
         let docs = [];        
-        try {            
-            docs = await this.colecction.findOne({ username,estado })                 
+        docs = await this.colecction.find({})   
+        return docs  
+        /*try {            
+            (estado)?  docs = await this.colecction.findOne({ username,estado }) : docs = await this.colecction.findOne({ username }) 
             return docs;
         } catch (error) {
-            const cuserr = new CustomError(500, 'Error al listar Carrito Usuario()', error);
+            const cuserr = new CustomError(500, 'Error al listar Ordnees Usuario', error);
             throw cuserr;
-        } 
-    }*/
-    async crearCarrito(elemento) {
-        //console.log("Guardar del DAO.MONGODB")
+        } */
+    }
+    async crearOrden(elemento) {
+        console.log("Guardar del DAO.MONGODB CREARORDEN",elemento)
         try {            
             let doc = await this.colecction.create(elemento);
             return doc;
         } catch (error) {
-            const cuserr = new CustomError(500, 'Error al guardar()', error);
+            const cuserr = new CustomError(500, 'Error al Crear Orden()', error);
             
         } 
     }
-/*
-    async actualizarProductoCarrito(elemento) {
+
+/*    async actualizarProductoCarrito(elemento) {
         console.log("Guardar del DAO.MONGODB",elemento)
         try {                
             console.log("dao mongo",elemento._id)            

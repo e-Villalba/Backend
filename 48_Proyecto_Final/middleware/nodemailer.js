@@ -20,7 +20,7 @@ const sendMail = async (type,data) => {
   if (type=="R") //Registro Usuario
   {    
     subjectmail="Registro Nuevo Usuario"
-    contentmail= `<h1 style='color: black'>Nuevo Usuario Registrado</h1><p>Nombre: ${data.username}</p><p>Email: ${data.email}</p><p>Edad: ${data.edad}</p><p>Telefono: ${data.telefono}</p><p>Direccion: ${data.direccion}</p><p>Imagen: ${data.foto}</p>`  
+    contentmail= `<h1 style='color: black'>Nuevo Usuario Registrado</h1><p>Nombre: ${data.username}</p><p>Email: ${data.email}</p><p>Apellido y Nombres: ${data.apenom}</p>`    
   }
   if (type=="C") //Compra de Carrito Confirmada
   {    

@@ -4,6 +4,7 @@ const {loggerConsola} = require("../logger/logger");
 
 
 async function getDatosControllerRegister(req, res) {
+  console.log("entré acá")
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Register' - con metodo: ${method} - time: ${time}`);
@@ -11,12 +12,14 @@ async function getDatosControllerRegister(req, res) {
   res.render(datosregister); 
 }
 
-async function postDatosControllerRegister(req, res) {
-  const { username, password,email } = req.body;
+async function postDatosControllerRegister(req, res) { 
+  const { username, password,password2,apenom,email } = req.body;
   const objUser = {
     username:username,
     password:password,
-    email:email
+    password2:password2,
+    email:email,
+    apenom:apenom
   }
   const { method } = req;
   const time = new Date().toLocaleString();

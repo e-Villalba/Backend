@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <div class="row" id="divContenedor">
-            <form id="divDatosForm" action="/register" method="post" enctype="multipart/form-data">
+            <form id="divDatosForm" action="/register" method="post" >
                 <div class="col-md-12 text-center mt-3 card cardatosContacto">
                     <div class="card-body">
                         <div>
@@ -32,14 +32,20 @@
                         </div>
                         <div><input class="datosForm datosContacto mb-2" type="text" name="email" id="email"
                                 placeholder="Ingrese su e-mail" style="width: 15rem;" value="" required></div>
+                        <div>    
+                            <label class="pContacto datosContacto" for="password">Apellido y Nombres</label>
+                        </div>
+                        <div><input class="datosForm datosContacto mb-2" type="text" name="apenom" id="apenom"
+                                        placeholder="Ingrese Apellido y Nombres" style="width: 15rem;" value="" required></div>        
                         <div>
                             <label class="pContacto datosContacto" for="password">Password</label>
                         </div>                        
-                        <div><input class="datosForm datosContacto " type="password" name="password" id="password"
-                                placeholder="Ingrese su Password" style="width: 15rem;" value="" required> </div>
-                        <input type="checkbox" class="mb-2" onclick="verPwd()"> Ver Password
+                        <div><input class="datosForm datosContacto " type="password" name="password" id="password"  placeholder="Ingrese su Password" style="width: 15rem;" value="" required> </div>
+                        <input type="checkbox" class="mb-2" onclick="verPwd()"> Ver Password  
+                        <div> <input class="datosForm datosContacto " type="password" name="password2" id="password2"     placeholder="Confirme su Password" style="width: 15rem;" value="" required> </div>
+                        <input type="checkbox" class="mb-2" onclick="verPwd2()"> Ver Password
 
-                        <div>
+                        <!--<div>
                             <label class="pContacto datosContacto" for="direccion">Dirección</label>
                         </div>
                         <div>
@@ -66,18 +72,16 @@
                         </div>
                         <div>
                            <input class="datosForm datosContacto mb-2" type="file" name="foto" id="foto"
-                               placeholder="Ingrese su foto" style="width: 15rem;" required></div>
-                        
-
-                        
+                               placeholder="Ingrese su foto" style="width: 15rem;" required></div>                        -->
                         <div>
                             <input type="submit" class="btn btn-outline-primary mt-3" id="btnLogin" value="Registrar" />
                             <input type="button" onclick="location.href='/'" class="btn btn-outline-secondary mt-3"   id="btnRegister" value="Ingresar" />
                         </div>
                 </div>
+            </form>
         </div>
     </div>
-    </form>
+   
     </div>
 </body>
 

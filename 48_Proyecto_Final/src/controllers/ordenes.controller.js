@@ -1,5 +1,5 @@
 
-const {obtenercarritosuser,postcarritos,putcarritos,deleteprodcarritos,updateprodcarritos} = require("../negocio/negocio.carritos")
+const {obtenerordenesuser,postordenes,putordenes} = require("../negocio/negocio.ordenes")
 const {loggerConsola} = require("../logger/logger");
 
 
@@ -7,17 +7,23 @@ async function getDatosControllerOrdenes(req, res) {
   const { method } = req;
   const time = new Date().toLocaleString();
   const username = req.user.username   
-  const accion =req.query.accion
-  const estado="Abierto"
-  loggerConsola.info(`Ruta '/Carrito' - con metodo: ${method} - time: ${time}`);
-  const cart = await obtenercarritosuser(username,estado);  
+  const estado =req.query.estado
+  const userEmail = username
+  loggerConsola.info(`Ruta '/Ordenes' - con metodo: ${method} - time: ${time}`);
+  const orders = await obtenerordenesuser(username,estado);  
   //res.status(200).json(datosproductos);  
-  if (cart) {
-    res.render("cartuser", { cart });
+  if (orders) {
+    //res.render("cartuser", { cart });
+    //res.json(cart)
+    res.render("ordenes", { 
+      user: userEmail,
+    });
+
   }
-  if (!cart) {
+  if (!orders) {
     const data = { mensajeResult: "No tiene Carrito con Productos Agregados" }
-    res.render("carritoconfresult", { data });
+    //res.render("carritoconfresult", { data });
+    res.json(orders)
   }
 }
 /*
@@ -31,7 +37,7 @@ async function getDatosControllerCarritosID(req, res) {
   res.status(200).json(cart.products)
 }*/
 
-async function postDatosControllerCarritos(req, res) {
+async function postDatosControllerOrdenes(req, res) {
   console.log("postDatosControllerCarritos")
   const { method } = req;
   const time = new Date().toLocaleString();
@@ -111,5 +117,5 @@ async function putDatosControllerProdCarritos(req, res) {
   loggerConsola.info(`Ruta '/Carrito Actualizar Cantidad Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
 }*/
 
-module.exports = { getDatosControllerOrdenes,getDatosControllerCarritosID,postDatosControllerCarritos,putDatosControllerCarritos,deleteDatosControllerProdCarritos,putDatosControllerProdCarritos}
+module.exports = {getDatosControllerOrdenes,postDatosControllerOrdenes,}
 

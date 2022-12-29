@@ -4,6 +4,7 @@ const routerordenes = Router();
 
 const {getDatosControllerOrdenes} = require("../src/controllers/ordenes.controller")
 
+routerordenes.get("/:username", getDatosControllerOrdenes ) 
 routerordenes.get("/", getDatosControllerOrdenes ) 
 /*routerordenes.get("/:id", getDatosControllerCarritosID ) 
 routerordenes.post("/", postDatosControllerCarritos) 

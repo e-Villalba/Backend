@@ -7,7 +7,7 @@ async function getregister() {
   }
 
 async function postregisterpersist(obj) {
-    const { username, password,email } = obj;
+    const { username, password,email,apenom } = obj;
     const view="register-result"
     const Usuario = await User.findOne({ username }); 
     let mensajeResult=""
@@ -22,6 +22,7 @@ async function postregisterpersist(obj) {
         username,
         password: hashedPassword,
         email,
+        apenom
       });
        await newUser.save(); 
        mensajeResult = "Usuario Registrado Exitosamente"
@@ -33,5 +34,5 @@ async function postregisterpersist(obj) {
     return objReturn
    
 }
-//export default getinfo;
+
 module.exports = {getregister,postregisterpersist}

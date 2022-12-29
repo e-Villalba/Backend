@@ -2,7 +2,7 @@
 const CarritoController = require("../persistencia/persist.carritos")
 const cartProd = CarritoController;
 
-
+const sendMail= require ('../../middleware/nodemailer.js')
 async function obtenercarritos() {
   return await cartProd.listarAll()
 }
@@ -20,7 +20,19 @@ async function postcarritos(username, estado,cartData,prodAdd) {
   return await cartProd.guardar(username, estado,cartData,prodAdd)
 }
 async function putcarritos(id,obj) {  
-  return await cartProd.actualizar(id,obj);
+  try{
+    const data = await cartProd.actualizar(id,obj);
+    if (obj.estado="Cerrado")
+    {
+      //console.log("Send mail carrito",data.cartConfirmado)
+      sendMail("C",data.cartConfirmado)
+    }
+    return data
+  }
+  catch(error)
+  {
+    console.log("Error actualizar carritos",error)
+  }
 }
 
 async function deleteprodcarritos(idcart,idprod) {  
