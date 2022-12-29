@@ -18,7 +18,21 @@ async function obtenerproductoscategory(category) {
 }
 
 async function postproductos(obj) {  
-  return await objProd.guardar(obj);
+  const doc = await objProd.listar(obj.title)
+  console.log ("post prod",obj.title)
+  console.log ("post prod doc devuelto",doc)
+  if(doc.length==0)
+  {
+    return await objProd.guardar(obj);
+  }
+  else
+  {
+    const objReturn = {
+      view: "producto-result",
+      mensajeResult: "Producto ya existente, no puede agregar un nuevo Producto con el mismo nombre de uno ya registrado"
+    }
+    return objReturn
+  }
 }
 async function putproductos(id,obj) {  
   return await objProd.actualizar(id,obj);
