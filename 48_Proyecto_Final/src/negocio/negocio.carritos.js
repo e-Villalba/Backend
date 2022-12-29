@@ -16,8 +16,17 @@ async function obtenercarritosuser(user,estado) {
 }
 
 async function postcarritos(username, estado,cartData,prodAdd) {  
-  //console.log("postcarritos NEGOCIO")
-  return await cartProd.guardar(username, estado,cartData,prodAdd)
+  //console.log("postcarritos NEGOCIO")  
+  const prod= await cartProd.buscarProductoCarrito(username,estado,prodAdd.id)  
+  if(prod==-1)
+  {
+      return await cartProd.guardar(username, estado,cartData,prodAdd)
+  }
+  else
+  {      
+    const data = { title_producto:prodAdd.title, mensajeResult: "Producto ya agregado a carrito, no lo puede agregar nuevamente" }  
+    return data
+  }
 }
 async function putcarritos(id,obj) {  
   try{

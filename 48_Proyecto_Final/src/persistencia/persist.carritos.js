@@ -71,6 +71,17 @@ const CarritoController = {
         }
 
     },
+    async buscarProductoCarrito(user,estado,idprod) {
+        try {
+            let cart = await cartDAO.listarUser(user, estado);
+            const prod = cart.products.findIndex(prod=>prod.id === idprod)              
+            return prod
+        }
+        catch (error) {
+            console.log("error Buscar Producto en Cart", error)
+        }
+
+    },
     async guardar(username, estado, cartData, prodAdd) {
         
         try {
@@ -165,7 +176,7 @@ const CarritoController = {
                 //console.log("Productos del Carrito Ahora ",cart.products)                
                 const products = cart.products
                 //products.push(_id)
-                const produc= products.splice(products.findIndex(prod=>parseInt(prod.id) === parseInt(idprod)),1)
+                const produc= products.splice(products.findIndex(prod=>prod.id === idprod),1)
                 //products.push(prodAdd)
                 const id = cart._id
                 //let doc = cartDAO.agregarProductoCarrito(cart)
