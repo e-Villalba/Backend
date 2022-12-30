@@ -57,7 +57,9 @@ userinfo.post("/",upload.single("foto"), (req, res,next) => {
 
   
   userinfo.get("/", (req, res) => {
-    const {user} = req;    
+    
+    const {user} = req; 
+    console.log("userinfo.get",user)   
     const userData = {username: user.username ,email:user.email,direccion:user.direccion,edad:user.edad,telefono:user.telefono,foto:user.foto,apenom:user.apenom}    
     res.render('user_info', {userData}); 
     });

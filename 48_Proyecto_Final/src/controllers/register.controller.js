@@ -1,15 +1,19 @@
 
-const {obtenerregister,postregister} = require("../negocio/negocio.register")
+//const {obtenerregister,postregister} = require("../negocio/negocio.register")
+const {obtenerregister} = require("../negocio/negocio.register")
 const {loggerConsola} = require("../logger/logger");
 
 
 async function getDatosControllerRegister(req, res) {
-  console.log("entré acá")
+  //console.log("entré acá")
+  //console.log("req.params",req.user.username)  
   const { method } = req;
+  const user =req.user.username
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Register' - con metodo: ${method} - time: ${time}`);
-  const datosregister = await obtenerregister();
-  res.render(datosregister); 
+  const datosregister = await obtenerregister(user);
+  const userData = {username: datosregister.username ,email:datosregister.email,apenom:datosregister.apenom}    
+  res.render('user_info', {userData}); 
 }
 
 async function postDatosControllerRegister(req, res) { 
