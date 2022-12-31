@@ -5,6 +5,7 @@ const User = require('../../models/User.js');
 async function getregister() {
     return "register";
   }
+
 async function postregisterpersist(obj) {
     const { username, password,email,apenom } = obj;
     const view="register-result"
@@ -37,7 +38,7 @@ async function postregisterpersist(obj) {
 module.exports = {getregister,postregisterpersist}*/
 const UsuarioDTO = require("../clases/clsUsuario/UsuarioDTO.class")
 const config = require("../../conexiones/config.js")
-const bcrypt = require("bcrypt")
+
 const UsuariosDAOMongoDB = require("../clases/clsUsuario/UsuarioDAO.mongodb")
 /*const ProductosDAOFile = require("../clases/clsProducto/ProductosDAO.file")
 const ProductosDAOMem = require("../clases/clsProducto/ProductosDAO.mem")*/
@@ -73,35 +74,6 @@ const UsuarioPersist = {
         }
 
     },
-    async registrar(obj) {
-        const { username, password,email,apenom } = obj;
-        const view="register-result"
-        //const Usuario = await User.findOne({ username }); 
-        const Usuario = await userDAO.listar(username)
-        let mensajeResult=""
-        if (Usuario)
-        {
-          mensajeResult= "Usuario ya registrado"        
-        }
-        else
-        {
-          const hashedPassword =  await bcrypt.hash(password, 8);
-          const newUser = {
-            username,
-            password: hashedPassword,
-            email,
-            apenom
-          };
-           await userDAO.registrar(newUser); 
-           mensajeResult = "Usuario Registrado Exitosamente"
-        }
-        const objReturn ={
-          view: view,
-          mensajeResult: mensajeResult
-        }
-        return objReturn
-       
-    }
     /*async guardar(elem) {
         try {
             const { title, price, category, thumbnail } = elem;

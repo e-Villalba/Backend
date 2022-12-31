@@ -52,8 +52,10 @@ const productos = require("./routerproductos");
 const productosadmin = require("./routerproductosadmin");
 //const carrito = require("./carrito");
 const carrito = require("./routercarritos");
+const odenesadmin=require("./routerordenesadmin")
 const orden=require("./routerordenes")
-//const userinfo = require("./userinfo");
+const userinfo = require("./routeruserinfo");
+const chat = require("./routerchat");
 router.use("/", home);
 router.use("/login", login);
 router.use("/loginerror", loginerror);
@@ -61,9 +63,11 @@ router.use("/logout", logout);
 router.use("/register", register);
 router.use("/productos",productos)
 router.use("/productosadmin",productosadmin)
-router.use("/userinfo", register);
+router.use("/userinfo", userinfo);
 router.use("/carrito",carrito)
+router.use("/ordenesadmin",odenesadmin)
 router.use("/ordenes",orden)
+router.use("/chat",chat)
 
 
 router.use("*",erroresRouter)

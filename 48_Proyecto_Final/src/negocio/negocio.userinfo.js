@@ -1,19 +1,19 @@
 
 //const {getregister,postregisterpersist} = require("../persistencia/persist.register")
 
-const UsuarioController = require("../persistencia/persist.register")
+const UsuarioController = require("../persistencia/persist.userinfo")
 const objUser = UsuarioController;
 
 const sendMail= require ('../../middleware/nodemailer.js')
-/*
-async function obtenerregister(username) {
+
+async function obteneruserinfo(username) {
   return await  objUser.listar(username);
-}*/
-async function postregister(obj) {
+}
+/*async function postregister(obj) {
   const { username, password,password2,email } = obj;
   if(password==password2)
   {
-    const data = await objUser.registrar(obj);
+    const data = await postregisterpersist(obj);
     sendMail("R",obj)
     return data
   }
@@ -25,10 +25,10 @@ async function postregister(obj) {
     }
     return objReturn
   }
- 
-}
+  
+}*/
 
-module.exports = {postregister}
+module.exports = {obteneruserinfo}
 //module.exports = {obtenerregister,postregister}
 
 

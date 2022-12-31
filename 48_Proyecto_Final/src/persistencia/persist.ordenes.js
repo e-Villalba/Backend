@@ -45,7 +45,16 @@ const OrdenController = {
             let docs = await orderDAO.listarAll()
                 ;
             let cartDTOs = docs.map(o => {
-                return new CarritoDTO(o._id, o.username, o.products, o.estado);
+                return new OrdenDTO(o._id, o.nro_orden, o.username, o.fecha,o.direccion,o.products,o.total,o.estado);
+
+                /*this._id = _id;
+                this.nro_orden=nro_orden;        
+                this.username = username;
+                this.fecha=fecha;
+                this.direccion=direccion;
+                this.products = products;
+                this.total=total;
+                this.estado = estado;    */
             })
             //console.log("listar All",prdDTOs)
             return cartDTOs;

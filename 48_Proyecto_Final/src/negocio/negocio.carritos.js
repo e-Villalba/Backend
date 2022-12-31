@@ -16,8 +16,8 @@ async function obtenercarritosuser(user,estado) {
 }
 
 async function postcarritos(username, estado,cartData,prodAdd) {  
-  //console.log("postcarritos NEGOCIO")  
   const prod= await cartProd.buscarProductoCarrito(username,estado,prodAdd.id)  
+  console.log("postcarritos NEGOCIO",prod)  
   if(prod==-1)
   {
       return await cartProd.guardar(username, estado,cartData,prodAdd)

@@ -50,15 +50,12 @@ fetch(URL)
    totalCarrito.innerHTML = valorTotal
   }
 
-  const putData = async () => {  
-    /*Crea un objeto con la informacion del formulario*/   
-     //const updatecart= getDataUpdate();   
+  const putData = async () => {      
+    /*Crea un objeto con la informacion del formulario*/        
      const IdCarrito = document.getElementById("idCarrito").innerHTML;
-     const direccion = document.getElementById("dire").value;
-     alert(totalCarrito.innerHTML)
-     const URL = 'http://localhost:3000/carrito/'+IdCarrito
-     const updateCart = {estado:"Cerrado",direccion:direccion,total:totalCarrito.innerHTML}
-     alert(JSON.stringify(updateCart))
+     const direccion = document.getElementById("dire").value;     
+     const URL = '/carrito/'+IdCarrito     
+     const updateCart = {estado:"Cerrado",direccion:direccion,total:totalCarrito.innerHTML}     
      try{
       const response = await fetch(URL, {
       /*especifica el metodo que se va a usar*/
@@ -68,39 +65,26 @@ fetch(URL)
       /*coloca la informacion en el formato JSON */    
       body: JSON.stringify(updateCart)
       });
-      //const ejs = NodeRequire('ejs');
-      //console.log (response)
-      //ejs.render("product-result",{mensajeResult:"datosprod.mensajeResult"})
       if(response.ok){
-          //const jsonResponse = await response.json();
-          //console.log(response)
-          /* Codigo a ejecutarse con la respuesta*/
-  
-          /*const {title, price, thumbnail} = jsonResponse;*/
           alert("Carrito confirmado Exitosamente, se genera Orden de compra")
           location.reload()
       }
-    
      }catch(error){
        console.log(error);
      }
-     
   }
+  
   const btnConfirmar = document.querySelector('#btnConfirmar');
   btnConfirmar.addEventListener('click', (event) => {
     event.preventDefault();
     putData();
   })
   
-  /*btnDeleteProdCart.addEventListener('click', (event) => {
-    event.preventDefault();
-    putData();
-  })*/
 
   function deleteProdCarrito(idcart,idprod)    
 {  
-  //routercarritos.delete("/:idcart/productos/:idprod", deleteDatosControllerProdCarritos) 
-  const URL = 'http://localhost:3000/carrito/'+idcart+'/productos/'+idprod  
+ 
+  const URL = '/carrito/'+idcart+'/productos/'+idprod  
   fetch(URL, {
       method: 'DELETE',
 })
@@ -112,23 +96,13 @@ fetch(URL)
 });
 }
 
-/*function updateCantProdCarrito(idcart,idprod)   
-{
-  const textCant ="cant"+idprod
-  //alert ("cant63a115312def084454d8fa45")
-  const cantProd = document.getElementById(textCant).value;
-  alert (cantProd)
 
-}*/
 const updateCantProdCarrito = async (idcart,idprod) => {  
-  /*Crea un objeto con la informacion del formulario*/   
-   //const updatecart= getDataUpdate();   
-   const textCant ="cant"+idprod
-   //alert ("cant63a115312def084454d8fa45")
-   const cantProd = document.getElementById(textCant).value;
-   //alert (cantProd)   
-   const URL = 'http://localhost:3000/carrito/'+idcart.trim()+'/productos/'+idprod.trim()
-   //alert (URL)
+  /*Crea un objeto con la informacion del formulario*/      
+   const textCant ="cant"+idprod   
+   const cantProd = document.getElementById(textCant).value;   
+   const URL = '/carrito/'+idcart.trim()+'/productos/'+idprod.trim()
+   alert (URL)
    const updateCart = {cantidad:cantProd}
    try{
     const response = await fetch(URL, {    
@@ -139,7 +113,7 @@ const updateCantProdCarrito = async (idcart,idprod) => {
     if(response.ok){        
         alert("Cantidad de Producto actualizada Exitosamente")
         location.reload()
-    }
+          }
   
    }catch(error){
      console.log(error);

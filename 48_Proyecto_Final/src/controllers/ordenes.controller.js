@@ -1,12 +1,36 @@
 
-const {obtenerordenesuser,postordenes,putordenes} = require("../negocio/negocio.ordenes")
+const {obtenerordenesuser,obtenerordenes,postordenes,putordenes} = require("../negocio/negocio.ordenes")
 const {loggerConsola} = require("../logger/logger");
-
-
 async function getDatosControllerOrdenes(req, res) {  
   const { method } = req;
   const time = new Date().toLocaleString();
-  const username = req.user.username   
+  console.log("getDatosControllerOrdenes CONTROLER")
+  /*const username = req.params.username   
+  const estado =req.query.estado*/
+  const userEmail = "pepe"//username
+  loggerConsola.info(`Ruta '/Ordenes' - con metodo: ${method} - time: ${time}`);
+  const orders = await obtenerordenes();  
+  //res.status(200).json(datosproductos);  
+  if (orders) {
+    //res.render("cartuser", { cart });
+    res.json(orders)
+    /*res.render("ordenes", { 
+      user: userEmail,
+    });*/
+
+  }
+  if (!orders) {
+    const data = { mensajeResult: "No tiene Carrito con Productos Agregados" }
+    //res.render("carritoconfresult", { data });
+    res.json(orders)
+  }
+}
+
+async function getDatosControllerOrdenesUser(req, res) {  
+  const { method } = req;
+  const time = new Date().toLocaleString();
+  console.log(req)
+  const username = req.params.username   
   const estado =req.query.estado
   const userEmail = username
   loggerConsola.info(`Ruta '/Ordenes' - con metodo: ${method} - time: ${time}`);
@@ -117,5 +141,5 @@ async function putDatosControllerProdCarritos(req, res) {
   loggerConsola.info(`Ruta '/Carrito Actualizar Cantidad Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
 }*/
 
-module.exports = {getDatosControllerOrdenes,postDatosControllerOrdenes,}
+module.exports = {getDatosControllerOrdenes,getDatosControllerOrdenesUser,postDatosControllerOrdenes,}
 

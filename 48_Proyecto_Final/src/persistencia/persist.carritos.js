@@ -74,7 +74,15 @@ const CarritoController = {
     async buscarProductoCarrito(user,estado,idprod) {
         try {
             let cart = await cartDAO.listarUser(user, estado);
-            const prod = cart.products.findIndex(prod=>prod.id === idprod)              
+            let prod
+            if (cart && cart.products.length>0)
+            {
+                prod = cart.products.findIndex(prod=>prod.id.trim() === idprod.trim())              
+            }
+            else
+            {
+                prod=-1
+            }
             return prod
         }
         catch (error) {

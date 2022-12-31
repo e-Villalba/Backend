@@ -1,10 +1,10 @@
 
 const { Router } = require("express");
-const routerproductosadmin = Router();
+const routerordenesadmin = Router();
 
 const {getDatosControllerOrdenesAdmin} = require("../src/controllers/ordenesadmin.controller")
 
-routerproductosadmin.get("/", getDatosControllerOrdenesAdmin) 
+routerordenesadmin.get("/", getDatosControllerOrdenesAdmin ) 
 //routerproductos.post("/", postDatosControllerProductos) 
 
-module.exports = routerproductosadmin;
+module.exports = routerordenesadmin;

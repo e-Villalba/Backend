@@ -21,24 +21,22 @@ class MensajesDAOMongoDB extends DAO{
             throw cuserr;
         } 
     }
-   /* async listar(title) {
+    async listar(email) {
         let docs = [];
         try {            
-            docs = await this.colecction.findOne({title})        
+            docs = await this.colecction.findOne({email})        
             return docs;
         } catch (error) {
-            const cuserr = new CustomError(500, 'Error al listarAll()', error);
+            const cuserr = new CustomError(500, 'Error al listar Mjes Usuario', error);
             throw cuserr;
         } 
-    }*/
+    }
     async guardar(elemento) {
-        //console.log("Guardar del DAO.MONGODB")
         try {            
             let doc = await this.colecction.create(elemento);
-            //console.log("post guardar",doc)
             return doc;
         } catch (error) {
-            const cuserr = new CustomError(500, 'Error al guardar()', error);
+            const cuserr = new CustomError(500, 'Error al guardar Mensaje', error);
             
         } 
     }

@@ -23,6 +23,7 @@ function setMensaje(e) {
         mensaje: document.getElementById('mensaje').value
     };
     socket.emit('new-message', mensaje);        
+    
     let inputMsj = document.getElementById('mensaje')
 
     inputMsj.value=""

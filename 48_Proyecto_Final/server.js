@@ -97,20 +97,42 @@ io.on('connection', socket => {
     messages.push(data);
     saveMessage(data)
     io.sockets.emit('messages', messages);
-
   });
+  /*socket.on('messages-user', data => {
+    //messages.push(data);
+    //saveMessage(data)
+    io.sockets.emit('messages', messages);
+  });*/
 });
 
-const {getDatosControllerMensajes,postDatosControllerMensajes} = require("./src/controllers/mensajes.controller")
+const {getDatosControllerMensajes} = require("./src/controllers/mensajes.controller")
 
 
 async function saveMessage(msj) {
-  try {    
+ /* try {    
     await postDatosControllerMensajes(msj);  
+    
   }
   catch (err) {
     console.log(err)
-  }
+  }*/
+  const URL = "http://localhost:"+PORT.toString()+'/chat'
+  try{
+    const response = await fetch(URL, {
+    /*especifica el metodo que se va a usar*/
+    method: 'POST',
+    /*especifica el tipo de informacion (JSON)*/
+    headers: {'Content-Type': 'application/json'},
+    /*coloca la informacion en el formato JSON */    
+    body: JSON.stringify(msj)
+    });
+    if(response.ok){
+        console.log("Ruta chat con método POST - Mensaje agregado exitosamente")
+        //location.reload()
+    }
+   }catch(error){
+     console.log(error);
+   }
 }
 
 async function getAllMessages() {

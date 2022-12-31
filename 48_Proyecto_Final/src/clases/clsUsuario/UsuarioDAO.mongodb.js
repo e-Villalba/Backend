@@ -31,7 +31,7 @@ class UsuariosDAOMongoDB extends DAO{
             throw cuserr;
         } 
     }
-    /*async guardar(elemento) {
+    async registrar(elemento) {
         //console.log("Guardar del DAO.MONGODB")
         try {            
             let doc = await this.colecction.create(elemento);
@@ -41,7 +41,7 @@ class UsuariosDAOMongoDB extends DAO{
             const cuserr = new CustomError(500, 'Error al guardar()', error);
             
         } 
-    }*/
+    }
     static getInstanceUsuario() {
         if (!instanceUsuario) {
             instanceUsuario = new UsuariosDAOMongoDB();

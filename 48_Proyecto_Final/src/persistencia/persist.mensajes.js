@@ -27,10 +27,6 @@ switch (PERSISTENCIA)
 }
 catch(err){console.log ("Error Switch",err)}
 const MensajeController = {
-    /*async listar(fecha) {   
-    let doc = await msjDAO.listar(fecha);
-    return new MensajeDTO(doc.email, doc.fecha, doc.mensaje);
-    },*/
     async listarAll() {
         try {
             let docs = await msjDAO.listarAll();
@@ -45,26 +41,26 @@ const MensajeController = {
             console.log("error listarAll", error)
         }
 
+    },    
+    async listar(email) {
+        try {
+            let docs = await msjDAO.listar(email);
+            
+            let msjDTOs = docs.map(o => {
+                return new MensajeDTO(o.email, o.fecha, o.mensaje);
+            })            
+            return msjDTOs;
+        }
+        catch (error) {
+            console.log("error listarAll", error)
+        }
     },
+
     async guardar(elem) {
         try{
-        //const { email, fecha, mensaje } = elem;    
-        //const Msj = await msjDAO.listar( fecha );     
-        //const view="producto-result"  
-        //if (Msj)
-        //{        
-        //    mensajeResult= "Mensaje ya existente, no puede registrar un producto con el nombre de uno ya existente"        
-        //}
-        //else
-        //{      
             await msjDAO.guardar(elem);
             mensajeResult = "Mensaje Registrado Exitosamente"
-        //}
-        /*const objReturn ={
-        view: view,
-        mensajeResult: mensajeResult    }*/
-    //return objReturn
-    return mensajeResult
+            return mensajeResult
     }catch(error)
     {
         console.log("error persist.mensajes.guardar",error)
