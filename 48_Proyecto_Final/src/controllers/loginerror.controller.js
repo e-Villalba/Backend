@@ -7,6 +7,7 @@ async function getDatosControllerLoginError(req, res) {
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Loginerror NEWW' - con metodo: ${method} - time: ${time}`);
   const datosLoginerror = await obtenerloginerror();
+  console.log("datosLoginerror",datosLoginerror)
   res.render(datosLoginerror);  
 }
 module.exports = {getDatosControllerLoginError}

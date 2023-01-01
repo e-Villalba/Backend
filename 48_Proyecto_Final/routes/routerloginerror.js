@@ -5,6 +5,6 @@ const auth = require('../middleware/auth.js');
 
 const {getDatosControllerLoginError} = require("../src/controllers/loginerror.controller")
 
-routerloginerror.get("/", auth,getDatosControllerLoginError) 
+routerloginerror.get("/", getDatosControllerLoginError) 
 
 module.exports = routerloginerror;

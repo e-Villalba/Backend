@@ -227,32 +227,17 @@ const CarritoController = {
             //const estado = "Abierto"
             let cart = await cartDAO.listar(idCart);
             if (cart) {
-                console.log("Productos del Carrito Ahora ",cart.products)                
                 const products = cart.products
-                //products.push(_id)
-                const prodIndex= products.findIndex(prod=>parseInt(prod.id) === parseInt(idprod))
-                //console.log("Productos prodIndex",prodIndex)
-                //console.log("Productos products[prodIndex].cantidad ANTES",products[prodIndex].cantidad)
+                const prodIndex= products.findIndex(prod=>prod.id.trim() === idprod.trim())
                 products[prodIndex].cantidad=cantidad
                 products[prodIndex].valor=products[prodIndex].price*cantidad
-                console.log("Productos products[prodIndex].cantidad DESPUES",products[prodIndex].cantidad)
-                //products.push(prodAdd)
-                //const id = cart._id
-                //let doc = cartDAO.agregarProductoCarrito(cart)
-                //const data = { ...cartData, mensajeResult: "Producto agregado a carrito en curso" }   
-                console.log("Cart Antes de actualizarProductoCarrito",cart)
                 cartDAO.actualizarProductoCarrito(cart) 
-                //console.log("persist eliminar",products)
                 return  products[prodIndex]            
             }
             if (!cart) {
-                //console.log("register FindOne !user")
                 const estado = "Abierto"
                 const products = []
-                //products.push(_id)
                 products.push(prodAdd)
-                //console.log("Username",username)
-                //console.log ("Array productos",products)
 
                 const objCart = {
                     username,
@@ -264,7 +249,7 @@ const CarritoController = {
 
                 const data = { ...cartData, mensajeResult: "Producto Agregado Exitosamente Al Carrito" }
                 return data
-                //res.render("carritoaddresult", { data });
+
             }
         } catch (error) {
             console.log("error persist.productos.guardar", error)

@@ -8,8 +8,8 @@ const fs = require('fs');
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 /////////////Base de Datos SQLite para guardar mensajes//////////
-const { options } = require("./options/sqliteDB")
-const { optionsMariaDB } = require("./options/mariaDB")
+//const { options } = require("./options/sqliteDB")
+//const { optionsMariaDB } = require("./options/mariaDB")
 //const {cors}=require("cors")
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)

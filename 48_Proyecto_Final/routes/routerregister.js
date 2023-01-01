@@ -5,7 +5,7 @@ const auth = require('../middleware/auth.js');
 
 const {getDatosControllerRegister,postDatosControllerRegister} = require("../src/controllers/register.controller")
 
-routerregister.get("/",auth, getDatosControllerRegister) 
-routerregister.post("/",auth, postDatosControllerRegister) 
+routerregister.get("/", getDatosControllerRegister) 
+routerregister.post("/", postDatosControllerRegister) 
 
 module.exports = routerregister;

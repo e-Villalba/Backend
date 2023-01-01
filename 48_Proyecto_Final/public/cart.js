@@ -102,7 +102,6 @@ const updateCantProdCarrito = async (idcart,idprod) => {
    const textCant ="cant"+idprod   
    const cantProd = document.getElementById(textCant).value;   
    const URL = '/carrito/'+idcart.trim()+'/productos/'+idprod.trim()
-   alert (URL)
    const updateCart = {cantidad:cantProd}
    try{
     const response = await fetch(URL, {    
