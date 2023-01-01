@@ -1,15 +1,15 @@
 
 const { Router } = require("express");
 const routercarritos = Router();
+const auth = require('../middleware/auth.js');
 
 const {getDatosControllerCarritos,getDatosControllerCarritosID,postDatosControllerCarritos,putDatosControllerCarritos,deleteDatosControllerProdCarritos,putDatosControllerProdCarritos} = require("../src/controllers/carritos.controller")
 
-routercarritos.get("/", getDatosControllerCarritos ) 
-routercarritos.get("/:id", getDatosControllerCarritosID ) 
-routercarritos.post("/", postDatosControllerCarritos) 
-routercarritos.put("/:id", putDatosControllerCarritos) 
-routercarritos.delete("/:idcart/productos/:idprod", deleteDatosControllerProdCarritos) 
-routercarritos.put("/:idcart/productos/:idprod", putDatosControllerProdCarritos) 
-//routerproductos.delete("/:id", deleteDatosControllerProductos) */
+routercarritos.get("/", auth,getDatosControllerCarritos ) 
+routercarritos.get("/:id",auth, getDatosControllerCarritosID ) 
+routercarritos.post("/", auth,postDatosControllerCarritos) 
+routercarritos.put("/:id",auth, putDatosControllerCarritos) 
+routercarritos.delete("/:idcart/productos/:idprod", auth, deleteDatosControllerProdCarritos) 
+routercarritos.put("/:idcart/productos/:idprod",auth, putDatosControllerProdCarritos) 
 
 module.exports = routercarritos;

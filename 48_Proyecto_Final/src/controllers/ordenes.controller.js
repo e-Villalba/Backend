@@ -1,5 +1,5 @@
 
-const {obtenerordenesuser,obtenerordenes,postordenes,putordenes} = require("../negocio/negocio.ordenes")
+const {obtenerordenesuser,obtenerordenes,deleteorden,postordenes,putordenes} = require("../negocio/negocio.ordenes")
 const {loggerConsola} = require("../logger/logger");
 async function getDatosControllerOrdenes(req, res) {  
   const { method } = req;
@@ -7,7 +7,7 @@ async function getDatosControllerOrdenes(req, res) {
   console.log("getDatosControllerOrdenes CONTROLER")
   /*const username = req.params.username   
   const estado =req.query.estado*/
-  const userEmail = "pepe"//username
+  //const userEmail = "pepe"//username
   loggerConsola.info(`Ruta '/Ordenes' - con metodo: ${method} - time: ${time}`);
   const orders = await obtenerordenes();  
   //res.status(200).json(datosproductos);  
@@ -29,19 +29,20 @@ async function getDatosControllerOrdenes(req, res) {
 async function getDatosControllerOrdenesUser(req, res) {  
   const { method } = req;
   const time = new Date().toLocaleString();
-  console.log(req)
-  const username = req.params.username   
+  console.log("Holissss",req.body)
+  //console.log(req.user.email)
+  const username = req.user.username
   const estado =req.query.estado
   const userEmail = username
   loggerConsola.info(`Ruta '/Ordenes' - con metodo: ${method} - time: ${time}`);
-  const orders = await obtenerordenesuser(username,estado);  
+  const orders = await obtenerordenesuser(username);  
   //res.status(200).json(datosproductos);  
   if (orders) {
     //res.render("cartuser", { cart });
-    //res.json(cart)
-    res.render("ordenes", { 
-      user: userEmail,
-    });
+    res.status(200).json(orders)
+    //res.render("ordenes", { 
+      //user: userEmail,
+    //});
 
   }
   if (!orders) {
@@ -91,40 +92,29 @@ async function postDatosControllerOrdenes(req, res) {
 
   loggerConsola.info(`Ruta '/Carrito' - con metodo: ${method} - ${data.mensajeResult} - time: ${time}`);  
 }
-/*
-async function putDatosControllerCarritos(req, res) {
-  //console.log("controller prod",req.body)
-  const {id} = req.params;  
-  const { estado,direccion,total } = req.body;
-  const objCart = {
-    estado: estado ,
-    direccion:direccion,
-    total:total
-  }
-  
+
+async function putDatosControllerOrdenes(req, res) {  
+  const {id} = req.params;    
+  const objOrder = {
+    estado: "Confirmada"    
+  }  
   const { method } = req;
   const time = new Date().toLocaleString();
-  loggerConsola.info(`Ruta '/Carrito' - con metodo: ${method} - time: ${time}`);
-  const datoscart = await putcarritos(id,objCart);  
-  //console.log("prodcontroller",datosprod)
-  //res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
-  res.json(datoscart)
-   
-
-  loggerConsola.info(`Ruta '/Carrito' - con metodo: ${method} - ${datoscart.mensajeResult} - time: ${time}`);  
+  loggerConsola.info(`Ruta '/Ordenes' - con metodo: ${method} - time: ${time}`);
+  const datosorder = await putordenes(id,objOrder);  
+  loggerConsola.info(`Ruta '/Ordenes' - con metodo: ${method} - ${datosorder.mensajeResult} - time: ${time}`);  
+  res.json(datosorder)
+  
 }
 
-async function deleteDatosControllerProdCarritos(req, res) {
-  const {idcart,idprod} = req.params;  
-  
+async function deleteDatosControllerOrdenes(req, res) { 
+  const {id} = req.params;    
   const { method } = req;
   const time = new Date().toLocaleString();
-  loggerConsola.info(`Ruta '/Carrito Eliminar Productos' - con metodo: ${method} - time: ${time}`);
-  const datosprod = await deleteprodcarritos(idcart,idprod);  
-  res.json(datosprod)
-   
-
-  loggerConsola.info(`Ruta '/Carrito Eliminar Productos' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
+  loggerConsola.info(`Ruta '/Orden Eliminar ' - con metodo: ${method} - time: ${time}`);  
+  const datosorden = await deleteorden(id);  
+  res.json(datosorden)
+  loggerConsola.info(`Ruta '/Carrito Eliminar ' - con metodo: ${method} - ${datosorden.mensajeResult} - time: ${time}`);  
 }
 
 async function putDatosControllerProdCarritos(req, res) {
@@ -139,7 +129,7 @@ async function putDatosControllerProdCarritos(req, res) {
   const datosprod = await updateprodcarritos(idcart,idprod,cantidad);  
   res.json(datosprod)
   loggerConsola.info(`Ruta '/Carrito Actualizar Cantidad Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
-}*/
+}
 
-module.exports = {getDatosControllerOrdenes,getDatosControllerOrdenesUser,postDatosControllerOrdenes,}
+module.exports = {getDatosControllerOrdenes,getDatosControllerOrdenesUser,postDatosControllerOrdenes,deleteDatosControllerOrdenes,putDatosControllerOrdenes}
 

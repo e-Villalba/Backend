@@ -87,8 +87,6 @@ async function deleteDatosControllerProductos(req, res) {
   //console.log("prodcontroller",datosprod)
   //res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
   res.json(datosprod)
-   
-
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
 }
 module.exports = {getDatosControllerProductos,postDatosControllerProductos,getDatosControllerProductosTitle,getDatosControllerProductosCategory,putDatosControllerProductos,deleteDatosControllerProductos}

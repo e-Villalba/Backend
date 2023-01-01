@@ -1,27 +1,3 @@
-/*const express = require("express");
-const router = express.Router();
-
-const home = require("./home");
-const login = require("./login");
-const loginerror = require("./loginerror");
-const logout = require("./logout");
-const register = require("./register");
-const productos = require("./productos");
-const erroresRouter = require("./errores");
-const info = require("./info");
-
-
-router.use("/", home);
-router.use("/login", login);
-router.use("/loginerror", loginerror);
-router.use("/logout", logout);
-router.use("/register", register);
-router.use("/productos",productos)
-router.use("/info",info)
-
-router.use("*",erroresRouter)
-
-module.exports = router*/
 
 const express = require("express");
 const router = express.Router();
@@ -52,10 +28,11 @@ const productos = require("./routerproductos");
 const productosadmin = require("./routerproductosadmin");
 //const carrito = require("./carrito");
 const carrito = require("./routercarritos");
-const odenesadmin=require("./routerordenesadmin")
+const ordenesadmin=require("./routerordenesadmin")
 const orden=require("./routerordenes")
 const userinfo = require("./routeruserinfo");
 const chat = require("./routerchat");
+const chatxuser = require("./routerchat");
 router.use("/", home);
 router.use("/login", login);
 router.use("/loginerror", loginerror);
@@ -65,9 +42,10 @@ router.use("/productos",productos)
 router.use("/productosadmin",productosadmin)
 router.use("/userinfo", userinfo);
 router.use("/carrito",carrito)
-router.use("/ordenesadmin",odenesadmin)
+router.use("/ordenesadmin",ordenesadmin)
 router.use("/ordenes",orden)
 router.use("/chat",chat)
+router.use("/chatuser",chatxuser)
 
 
 router.use("*",erroresRouter)

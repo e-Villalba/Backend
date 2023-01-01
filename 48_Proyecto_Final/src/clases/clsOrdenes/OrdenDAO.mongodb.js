@@ -14,7 +14,6 @@ class OrdenesDAOMongoDB extends DAO{
         let docs = [];
         try {            
             docs = await this.colecction.find({})        
-            //console.log("listarAll",docs)
             return docs;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al listarAll()', error);
@@ -32,34 +31,10 @@ class OrdenesDAOMongoDB extends DAO{
             throw cuserr;
         } 
     }
-    
-
-/*
-    async listar(_id) {        
-        let docs = [];
-        let docreturn=[]
-        try {            
-            docs = await this.colecction.findOne({_id})                 
-            return docs;
-            
-        } catch (error) {
-            const cuserr = new CustomError(500, 'Error al listar Carrito _id()', error);
-            throw cuserr;
-        } 
-    }*/
-    async listarUser(username,estado) {            
-        console.log("listaruser",username)  
-        console.log("estado",estado)
+    async listarUser(username) {                    
         let docs = [];        
-        docs = await this.colecction.find({})   
+        docs = await this.colecction.find({username})           
         return docs  
-        /*try {            
-            (estado)?  docs = await this.colecction.findOne({ username,estado }) : docs = await this.colecction.findOne({ username }) 
-            return docs;
-        } catch (error) {
-            const cuserr = new CustomError(500, 'Error al listar Ordnees Usuario', error);
-            throw cuserr;
-        } */
     }
     async crearOrden(elemento) {
         console.log("Guardar del DAO.MONGODB CREARORDEN",elemento)
@@ -72,59 +47,25 @@ class OrdenesDAOMongoDB extends DAO{
         } 
     }
 
-/*    async actualizarProductoCarrito(elemento) {
-        console.log("Guardar del DAO.MONGODB",elemento)
-        try {                
-            console.log("dao mongo",elemento._id)            
-            let doc =  await this.colecction.findOneAndUpdate( {_id: elemento._id},elemento)  
-            return doc;
-        } catch (error) {
-            const cuserr = new CustomError(500, 'Error al guardar Carrito()', error);
-            
-        } 
-    }
-*/
- /*   async eliminarprodcarrito(idcart,idprod){
-
-
-    }
-    async agregarCarrito(elemento) {
-        console.log("Guardar del DAO.MONGODB",elemento)
-        try {            
-            //let doc = await this.colecction.save(elemento);
-            console.log("ANTES del create")
-            let doc = await this.colecction.create(elemento);            
-            console.log("DESPUES del create")
-            return doc;
-        } catch (error) {
-            const cuserr = new CustomError(500, 'Error al guardar()', error);
-            
-        } 
-    }
-*/
     async actualizar(id,obj) {
-        //console.log("Guardar del DAO.MONGODB ID",id.trim())
-        //console.log("Guardar del DAO.MONGODB OBJ",obj)
         try {            
-            let doc =  await this.colecction.findOneAndUpdate( {_id: id.trim()},obj)
-            console.log("Try doc",doc)
+            let doc =  await this.colecction.findOneAndUpdate( {_id: id.trim()},obj)            
             return doc;
         } catch (error) {
-            const cuserr = new CustomError(500, 'Error al guardar()', error);
+            const cuserr = new CustomError(500, 'Error al Confirmar Orden()', error);            
+        } 
+    }
+
+    async borrar(id) {        
+        try {                        
+            let doc =  await this.colecction.deleteOne( {_id: id })             
+            return doc;
+        } catch (error) {
+            const cuserr = new CustomError(500, 'Error al ELIMINAR Orden()', error);
             
         } 
     }
 
-  /*  async borrar(id) {        
-        try {            
-            let doc =  await this.colecction.deleteOne( {_id: id }) 
-            return doc;
-        } catch (error) {
-            const cuserr = new CustomError(500, 'Error al ELIMINAR PRODUCTO()', error);
-            
-        } 
-    }
-*/
     static getInstanceOrden() {
         if (!instanceOrden) {
             instanceOrden = new OrdenesDAOMongoDB();

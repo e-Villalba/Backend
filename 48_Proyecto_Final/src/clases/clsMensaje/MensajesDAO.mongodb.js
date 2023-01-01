@@ -13,8 +13,7 @@ class MensajesDAOMongoDB extends DAO{
     async listarAll() {
         let docs = [];
         try {            
-            docs = await this.colecction.find({})     
-            
+            docs = await this.colecction.find({})                 
             return docs;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al listarAll()', error);
@@ -23,8 +22,8 @@ class MensajesDAOMongoDB extends DAO{
     }
     async listar(email) {
         let docs = [];
-        try {            
-            docs = await this.colecction.findOne({email})        
+        try {                        
+            docs = await this.colecction.find({email})                    
             return docs;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al listar Mjes Usuario', error);

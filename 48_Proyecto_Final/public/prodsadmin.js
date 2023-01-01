@@ -127,7 +127,7 @@ const putData = async () => {
   /*Crea un objeto con la informacion del formulario*/   
    const updateProd= getDataUpdate();   
    //alert(JSON.stringify(updateProd))
-   const URL = 'http://localhost:3000/productos/'+updateProd._id   
+   const URL = '/productos/'+updateProd._id   
 
    try{
     const response = await fetch(URL, {
@@ -138,16 +138,7 @@ const putData = async () => {
     /*coloca la informacion en el formato JSON */    
     body: JSON.stringify(updateProd)
     });
-    //const ejs = NodeRequire('ejs');
-    //console.log (response)
-    //ejs.render("product-result",{mensajeResult:"datosprod.mensajeResult"})
     if(response.ok){
-        //const jsonResponse = await response.json();
-        //console.log(response)
-        /* Codigo a ejecutarse con la respuesta*/
-
-        /*const {title, price, thumbnail} = jsonResponse;*/
-        //alert(jsonResponse)
         location.reload()
     }
   
@@ -176,7 +167,7 @@ function cancelUpdate()
 
 function deleteProducto(id,title)    
 {  
-  const URL = 'http://localhost:3000/productos/'+id  
+  const URL = '/productos/'+id  
   fetch(URL, {
       method: 'DELETE',
 })

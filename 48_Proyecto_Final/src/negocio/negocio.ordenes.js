@@ -6,25 +6,20 @@ async function obtenerordenes() {
   return await order.listarAll()
 }
 
-async function obtenerordenesuser(username,estado) {
-  return await order.listarUser(username,estado)
+async function obtenerordenesuser(username) {
+  return await order.listarUser(username)
 }
 async function postorder(username, estado,cartData,prodAdd) {  
   //console.log("postcarritos NEGOCIO")
   return await order.guardar(username, estado,cartData,prodAdd)
 }
-async function putorder(id,obj) {  
+async function putordenes(id,obj) {  
   return await order.actualizar(id,obj);
 }
-/*
-async function deleteprodcarritos(idcart,idprod) {  
-  return await cartProd.eliminarprodcarrito(idcart,idprod);
+async function deleteorden(id) {    
+  return await order.borrar(id);
 }
-
-async function updateprodcarritos(idcart,idprod,cantidad) {  
-  return await cartProd.updateprodcarritos(idcart,idprod,cantidad);
-}*/
-module.exports = {obtenerordenes,obtenerordenesuser,postorder,putorder}
+module.exports = {obtenerordenes,obtenerordenesuser,postorder,deleteorden,putordenes}
 
 
 

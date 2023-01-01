@@ -8,7 +8,7 @@
     <link href="main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    
-    <title>Backend - 3° Entrega Proyecto Final</title>
+    <title>Backend - Proyecto Final</title>
     
 </head>
 
@@ -22,8 +22,6 @@
                             <h5 class="px-5">User logged: <%= user.toUpperCase() %> </h5>
                             <form id="datosOrdenes">
                                 <input type="hidden" name="user" id="user" value="<%=user%>"/>
-                                <input type="button" class="btn btn-outline-primary mx-3" id="btnListarOrdenes" value="Listar Ordenes" />
-                                <input type="button" class="btn btn-outline-primary mx-3" id="btnListarOrdenesUser" value="Ordenes User" />
                                 <input type="button" onclick="location.href='/'" class="btn btn-outline-secondary mx-3" id="btnHome" value="Volver a Home" />
                             </form>
 
@@ -40,29 +38,24 @@
                     </div>
         </div>
         <% } %>   
-            <!-- Ordenes Begin   -->
+            
 
             <div class="container">
-                <!-- Lista de Ordenes   -->
+                <!-- Lista de Mensajes   -->
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center mt-3">
                             <div class="card cardatosContacto">
 
                                 <div class="card-body">
-                                    <!-- Tabla de Productos: ID,Title, Price y Thumbnail -->
-                                    <h2>Ordenes de Compra</h2>
+                                    <!-- Tabla de Mensajes: e-Mail,Fecha, Mensaje -->
+                                    <h2>Mensajes User</h2>
                                     <div class="row" style="background-color:grey">
-                                        <div class="col " style="color:white">N° Orden</div>
-                                        <div class="col " style="color:white">Username</div>
+                                        <div class="col " style="color:white">e-Mail</div>                                        
                                         <div class="col " style="color:white">Fecha</div>
-                                        <div class="col " style="color:white">Direccion</div>
-                                        <div class="col " style="color:white">Total</div>
-                                        <div class="col " style="color:white">Estado</div>
-                                        <div class="col " style="color:white"></div>
-                                        <!--<div class="col " style="color:white"></div>-->
+                                        <div class="col " style="color:white">Mensaje</div>
                                     </div>
-                                    <div id="ordenes"></div>
+                                    <div id="mensajes"></div>
 
                                 </div>
                             </div>
@@ -72,7 +65,7 @@
                 </div>
                 <!-- Productos End-->
             </div>            
-            <script src="ordersadmin.js"></script>
+            <script src="mensajesxuser.js"></script>
 </body>
 
 </html>

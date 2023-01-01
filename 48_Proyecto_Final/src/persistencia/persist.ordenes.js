@@ -46,17 +46,7 @@ const OrdenController = {
                 ;
             let cartDTOs = docs.map(o => {
                 return new OrdenDTO(o._id, o.nro_orden, o.username, o.fecha,o.direccion,o.products,o.total,o.estado);
-
-                /*this._id = _id;
-                this.nro_orden=nro_orden;        
-                this.username = username;
-                this.fecha=fecha;
-                this.direccion=direccion;
-                this.products = products;
-                this.total=total;
-                this.estado = estado;    */
-            })
-            //console.log("listar All",prdDTOs)
+            })            
             return cartDTOs;
         }
         catch (error) {
@@ -66,7 +56,7 @@ const OrdenController = {
     },
     async listarUser(user, estado) {
         try {
-            let doc = await orderDAO.listarUser(user, estado);
+            let doc = await orderDAO.listarUser(user);
             /*let cartDTOs = doc.map(o => {
                 return new CarritoDTO(o._id, o.username, o.products, o.estado);
             })*/
@@ -124,21 +114,32 @@ const OrdenController = {
         }
 
     },
-    /*async actualizar(title) {
-        await prdDAO.actualizar(title);
-    },*/
-    async actualizar(id, obj) {
-        try {            
-            await orderDAO.actualizar(id, obj);
-            mensajeResult = "Carrito Actuealizado Exitosamente"
-            const view = "carritoconfresult"
+    async borrar(id) {
+        try {          
+            const view = "producto-result"
+            await orderDAO.borrar(id);
+            mensajeResult = "Orden Eliminada Exitosamente"
             const objReturn = {
                 view: view,
                 mensajeResult: mensajeResult
             }
             return objReturn
         } catch (error) {
-            console.log("error persist.carritos.actualizar", error)
+            console.log("error persist.ordenes.borrar", error)
+        }      
+    },
+    async actualizar(id, obj) {
+        try {            
+            await orderDAO.actualizar(id, obj);
+            mensajeResult = "Orden Confirmada Exitosamente"
+            const view = "orderconfresult"
+            const objReturn = {
+                view: view,
+                mensajeResult: mensajeResult
+            }
+            return objReturn
+        } catch (error) {
+            console.log("error persist.ordenes.actualizar", error)
         }
 
     },

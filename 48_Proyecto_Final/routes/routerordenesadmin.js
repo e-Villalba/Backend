@@ -3,8 +3,9 @@ const { Router } = require("express");
 const routerordenesadmin = Router();
 
 const {getDatosControllerOrdenesAdmin} = require("../src/controllers/ordenesadmin.controller")
+const auth = require('../middleware/auth.js');
 
-routerordenesadmin.get("/", getDatosControllerOrdenesAdmin ) 
-//routerproductos.post("/", postDatosControllerProductos) 
+routerordenesadmin.get("/",auth, getDatosControllerOrdenesAdmin ) 
+
 
 module.exports = routerordenesadmin;

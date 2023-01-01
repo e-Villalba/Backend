@@ -3,12 +3,13 @@
 </div>
 <form onsubmit="return setMensaje(this)">
     <div>
-        <input type="text" id="email" class="" placeholder="Ingresá tu e-mail" required>
+        <input type="text" id="email" class="" placeholder="Ingresá tu e-mail" value="<%= user.trim()%>"required>
         <input type="hidden" name="user" id="user" value="<%=user%>">
+        <input type="button" onclick="location.href='/chatuser'" class="btn btn-outline-primary " style="width: 6rem;" value="Mis Mjes">
     </div>
     <div>
         <input type="text" id="mensaje" class="mt-3" placeholder="Ingresa tu mensaje" required>
-        <input type="submit" class="btn btn-outline-secondary " value="Enviar">
+        <input type="submit" class="btn btn-outline-secondary " style="width: 6rem;" value="Enviar">
     </div>
     <div id="mensajes"></div>
     <div>

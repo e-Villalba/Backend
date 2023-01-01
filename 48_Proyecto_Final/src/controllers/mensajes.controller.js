@@ -2,22 +2,27 @@
 const {obtenermensajes,obtenermensajesemail,postmensajes} = require("../negocio/negocio.mensajes")
 const {loggerConsola} = require("../logger/logger");
 
+async function getViewControllerMensajesUser(req,res){
+res.render("mensajesuser",{user:req.user.email})
+//res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
+
+}
+
 
 async function getDatosControllerMensajes() {  
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/getDatosControllerMensajes Todos' - time: ${time}`);
   const datosmensajes = await obtenermensajes();  
+  
   return datosmensajes
 }
 
-async function getDatosControllerMensajesEmail(username) {  
+async function getDatosControllerMensajesEmail(req,res) {  
   const { email } = req.params;  const { method } = req;
-  
-
   const time = new Date().toLocaleString();  
   loggerConsola.info(`Ruta '/getDatosControllerMensajes email' - con metodo: ${method} - time: ${time}`);
-  const datosmensajes = await obtenermensajesemail(email);  
-  return datosmensajes
+  const datosmensajes = await obtenermensajesemail(email);    
+  res.json(datosmensajes)
 }
 
 async function postDatosControllerMensajes(msj) {
@@ -32,5 +37,5 @@ async function postDatosControllerMensajes(msj) {
   const datosmensajes = await postmensajes(objMsj);  
   return datosmensajes  
 }
-module.exports = {getDatosControllerMensajes,getDatosControllerMensajesEmail,postDatosControllerMensajes}
+module.exports = {getDatosControllerMensajes,getDatosControllerMensajesEmail,postDatosControllerMensajes,getViewControllerMensajesUser}
 

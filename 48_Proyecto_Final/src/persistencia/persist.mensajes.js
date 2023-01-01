@@ -43,16 +43,15 @@ const MensajeController = {
 
     },    
     async listar(email) {
-        try {
-            let docs = await msjDAO.listar(email);
-            
+        try {            
+            let docs = await msjDAO.listar(email);            
             let msjDTOs = docs.map(o => {
                 return new MensajeDTO(o.email, o.fecha, o.mensaje);
             })            
             return msjDTOs;
         }
         catch (error) {
-            console.log("error listarAll", error)
+            console.log("error listar Msjes User", error)
         }
     },
 

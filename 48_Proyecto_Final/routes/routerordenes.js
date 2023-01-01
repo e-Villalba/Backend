@@ -1,16 +1,14 @@
 
 const { Router } = require("express");
 const routerordenes = Router();
+const auth = require('../middleware/auth.js');
 
-const {getDatosControllerOrdenes} = require("../src/controllers/ordenes.controller")
+const {getDatosControllerOrdenes,getDatosControllerOrdenesUser,deleteDatosControllerOrdenes,putDatosControllerOrdenes} = require("../src/controllers/ordenes.controller")
 
-//routerordenes.get("/:username", getDatosControllerOrdenes ) 
-routerordenes.get("/", getDatosControllerOrdenes ) 
-/*routerordenes.get("/:id", getDatosControllerCarritosID ) 
-routerordenes.post("/", postDatosControllerCarritos) 
-routerordenes.put("/:id", putDatosControllerCarritos) 
-routerordenes.delete("/:idcart/productos/:idprod", deleteDatosControllerProdCarritos) 
-routerordenes.put("/:idcart/productos/:idprod", putDatosControllerProdCarritos) 
-routerproductos.delete("/:id", deleteDatosControllerProductos) */
+
+routerordenes.get("/", auth,getDatosControllerOrdenes ) 
+routerordenes.get("/:user",auth, getDatosControllerOrdenesUser ) 
+routerordenes.delete("/:id",auth, deleteDatosControllerOrdenes )
+routerordenes.put("/:id", auth,putDatosControllerOrdenes) 
 
 module.exports = routerordenes;

@@ -4,7 +4,6 @@
 const MensajePersist = require("../persistencia/persist.mensajes")
 const objMensaje = MensajePersist;
 
-
 async function obtenermensajes() {
   return await objMensaje.listarAll()
 }

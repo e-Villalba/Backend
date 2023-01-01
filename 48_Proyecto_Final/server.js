@@ -44,8 +44,8 @@ app.use(
     store: new MongoStore({ 
       mongoUrl: mongoUrl,
       mongoOptions: advanceOptions,
-      ttl: 600000,
-      expires: 600000
+      ttl: 600000,//600000,
+      expires: 600000//600000
     }),     
     secret: "coderhouse",
     resave: false,
@@ -89,7 +89,7 @@ io.on('connection', socket => {
       }
       io.sockets.emit('messages', knexres);
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log("cacaaa",err))
 
   io.sockets.emit('messages', messages);
 
