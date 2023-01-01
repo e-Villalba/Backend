@@ -1,6 +1,5 @@
 window.addEventListener("load", (event) => {      
-  const email=document.getElementById("user").value
-  
+  const email=document.getElementById("user").value  
   const URL="/chat/"+email
     fetch(URL)
     .then((response) => response.json())

@@ -5,7 +5,7 @@ const auth = require('../middleware/auth.js');
 
 const {getDatosControllerChatxUSerAdmin} = require("../src/controllers/routerchatxuseradmin.controller")
 
-routerchatxuseradmin.get("/", auth,getDatosControllerChatxUSerAdmin ) 
+routerchatxuseradmin.get("/",getDatosControllerChatxUSerAdmin ) 
 
 
 module.exports = routerchatxuseradmin;

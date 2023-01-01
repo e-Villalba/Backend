@@ -32,7 +32,7 @@ const ordenesadmin=require("./routerordenesadmin")
 const orden=require("./routerordenes")
 const userinfo = require("./routeruserinfo");
 const chat = require("./routerchat");
-const chatxuser = require("./routerchat");
+const chatxuser = require("./routerchatxuseradmin");
 router.use("/", home);
 router.use("/login", login);
 router.use("/loginerror", loginerror);
