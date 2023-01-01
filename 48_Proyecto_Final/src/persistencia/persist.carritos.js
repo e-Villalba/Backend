@@ -1,5 +1,5 @@
 const CarritoDTO = require("../clases/clsCarrito/CarritoDTO.class")
-const config = require("../../conexiones/config.js")
+const config = require("../conexiones/config.js")
 
 const CarritosDAOMongoDB = require("../clases/clsCarrito/CarritosDAO.mongodb")
 const OrdenesDAOMongoDB = require("../clases/clsOrdenes/OrdenDAO.mongodb")
@@ -7,8 +7,8 @@ const OrdenesDAOMongoDB = require("../clases/clsOrdenes/OrdenDAO.mongodb")
 //const ProductosDAOMem = require("../clases/clsProducto/ProductosDAO.mem")
 
 let cartDAO = null;
-let orderDAO=null;
-const PERSISTENCIA = process.argv.slice(2).toString().trim() || "mongodb"
+let orderDAO = null;
+const PERSISTENCIA = process.argv.slice(3).toString().trim() || "mongodb"
 try {
     switch (PERSISTENCIA) {
         case 'mongodb':
@@ -30,11 +30,7 @@ const CarritoController = {
     async listar(id) {
         try {
             let doc = await cartDAO.listar(id);
-            /*let cartDTOs = doc.map(o => {
-                return new CarritoDTO(o._id, o.username, o.products, o.estado);
-            })*/
             let cartDTOs = new CarritoDTO(doc._id, doc.username, doc.products, doc.estado);
-            //console.log("cartDTOs", cartDTOs)
             return cartDTOs;
         }
         catch (error) {
@@ -49,7 +45,6 @@ const CarritoController = {
             let cartDTOs = docs.map(o => {
                 return new CarritoDTO(o._id, o.username, o.products, o.estado);
             })
-            //console.log("listar All",prdDTOs)
             return cartDTOs;
         }
         catch (error) {
@@ -60,10 +55,6 @@ const CarritoController = {
     async listarUser(user, estado) {
         try {
             let doc = await cartDAO.listarUser(user, estado);
-            /*let cartDTOs = doc.map(o => {
-                return new CarritoDTO(o._id, o.username, o.products, o.estado);
-            })*/
-            //return cartDTOs;
             return doc
         }
         catch (error) {
@@ -71,17 +62,15 @@ const CarritoController = {
         }
 
     },
-    async buscarProductoCarrito(user,estado,idprod) {
+    async buscarProductoCarrito(user, estado, idprod) {
         try {
             let cart = await cartDAO.listarUser(user, estado);
             let prod
-            if (cart && cart.products.length>0)
-            {
-                prod = cart.products.findIndex(prod=>prod.id.trim() === idprod.trim())              
+            if (cart && cart.products.length > 0) {
+                prod = cart.products.findIndex(prod => prod.id.trim() === idprod.trim())
             }
-            else
-            {
-                prod=-1
+            else {
+                prod = -1
             }
             return prod
         }
@@ -91,29 +80,23 @@ const CarritoController = {
 
     },
     async guardar(username, estado, cartData, prodAdd) {
-        
         try {
-            //const estado = "Abierto"
             let cart = await cartDAO.listarUser(username, estado);
             if (cart) {
-                //console.log("Productos del Carrito Ahora ",cart.products)                
                 const products = cart.products
-                //products.push(_id)
                 products.push(prodAdd)
                 const id = cart._id
                 let doc = cartDAO.actualizarProductoCarrito(cart)
-                const data = { ...cartData, mensajeResult: "Producto agregado a carrito en curso" }    
-                return data            
+                const data = { ...cartData, mensajeResult: "Producto agregado a carrito en curso" }
+                return data
             }
             if (!cart) {
                 let date = new Date();
-                let fecha = date.toISOString().split('T')[0] + ' ' +date.toISOString().split('T')[1].substring(0,8);
-                //console.log("register FindOne !CART")              
+                let fecha = date.toISOString().split('T')[0] + ' ' + date.toISOString().split('T')[1].substring(0, 8);
                 const estado = "Abierto"
                 const products = []
-                const direccion=""
-                const total=0
-                //products.push(_id)
+                const direccion = ""
+                const total = 0
                 products.push(prodAdd)
 
                 const objCart = {
@@ -122,51 +105,44 @@ const CarritoController = {
                     direccion,
                     products,
                     total,
-                    estado   
+                    estado
                 };
 
                 let doc = await cartDAO.agregarCarrito(objCart)
 
                 const data = { ...cartData, mensajeResult: "Producto Agregado Exitosamente Al Carrito" }
                 return data
-                //res.render("carritoaddresult", { data });
             }
         } catch (error) {
             console.log("error persist.productos.guardar", error)
         }
 
     },
-    /*async actualizar(title) {
-        await prdDAO.actualizar(title);
-    },*/
     async actualizar(id, obj) {
-        try {            
-            let cart= await cartDAO.actualizar(id, obj);
+        try {
+            let cart = await cartDAO.actualizar(id, obj);
             mensajeResult = "Carrito Actualizado Exitosamente"
             const view = "carritoconfresult"
             const objReturn = {
                 view: view,
                 mensajeResult: mensajeResult,
-                cartConfirmado:""
-            }
-            console.log("Actualizar Carrito - Estado",obj.estado)
-            if(obj.estado=="Cerrado")
-            {
-                console.log("Cart actulizar CArt PERSIST OBJ",obj)
+                cartConfirmado: ""
+            }            
+            if (obj.estado == "Cerrado") {
                 let cartConfirmado = await cartDAO.listar(id.trim());
                 let date = new Date();
-                let fecha = date.toISOString().split('T')[0] + ' ' +date.toISOString().split('T')[1].substring(0,8);
-                let nro_orden= await orderDAO.cantidadOrdenes()
-                console.log("nro_orden",nro_orden)
-                const orderData={nro_orden:nro_orden+=1,
-                    username:cartConfirmado.username,
-                    fecha:fecha,
-                    direccion:cartConfirmado.direccion,
-                    products:cartConfirmado.products,
-                    total:cartConfirmado.total,
-                    estado: "Generada"}
-                console.log("Orden Creada",orderData)
-                objReturn.cartConfirmado=cartConfirmado
+                let fecha = date.toISOString().split('T')[0] + ' ' + date.toISOString().split('T')[1].substring(0, 8);
+                let nro_orden = await orderDAO.cantidadOrdenes()             
+                const orderData = {
+                    nro_orden: nro_orden += 1,
+                    username: cartConfirmado.username,
+                    fecha: fecha,
+                    direccion: cartConfirmado.direccion,
+                    products: cartConfirmado.products,
+                    total: cartConfirmado.total,
+                    estado: "Generada"
+                }                
+                objReturn.cartConfirmado = cartConfirmado
                 orderDAO.crearOrden(orderData)
             }
             return objReturn
@@ -175,33 +151,20 @@ const CarritoController = {
         }
 
     },
-    async eliminarprodcarrito(idCart,idprod)
-    {
+    async eliminarprodcarrito(idCart, idprod) {
         try {
-            //const estado = "Abierto"
             let cart = await cartDAO.listar(idCart);
             if (cart) {
-                //console.log("Productos del Carrito Ahora ",cart.products)                
                 const products = cart.products
-                //products.push(_id)
-                const produc= products.splice(products.findIndex(prod=>prod.id === idprod),1)
-                //products.push(prodAdd)
+                const produc = products.splice(products.findIndex(prod => prod.id === idprod), 1)
                 const id = cart._id
-                //let doc = cartDAO.agregarProductoCarrito(cart)
-                //const data = { ...cartData, mensajeResult: "Producto agregado a carrito en curso" }   
-                cartDAO.actualizarProductoCarrito(cart) 
-                console.log("persist eliminar",products)
-                return produc            
+                cartDAO.actualizarProductoCarrito(cart)                
+                return produc
             }
             if (!cart) {
-                //console.log("register FindOne !user")
                 const estado = "Abierto"
                 const products = []
-                //products.push(_id)
                 products.push(prodAdd)
-                //console.log("Username",username)
-                //console.log ("Array productos",products)
-
                 const objCart = {
                     username,
                     products,
@@ -212,7 +175,6 @@ const CarritoController = {
 
                 const data = { ...cartData, mensajeResult: "Producto Agregado Exitosamente Al Carrito" }
                 return data
-                //res.render("carritoaddresult", { data });
             }
         } catch (error) {
             console.log("error persist.productos.guardar", error)
@@ -220,19 +182,16 @@ const CarritoController = {
 
 
     },
-    async updateprodcarritos(idCart,idprod,cantidad)
-    {
+    async updateprodcarritos(idCart, idprod, cantidad) {
         try {
-            console.log(idCart)
-            //const estado = "Abierto"
             let cart = await cartDAO.listar(idCart);
             if (cart) {
                 const products = cart.products
-                const prodIndex= products.findIndex(prod=>prod.id.trim() === idprod.trim())
-                products[prodIndex].cantidad=cantidad
-                products[prodIndex].valor=products[prodIndex].price*cantidad
-                cartDAO.actualizarProductoCarrito(cart) 
-                return  products[prodIndex]            
+                const prodIndex = products.findIndex(prod => prod.id.trim() === idprod.trim())
+                products[prodIndex].cantidad = cantidad
+                products[prodIndex].valor = products[prodIndex].price * cantidad
+                cartDAO.actualizarProductoCarrito(cart)
+                return products[prodIndex]
             }
             if (!cart) {
                 const estado = "Abierto"
@@ -254,29 +213,7 @@ const CarritoController = {
         } catch (error) {
             console.log("error persist.productos.guardar", error)
         }
-
-
     }
-    /*   async borrar(id) {
-           try {
-               const view = "producto-result"
-               await prdDAO.borrar(id);
-               mensajeResult = "Producto Eliminado Exitosamente"
-   
-               const objReturn = {
-                   view: view,
-                   mensajeResult: mensajeResult
-               }
-               return objReturn
-           } catch (error) {
-               console.log("error persist.productos.eliminar", error)
-           }
-   
-         
-       },
-       async borrarAll() {
-           await prdDAO.borrarAll();
-       }*/
 }
 
 module.exports = CarritoController

@@ -26,8 +26,7 @@ info.get("/", (req, res) => {
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Info' - con metodo: ${method} - time: ${time}`);
-  res.status(200).send(datosInfo); 
-  //res.render('info',{datosInfo}); 
+  res.status(200).send(datosInfo);   
 });
 
 module.exports = info;

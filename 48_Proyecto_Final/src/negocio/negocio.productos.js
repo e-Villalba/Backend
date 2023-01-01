@@ -1,9 +1,5 @@
-
-
-
 const ProductoController = require("../persistencia/persist.productos")
 const objProd = ProductoController;
-
 
 async function obtenerproductos() {
   return await objProd.listarAll()
@@ -17,16 +13,12 @@ async function obtenerproductoscategory(category) {
   return await objProd.listarcategory(category)
 }
 
-async function postproductos(obj) {  
+async function postproductos(obj) {
   const doc = await objProd.listar(obj.title)
-  console.log ("post prod",obj.title)
-  console.log ("post prod doc devuelto",doc)
-  if(doc.length==0)
-  {
+  if (doc.length == 0) {
     return await objProd.guardar(obj);
   }
-  else
-  {
+  else {
     const objReturn = {
       view: "producto-result",
       mensajeResult: "Producto ya existente, no puede agregar un nuevo Producto con el mismo nombre de uno ya registrado"
@@ -34,15 +26,15 @@ async function postproductos(obj) {
     return objReturn
   }
 }
-async function putproductos(id,obj) {  
-  return await objProd.actualizar(id,obj);
+async function putproductos(id, obj) {
+  return await objProd.actualizar(id, obj);
 }
 
-async function deleteproductos(id) {  
+async function deleteproductos(id) {
   return await objProd.borrar(id);
 }
 
-module.exports = {obtenerproductos,obtenerproductostitle,obtenerproductoscategory,postproductos,putproductos,deleteproductos}
+module.exports = { obtenerproductos, obtenerproductostitle, obtenerproductoscategory, postproductos, putproductos, deleteproductos }
 
 
 

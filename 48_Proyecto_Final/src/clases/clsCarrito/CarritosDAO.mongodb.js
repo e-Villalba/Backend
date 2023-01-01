@@ -1,6 +1,6 @@
 const CustomError = require("../CustomError.class")
 
-const CarritosModel = require('../../../models/Cart.js'); 
+const CarritosModel = require('../../models/Cart.js'); 
 const DAO =require("../DAO.class")
 
 let instanceCarrito = null;
@@ -14,7 +14,6 @@ class CarritosDAOMongoDB extends DAO{
         let docs = [];
         try {            
             docs = await this.colecction.find({})        
-            //console.log("listarAll",docs)
             return docs;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al listarAll()', error);
@@ -26,11 +25,6 @@ class CarritosDAOMongoDB extends DAO{
         let docreturn=[]
         try {            
             docs = await this.colecction.findOne({_id})                 
-            /*if(docs)
-            {
-            docreturn.push(docs)
-            }*/
-            //console.log("docs",docs.products)
             return docs;
             
         } catch (error) {
@@ -49,8 +43,7 @@ class CarritosDAOMongoDB extends DAO{
             throw cuserr;
         } 
     }
-    async crearCarrito(elemento) {
-        //console.log("Guardar del DAO.MONGODB")
+    async crearCarrito(elemento) {        
         try {            
             let doc = await this.colecction.create(elemento);
             return doc;
@@ -61,11 +54,7 @@ class CarritosDAOMongoDB extends DAO{
     }
 
     async actualizarProductoCarrito(elemento) {
-        console.log("Guardar del DAO.MONGODB",elemento)
         try {            
-            //let doc = await this.colecction.save(elemento);
-            console.log("dao mongo",elemento._id)
-            //let doc = this.colecction.save(elemento)//elemento.save()          
             let doc =  await this.colecction.findOneAndUpdate( {_id: elemento._id},elemento)  
             return doc;
         } catch (error) {
@@ -79,12 +68,8 @@ class CarritosDAOMongoDB extends DAO{
 
     }
     async agregarCarrito(elemento) {
-        console.log("Guardar del DAO.MONGODB",elemento)
         try {            
-            //let doc = await this.colecction.save(elemento);
-            console.log("ANTES del create")
             let doc = await this.colecction.create(elemento);            
-            console.log("DESPUES del create")
             return doc;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al guardar()', error);
@@ -93,12 +78,8 @@ class CarritosDAOMongoDB extends DAO{
     }
 
     async actualizar(id,obj) {
-        //console.log("Guardar del DAO.MONGODB ID",id.trim())
-        //console.log("Guardar del DAO.MONGODB OBJ",obj)
-        
         try {            
-            let doc =  await this.colecction.findOneAndUpdate( {_id: id.trim()},obj)
-            console.log("Try doc",doc)
+            let doc =  await this.colecction.findOneAndUpdate( {_id: id.trim()},obj)            
             return doc;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al guardar()', error);

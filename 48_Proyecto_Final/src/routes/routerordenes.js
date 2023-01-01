@@ -3,7 +3,7 @@ const { Router } = require("express");
 const routerordenes = Router();
 const auth = require('../middleware/auth.js');
 
-const {getDatosControllerOrdenes,getDatosControllerOrdenesUser,deleteDatosControllerOrdenes,putDatosControllerOrdenes} = require("../src/controllers/ordenes.controller")
+const {getDatosControllerOrdenes,getDatosControllerOrdenesUser,deleteDatosControllerOrdenes,putDatosControllerOrdenes} = require("../controllers/ordenes.controller")
 
 
 routerordenes.get("/", auth,getDatosControllerOrdenes ) 

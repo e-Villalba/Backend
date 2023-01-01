@@ -3,7 +3,7 @@ const { Router } = require("express");
 const routerproductos = Router();
 const auth = require('../middleware/auth.js');
 
-const {getDatosControllerProductos,postDatosControllerProductos,putDatosControllerProductos,getDatosControllerProductosTitle,getDatosControllerProductosCategory,deleteDatosControllerProductos} = require("../src/controllers/productos.controller")
+const {getDatosControllerProductos,postDatosControllerProductos,putDatosControllerProductos,getDatosControllerProductosTitle,getDatosControllerProductosCategory,deleteDatosControllerProductos} = require("../controllers/productos.controller")
 
 routerproductos.get("/",getDatosControllerProductos ) 
 routerproductos.get("/:title",auth, getDatosControllerProductosTitle ) 

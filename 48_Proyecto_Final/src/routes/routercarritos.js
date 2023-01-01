@@ -3,7 +3,7 @@ const { Router } = require("express");
 const routercarritos = Router();
 const auth = require('../middleware/auth.js');
 
-const {getDatosControllerCarritos,getDatosControllerCarritosID,postDatosControllerCarritos,putDatosControllerCarritos,deleteDatosControllerProdCarritos,putDatosControllerProdCarritos} = require("../src/controllers/carritos.controller")
+const {getDatosControllerCarritos,getDatosControllerCarritosID,postDatosControllerCarritos,putDatosControllerCarritos,deleteDatosControllerProdCarritos,putDatosControllerProdCarritos} = require("../controllers/carritos.controller")
 
 routercarritos.get("/", auth,getDatosControllerCarritos ) 
 routercarritos.get("/:id",auth, getDatosControllerCarritosID ) 

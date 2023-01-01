@@ -2,7 +2,7 @@
 const CarritoController = require("../persistencia/persist.carritos")
 const cartProd = CarritoController;
 
-const sendMail= require ('../../middleware/nodemailer.js')
+const sendMail= require ('../middleware/nodemailer.js')
 async function obtenercarritos() {
   return await cartProd.listarAll()
 }
@@ -16,8 +16,7 @@ async function obtenercarritosuser(user,estado) {
 }
 
 async function postcarritos(username, estado,cartData,prodAdd) {  
-  const prod= await cartProd.buscarProductoCarrito(username,estado,prodAdd.id)  
-  console.log("postcarritos NEGOCIO",prod)  
+  const prod= await cartProd.buscarProductoCarrito(username,estado,prodAdd.id)    
   if(prod==-1)
   {
       return await cartProd.guardar(username, estado,cartData,prodAdd)
@@ -32,8 +31,7 @@ async function putcarritos(id,obj) {
   try{
     const data = await cartProd.actualizar(id,obj);
     if (obj.estado="Cerrado")
-    {
-      //console.log("Send mail carrito",data.cartConfirmado)
+    {     
       sendMail("C",data.cartConfirmado)
     }
     return data
@@ -51,8 +49,6 @@ async function deleteprodcarritos(idcart,idprod) {
 async function updateprodcarritos(idcart,idprod,cantidad) {  
   return await cartProd.updateprodcarritos(idcart,idprod,cantidad);
 }
-
-
 
 module.exports = {obtenercarritosuser,obtenercarritosid,postcarritos,putcarritos,deleteprodcarritos,updateprodcarritos}
 

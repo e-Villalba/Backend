@@ -1,10 +1,7 @@
 
-//const {obtenerordenesadmin} = require("../negocio/negocio.ordenesadmin")
 const {loggerConsola} = require("../logger/logger");
 
 async function getDatosControllerChatxUSerAdmin(req, res) {  
-  
-  //const datosordenesadmin = await obtenerordenesadmin();      
   const { method } = req;
   const userEmail = req.user.email
   const time = new Date().toLocaleString();
@@ -12,8 +9,6 @@ async function getDatosControllerChatxUSerAdmin(req, res) {
   res.render("mensajesuser", { 
       user: userEmail,
     });
-
-
 }
 
 module.exports = {getDatosControllerChatxUSerAdmin}

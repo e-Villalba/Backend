@@ -1,6 +1,4 @@
 
-//const {getproductos,postproductospersist} = require("../persistencia/persist.productos")
-
 const MensajePersist = require("../persistencia/persist.mensajes")
 const objMensaje = MensajePersist;
 

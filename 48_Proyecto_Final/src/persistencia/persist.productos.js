@@ -1,5 +1,5 @@
 const ProductoDTO = require("../clases/clsProducto/ProductoDTO.class.js")
-const config = require("../../conexiones/config.js")
+const config = require("../conexiones/config.js")
 
 const ProductosDAOMongoDB = require("../clases/clsProducto/ProductosDAO.mongodb")
 const ProductosDAOFile = require("../clases/clsProducto/ProductosDAO.file")
@@ -7,7 +7,7 @@ const ProductosDAOMem = require("../clases/clsProducto/ProductosDAO.mem")
 
 let prdDAO = null;
 
-const PERSISTENCIA = process.argv.slice(2).toString().trim() || "mongodb"
+const PERSISTENCIA = process.argv.slice(3).toString().trim() || "mongodb"
 try {
     switch (PERSISTENCIA) {
         case 'mongodb':
@@ -60,13 +60,11 @@ const ProductoController = {
             let prdDTOs = docs.map(o => {
                 return new ProductoDTO(o._id, o.title, o.price, o.category, o.thumbnail);
             })
-            //console.log("listar All",prdDTOs)
             return prdDTOs;
         }
         catch (error) {
             console.log("error listarAll", error)
         }
-
     },
     async guardar(elem) {
         try {
@@ -91,9 +89,6 @@ const ProductoController = {
         }
 
     },
-    /*async actualizar(title) {
-        await prdDAO.actualizar(title);
-    },*/
     async actualizar(id, obj) {
         try {
             const view = "producto-result"

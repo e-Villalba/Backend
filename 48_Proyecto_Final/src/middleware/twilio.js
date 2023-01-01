@@ -12,8 +12,7 @@ const sendSMS = async () => {
       body: 'Su pedido ha sido Realizado y se encuentra en Proceso. Nos pondremos en contacto para confirmar el envio. Muchas gracias!',
       from: process.env.PHONE_FROM, 
       to: process.env.PHONE_NUMBER 
-    });
-    //console.log(message.sid);
+    });    
   }
   catch (error) {
     console.log(error);

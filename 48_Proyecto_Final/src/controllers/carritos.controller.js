@@ -10,8 +10,7 @@ async function getDatosControllerCarritos(req, res) {
   const accion =req.query.accion
   const estado="Abierto"
   loggerConsola.info(`Ruta '/Carrito' - con metodo: ${method} - time: ${time}`);
-  const cart = await obtenercarritosuser(username,estado);  
-  //res.status(200).json(datosproductos);  
+  const cart = await obtenercarritosuser(username,estado);    
   if (cart) {
     res.render("cartuser", { cart });
   }
@@ -25,13 +24,11 @@ async function getDatosControllerCarritosID(req, res) {
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Carrito X ID' - con metodo: ${method} - time: ${time}`);
-  const cart = await obtenercarritosid(_id)
-  //console.log("Cart Controller",cart.products)
+  const cart = await obtenercarritosid(_id)  
   res.status(200).json(cart.products)
 }
 
-async function postDatosControllerCarritos(req, res) {
-  console.log("postDatosControllerCarritos")
+async function postDatosControllerCarritos(req, res) {  
   const { method } = req;
   const time = new Date().toLocaleString();
   
@@ -55,14 +52,12 @@ async function postDatosControllerCarritos(req, res) {
     const estado="Abierto"
   
     const data = await postcarritos(username, estado,cartData,prodAdd);  
-    res.render("carritoaddresult", { data });
-   //res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
+    res.render("carritoaddresult", { data });   
 
   loggerConsola.info(`Ruta '/Carrito' - con metodo: ${method} - ${data.mensajeResult} - time: ${time}`);  
 }
 
-async function putDatosControllerCarritos(req, res) {
-  //console.log("controller prod",req.body)
+async function putDatosControllerCarritos(req, res) {  
   const {id} = req.params;  
   const { estado,direccion,total } = req.body;
   const objCart = {
@@ -74,9 +69,7 @@ async function putDatosControllerCarritos(req, res) {
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Carrito' - con metodo: ${method} - time: ${time}`);
-  const datoscart = await putcarritos(id,objCart);  
-  //console.log("prodcontroller",datosprod)
-  //res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
+  const datoscart = await putcarritos(id,objCart);    
   res.json(datoscart)
    
 
@@ -99,8 +92,6 @@ async function deleteDatosControllerProdCarritos(req, res) {
 async function putDatosControllerProdCarritos(req, res) {
   const {idcart,idprod} = req.params;  
   const {cantidad}=req.body;
-  //console.log("putDatosControllerProdCarritos idcart",idcart)
-  //console.log("putDatosControllerProdCarritos idprod",idprod)
   
   const { method } = req;
   const time = new Date().toLocaleString();

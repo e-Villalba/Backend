@@ -1,4 +1,3 @@
-
 async function getErrores() {
     return "/";
   }
@@ -18,6 +17,4 @@ async function putErrores() {
   return msgerror;
 }
   
-
-//export default getinfo;
 module.exports = {getErrores,postErrores,deleteErrores,putErrores}

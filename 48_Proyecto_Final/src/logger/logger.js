@@ -17,7 +17,6 @@ log4js.configure({
 
 const logger = log4js.getLogger();
 
-//module.exports =  logger
 const loggerConsola = log4js.getLogger("consola");
 const loggerWarn = log4js.getLogger("archivo");
 const loggerError = log4js.getLogger("archivo2");

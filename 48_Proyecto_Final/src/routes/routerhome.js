@@ -4,7 +4,7 @@ const auth = require('../middleware/auth.js');
 
 const routerhome = Router();
 
-const {getDatosControllerHome} = require("../src/controllers/home.controller")
+const {getDatosControllerHome} = require("../controllers/home.controller")
 
 routerhome.get("/", auth, getDatosControllerHome) 
 

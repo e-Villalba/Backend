@@ -15,7 +15,7 @@ const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 //Minimist para obtener el puerto
 const minimist = require("minimist")
-const ConnectionClass = require("./conexiones/connection");
+const ConnectionClass = require("./src/conexiones/connection");
 
 const objConn = ConnectionClass.getInstance()
 objConn.connect()
@@ -56,11 +56,11 @@ app.use(
 );
 
 //Passport
-const passport = require("./middleware/passport.js");
+const passport = require("./src/middleware/passport.js");
 app.use(passport.initialize());
 app.use(passport.session());
 //Rutas
-const router = require("./routes");
+const router = require("./src/routes");
 const { Console } = require("console");
 app.use("/",router)
 
@@ -98,24 +98,13 @@ io.on('connection', socket => {
     saveMessage(data)
     io.sockets.emit('messages', messages);
   });
-  /*socket.on('messages-user', data => {
-    //messages.push(data);
-    //saveMessage(data)
-    io.sockets.emit('messages', messages);
-  });*/
+
 });
 
 const {getDatosControllerMensajes} = require("./src/controllers/mensajes.controller")
 
 
 async function saveMessage(msj) {
- /* try {    
-    await postDatosControllerMensajes(msj);  
-    
-  }
-  catch (err) {
-    console.log(err)
-  }*/
   const URL = "http://localhost:"+PORT.toString()+'/chat'
   try{
     const response = await fetch(URL, {

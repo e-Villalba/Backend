@@ -1,6 +1,6 @@
 const MensajeDTO = require("../clases/clsMensaje/MensajesDTO.class.js")
 
-const config = require("../../conexiones/config.js")
+const config = require("../conexiones/config.js")
 
 const MensajesDAOMongoDB = require("../clases/clsMensaje/MensajesDAO.mongodb")
 const MensajesDAOFile = require("../clases/clsMensaje/MensajesDAO.file")
@@ -8,7 +8,7 @@ const MensajesDAOMem = require("../clases/clsMensaje/MensajesDAO.mem")
 
 let msjDAO = null;
 
-const PERSISTENCIA= process.argv.slice(2).toString().trim()||"mongodb"
+const PERSISTENCIA= process.argv.slice(3).toString().trim()||"mongodb"
 try{
 switch (PERSISTENCIA)
 {

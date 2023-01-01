@@ -1,6 +1,6 @@
 const CustomError = require("../CustomError.class")
 
-const MensajesModel = require('../../../models/Mensajes'); 
+const MensajesModel = require('../../models/Mensajes'); 
 const DAO =require("../DAO.class")
 
 let instanceMensaje = null;

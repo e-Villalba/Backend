@@ -1,6 +1,6 @@
 const CustomError = require("../CustomError.class")
 const fs = require("fs")
-const config = require("../../../conexiones/config")
+const config = require("../../conexiones/config")
 const DAO =require("../DAO.class")
 
 
@@ -12,11 +12,9 @@ class ProductosDAOFile extends DAO {
         this.ruta = `${config.filedb.pathdb}/productos.json`;       
     }
 
-    async listar(title) {
-        //console.log("listar de file", title)
+    async listar(title) {        
         const objs = await this.listarAll()
-        const buscado = objs.find(o => o.title == title)
-        //console.log("listar de file buscado", buscado)
+        const buscado = objs.find(o => o.title == title)        
         return buscado
     }
 

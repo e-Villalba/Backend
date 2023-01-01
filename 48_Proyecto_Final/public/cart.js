@@ -3,12 +3,10 @@
 const IdCarrito = document.getElementById("idCarrito").innerHTML;
 const cartContainer = document.getElementById("cartContainer");
 const totalCarrito = document.getElementById("totalCarrito");
-//const btnDeleteProdCart = document.getElementById("btnDeleteProdCart");
 
 
-console.log("IdCarrito",IdCarrito)
 const URL = `/carrito/${IdCarrito.toString().trim()}`
-console.log(URL)
+
 fetch(URL)
   .then(res => res.json())
   .then(res => {

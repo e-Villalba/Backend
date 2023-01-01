@@ -7,8 +7,7 @@ async function getDatosControllerError(req, res) {
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/errores' - con metodo: ${method} - time: ${time}`);
   const datosError = await getError();
-  res.redirect(datosError);
-  //res.status(200).send(datosError); 
+  res.redirect(datosError);  
 }
 
 async function postDatosControllerError(req, res) {
@@ -16,8 +15,7 @@ async function postDatosControllerError(req, res) {
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/errores' - con metodo: ${method} - time: ${time}`);
   const datosError = await postError();
-  res.json(datosError)
-  //res.status(200).send(datosError); 
+  res.json(datosError)  
 }
 
 async function deleteDatosControllerError(req, res) {
@@ -25,8 +23,7 @@ async function deleteDatosControllerError(req, res) {
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/errores' - con metodo: ${method} - time: ${time}`);
   const datosError = await deleteError();
-  res.json(datosError)
-  //res.status(200).send(datosError); 
+  res.json(datosError)  
 }
 
 
@@ -35,9 +32,7 @@ async function putDatosControllerError(req, res) {
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/errores' - con metodo: ${method} - time: ${time}`);
   const datosError = await putError();
-  res.json(datosError)
-  //res.status(200).send(datosError); 
+  res.json(datosError)  
 }
-
 
 module.exports = {getDatosControllerError,postDatosControllerError,deleteDatosControllerError,putDatosControllerError}

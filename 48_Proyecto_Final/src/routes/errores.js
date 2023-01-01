@@ -4,14 +4,6 @@ const {loggerWarn} = require("../logger/logger");
 
 const erroresRouter = Router();
 
-/*erroresRouter.get("*", (req, res) => { 
-   const { url, method } = req;   
-  loggerWarn.warn(`Ruta ${url} Inexistente - con metodo: ${method}`);   
-   // res.render("errores-result",{mensajeResult:"Ruta Inexistente"});       
-   res.redirect("/");
-  
-})*/
-
 erroresRouter.post("*", (req, res) => {   
   const { url, method } = req;   
   loggerWarn.warn(`Ruta ${url} Inexistente - con metodo: ${method}`);   

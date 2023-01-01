@@ -2,7 +2,7 @@
 const obtenerlogin = require("../negocio/negocio.login")
 const {loggerConsola} = require("../logger/logger");
 
-require('../../conexiones/connection'); 
+require('../conexiones/connection'); 
 
 
 async function getDatosControllerLogin(req, res) {

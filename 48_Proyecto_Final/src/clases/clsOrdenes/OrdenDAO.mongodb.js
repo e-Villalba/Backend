@@ -1,6 +1,6 @@
 const CustomError = require("../CustomError.class")
 
-const OrdenesModel = require('../../../models/Orders.js'); 
+const OrdenesModel = require('../../models/Orders.js'); 
 const DAO =require("../DAO.class")
 
 let instanceOrden = null;
@@ -23,8 +23,7 @@ class OrdenesDAOMongoDB extends DAO{
     async cantidadOrdenes() {
         let docs = [];
         try {            
-            docs = await this.colecction.estimatedDocumentCount()      
-            //console.log("listarAll",docs)
+            docs = await this.colecction.estimatedDocumentCount()                  
             return docs;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al listarAll()', error);
@@ -36,8 +35,7 @@ class OrdenesDAOMongoDB extends DAO{
         docs = await this.colecction.find({username})           
         return docs  
     }
-    async crearOrden(elemento) {
-        console.log("Guardar del DAO.MONGODB CREARORDEN",elemento)
+    async crearOrden(elemento) {        
         try {            
             let doc = await this.colecction.create(elemento);
             return doc;

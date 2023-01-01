@@ -1,6 +1,6 @@
 const CustomError = require("../CustomError.class")
 
-const ProductosModel = require('../../../models/Products'); 
+const ProductosModel = require('../../models/Products'); 
 const DAO =require("../DAO.class")
 
 let instanceProducto = null;
@@ -13,8 +13,7 @@ class ProductosDAOMongoDB extends DAO{
     async listarAll() {
         let docs = [];
         try {            
-            docs = await this.colecction.find({})        
-            //console.log("listarAll",docs)
+            docs = await this.colecction.find({})                    
             return docs;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al listarAll()', error);
@@ -47,8 +46,7 @@ class ProductosDAOMongoDB extends DAO{
             throw cuserr;
         } 
     }
-    async guardar(elemento) {
-        //console.log("Guardar del DAO.MONGODB")
+    async guardar(elemento) {        
         try {            
             let doc = await this.colecction.create(elemento);
             return doc;
@@ -58,8 +56,6 @@ class ProductosDAOMongoDB extends DAO{
         } 
     }
     async actualizar(id,obj) {
-        //console.log("Guardar del DAO.MONGODB ID",id)
-        //console.log("Guardar del DAO.MONGODB OBJ",obj)
         
         try {            
             let doc =  await this.colecction.findOneAndUpdate( {_id: id},obj)

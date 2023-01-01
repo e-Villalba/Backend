@@ -9,17 +9,16 @@ async function obtenerordenes() {
 async function obtenerordenesuser(username) {
   return await order.listarUser(username)
 }
-async function postorder(username, estado,cartData,prodAdd) {  
-  //console.log("postcarritos NEGOCIO")
-  return await order.guardar(username, estado,cartData,prodAdd)
+async function postorder(username, estado, cartData, prodAdd) {
+  return await order.guardar(username, estado, cartData, prodAdd)
 }
-async function putordenes(id,obj) {  
-  return await order.actualizar(id,obj);
+async function putordenes(id, obj) {
+  return await order.actualizar(id, obj);
 }
-async function deleteorden(id) {    
+async function deleteorden(id) {
   return await order.borrar(id);
 }
-module.exports = {obtenerordenes,obtenerordenesuser,postorder,deleteorden,putordenes}
+module.exports = { obtenerordenes, obtenerordenesuser, postorder, deleteorden, putordenes }
 
 
 

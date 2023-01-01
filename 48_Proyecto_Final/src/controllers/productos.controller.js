@@ -1,16 +1,16 @@
 
-const {obtenerproductos,obtenerproductostitle,obtenerproductoscategory,postproductos,putproductos,deleteproductos} = require("../negocio/negocio.productos")
-const {loggerConsola} = require("../logger/logger");
+const { obtenerproductos, obtenerproductostitle, obtenerproductoscategory, postproductos, putproductos, deleteproductos } = require("../negocio/negocio.productos")
+const { loggerConsola } = require("../logger/logger");
 
 
-async function getDatosControllerProductos(req, res) {  
+async function getDatosControllerProductos(req, res) {
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - time: ${time}`);
-  const datosproductos = await obtenerproductos();  
+  const datosproductos = await obtenerproductos();
   res.status(200).json(datosproductos);
 }
-async function getDatosControllerProductosTitle(req, res) {    
+async function getDatosControllerProductosTitle(req, res) {
   const { title } = req.params;
   const { method } = req;
   const time = new Date().toLocaleString();
@@ -18,76 +18,59 @@ async function getDatosControllerProductosTitle(req, res) {
   const datosproductos = await obtenerproductostitle(title)
   res.status(200).json(datosproductos)
 }
-async function getDatosControllerProductosCategory(req, res) {    
+async function getDatosControllerProductosCategory(req, res) {
   const { category } = req.params;
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Producto X Categoria' - con metodo: ${method} - time: ${time}`);
   const datosproductos = await obtenerproductoscategory(category)
- 
+
   res.status(200).json(datosproductos)
 }
-async function postDatosControllerProductos(req, res) {
-  //console.log("controller prod",req.body)
-  const { title, price, category,thumbnail } = req.body;
+async function postDatosControllerProductos(req, res) {  
+  const { title, price, category, thumbnail } = req.body;
   const objProd = {
-    title:title,
-    price:price,
+    title: title,
+    price: price,
     category: category,
-    thumbnail:thumbnail,    
+    thumbnail: thumbnail,
   }
-  
+
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - time: ${time}`);
-  const datosprod = await postproductos(objProd);  
-   res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
+  const datosprod = await postproductos(objProd);
+  res.render(datosprod.view, { mensajeResult: datosprod.mensajeResult });
 
-  loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
+  loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);
 }
 
-async function putDatosControllerProductos(req, res) {
-  //console.log("controller prod",req.body)
-  const {id} = req.params;  
-  const { title, price, category,thumbnail } = req.body;
+async function putDatosControllerProductos(req, res) {  
+  const { id } = req.params;
+  const { title, price, category, thumbnail } = req.body;
   const objProd = {
-    title:title,
-    price:price,
+    title: title,
+    price: price,
     category: category,
-    thumbnail:thumbnail,    
+    thumbnail: thumbnail,
   }
-  
+
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - time: ${time}`);
-  const datosprod = await putproductos(id,objProd);  
-  //console.log("prodcontroller",datosprod)
-  //res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
+  const datosprod = await putproductos(id, objProd);
   res.json(datosprod)
-   
-
-  loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
+  loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);
 }
 
 async function deleteDatosControllerProductos(req, res) {
-  //console.log("controller prod",req.body)
-  const {id} = req.params;  
-  /*const { title, price, category,thumbnail } = req.body;
-  const objProd = {
-    title:title,
-    price:price,
-    category: category,
-    thumbnail:thumbnail,    
-  }*/
-  
+  const { id } = req.params;
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - time: ${time}`);
-  const datosprod = await deleteproductos(id);  
-  //console.log("prodcontroller",datosprod)
-  //res.render(datosprod.view,{mensajeResult:datosprod.mensajeResult});  
+  const datosprod = await deleteproductos(id);
   res.json(datosprod)
-  loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);  
+  loggerConsola.info(`Ruta '/Producto' - con metodo: ${method} - ${datosprod.mensajeResult} - time: ${time}`);
 }
-module.exports = {getDatosControllerProductos,postDatosControllerProductos,getDatosControllerProductosTitle,getDatosControllerProductosCategory,putDatosControllerProductos,deleteDatosControllerProductos}
+module.exports = { getDatosControllerProductos, postDatosControllerProductos, getDatosControllerProductosTitle, getDatosControllerProductosCategory, putDatosControllerProductos, deleteDatosControllerProductos }
 

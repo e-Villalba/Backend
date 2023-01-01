@@ -1,6 +1,6 @@
 const CustomError = require("../CustomError.class")
 
-const UsuariosModel = require('../../../models/User.js'); 
+const UsuariosModel = require('../../models/User.js'); 
 const DAO =require("../DAO.class")
 
 let instanceUsuario = null;
@@ -32,10 +32,8 @@ class UsuariosDAOMongoDB extends DAO{
         } 
     }
     async registrar(elemento) {
-        //console.log("Guardar del DAO.MONGODB")
         try {            
             let doc = await this.colecction.create(elemento);
-            //console.log("post guardar",doc)
             return doc;
         } catch (error) {
             const cuserr = new CustomError(500, 'Error al guardar()', error);
