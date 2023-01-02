@@ -1,4 +1,4 @@
-# Entrega - Proyecto Entrega Final
+# Entrega - Proyecto Final
 ![N|Solid](https://cdn4.iconfinder.com/data/icons/business-solid-the-capitalism/64/Product_valuation-48.png)
 ## Desarrollo
 Sobre la base de las entregas anteriores, tomando fundamentalmente la entrega de la clase  **36- Tercer Entrega del Proyecto Final** se desarrolla la entrega final del Proyecto
