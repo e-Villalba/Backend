@@ -26,7 +26,7 @@ const UsuarioPersist = {
     async listar(username) {
         try {
             let doc = await userDAO.listar(username);
-            let userDTO = new UsuarioDTO(doc.username, doc.email, doc.apenom);
+            let userDTO = new UsuarioDTO(doc.username, doc.email, doc.apenom,doc.foto);
             return userDTO;
         }
         catch (error) {

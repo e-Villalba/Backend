@@ -36,7 +36,7 @@ class UsuariosDAOMongoDB extends DAO{
             let doc = await this.colecction.create(elemento);
             return doc;
         } catch (error) {
-            const cuserr = new CustomError(500, 'Error al guardar()', error);
+            const cuserr = new CustomError(500, 'Error al guardar() Usuario', error);
             
         } 
     }

@@ -10,7 +10,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="verPassword.js"></script>
     
-    <title>Backend - 3° Entrega Proyecto Final</title>
+    <title>Backend - Proyecto Final</title>
 </head>
 
 <body>
@@ -27,6 +27,8 @@
                             <h5 class="mt-3">Usuario: <%= userData.username %></h5>
                             <h5>Email: <%= userData.email %></h5>
                             <h5>Apellido y Nombres: <%= userData.apenom %></h5>
+                            <h5>Foto</h5>
+                            <img  style="width: 15rem;" src="/uploads/<%=userData.foto%>" alt="user image">
                         </div>	
                         <div>                            
                             <input type="button" onclick="location.href='/'" class="btn btn-outline-secondary mt-3"   id="btnRegister" value="Volver a Home" />

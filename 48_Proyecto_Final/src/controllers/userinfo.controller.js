@@ -8,7 +8,7 @@ async function getDatosControllerUserInfo(req, res) {
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Register' - con metodo: ${method} - time: ${time}`);
   const datosregister = await obteneruserinfo(user);
-  const userData = { username: datosregister.username, email: datosregister.email, apenom: datosregister.apenom }
+  const userData = { username: datosregister.username, email: datosregister.email, apenom: datosregister.apenom,foto: datosregister.foto }
   res.render('user_info', { userData });
 }
 

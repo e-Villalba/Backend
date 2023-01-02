@@ -1,8 +1,9 @@
 class UsuarioDTO {
-    constructor(username, email, apenom){
+    constructor(username, email, apenom,foto){
         this.username = username;
         this.email = email;        
         this.apenom = apenom;
+        this.foto=foto
     }
 
     getEmail(){
@@ -27,6 +28,13 @@ class UsuarioDTO {
 
     setApenom(apenom){
         return this.apenom = apenom;
+    }
+    getFoto(){
+        return this.foto;
+    }
+
+    setFoto(foto){
+        return this.foto = foto;
     }
 }
 module.exports=UsuarioDTO

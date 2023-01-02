@@ -26,7 +26,7 @@ const UsuarioPersist = {
     async listar(username) {
         try {
             let doc = await userDAO.listar(username);
-            let userDTO = new UsuarioDTO(doc.username, doc.email, doc.apenom);
+            let userDTO = new UsuarioDTO(doc.username, doc.email, doc.apenom,doc.foto);
             return userDTO;
         }
         catch (error) {
@@ -35,7 +35,7 @@ const UsuarioPersist = {
 
     },
     async registrar(obj) {
-        const { username, password, email, apenom } = obj;
+        const { username, password, email, apenom,foto } = obj;
         const view = "register-result"
         const Usuario = await userDAO.listar(username)
         let mensajeResult = ""
@@ -48,8 +48,9 @@ const UsuarioPersist = {
                 username,
                 password: hashedPassword,
                 email,
-                apenom
-            };
+                apenom,
+                foto
+            };            
             await userDAO.registrar(newUser);
             mensajeResult = "Usuario Registrado Exitosamente"
         }

@@ -8,14 +8,16 @@ async function getDatosControllerRegister(req, res) {
 }
 
 async function postDatosControllerRegister(req, res) {
-  const { username, password, password2, apenom, email } = req.body;
+  const { username, password, password2, apenom, email } = req.body;  
+  const foto = req.file.filename;
   const objUser = {
     username: username,
     password: password,
     password2: password2,
     email: email,
-    apenom: apenom
-  }
+    apenom: apenom,
+    foto:foto
+  }  
   const { method } = req;
   const time = new Date().toLocaleString();
   loggerConsola.info(`Ruta '/Register' - con metodo: ${method} - time: ${time}`);

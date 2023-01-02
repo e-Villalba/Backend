@@ -1,5 +1,6 @@
 const OrdenDTO = require("../clases/clsOrdenes/OrdenDTO.class")
 const config = require("../conexiones/config.js")
+const sendSMS = require ('../middleware/twilio.js')
 
 const OrdenDAOMongoDB = require("../clases/clsOrdenes/OrdenDAO.mongodb")
 
@@ -113,6 +114,7 @@ const OrdenController = {
     async actualizar(id, obj) {
         try {
             await orderDAO.actualizar(id, obj);
+            sendSMS()
             mensajeResult = "Orden Confirmada Exitosamente"
             const view = "orderconfresult"
             const objReturn = {
